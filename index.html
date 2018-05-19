@@ -1,66 +1,135 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+	<meta charset="utf-8" />
+	<title>MobileList</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <body>
-    <header class="header">
-        header
-    </header>
-    <div class="content">
-        content
-        <br>
-        content
-        <br>
-        content
-        <br>
-        content
-        <br>
-
-        content
-        <br>
-        content
-        <br>
-
-        content
-        <br>content
-        <br>
-        content
-        <br>
-
-        content
-        <br>
-
-
-        content
-        <br>
-        content
-        <br>
-        content
-        <br>
-
-        content
-        <br>
-        content
-        <br>content
-        <br>
-
-        content
-        <br>
-        content
-        <br>content
-        <br>
-        content
-        <br>
-
-        content
-        <br>
-        
-    </div>
-</body>
+	<div id="container"></div> 
+	<script type="text/babel">
+	/////MobileList
+	class MobileList extends React.Component {
+		render() {
+			
+			//вызовет столько раз, сколько элементов в массиве
+			let clientsFrame=this.props.myArr.map((v, ind) =>
+				<div style={{margin:"10px 0"}}><a href={"https://87.252.232.172"+v}>{ind+109+' '+v}</a></div>
+			);
+			return (
+				<div>
+					{clientsFrame}
+				</div>
+			);
+		}
+	}
+	////////////////App Js
+	let myArr = 
+		[
+			"/page/payment-for-services",
+            "/page/rambund-commitment",
+            "/page/replenishment-yandex",
+            "/page/salary-packages",
+            "/page/service-account-transactions",
+            "/page/service-corporate-cards",
+            "/page/services-bank-bonds",
+            "/page/services-bonds-financial",
+            "/page/services-bonds-issue",
+            "/page/services-brokerage",
+            "/page/services-deposits",
+            "/page/standards-of-safe-functioning",
+            "/page/strategy",
+            "/page/system-calculation",
+            "/page/tenders_sale_of_property",
+            "/page/trade-finance-services",
+            "/page/transfer-me",
+            "/page/transfers-abroad",
+            "/page/transfers-colibri",
+            "/page/transfers-international",
+            "/page/trust-management-alternative-forms",
+            "/page/trust-management-strategy",
+            "/business-deposit/deposit-irrevocable",
+            "/cards/compare",
+            "/office/369-2",
+            "/packet/predprinimatel/conditions",
+            "/packet/predprinimatel/documents",
+            "/page/android-app",
+            "/page/atms",
+            "/page/automatic-payment",
+            "/page/automatic-payment-mts",
+            "/page/bank_equipment",
+            "/page/bank-currency-exchange-archive",
+            "/page/bank-opinion-questionnaire-contact-center",
+            "/page/bank-opinion-questionnaire-entity",
+            "/page/bank-opinion-questionnaire-private-person",
+            "/page/bank-vacancies-form",
+            "/page/bank-vacancies-training",
+            "/page/bank-vacancies-university",
+            "/page/bonds-of-legal-entities-documents",
+            "/page/business-bank-online",
+            "/page/business-development",
+            "/page/business-service",
+            "/page/construction_machinery",
+            "/page/contact-center",
+            "/page/contact-representation",
+            "/page/correspondent-relations",
+            "/page/currency-exchange-conversion",
+            "/page/currency-exchange-nacbank",
+            "/page/currency-exchange-noncash",
+            "/page/deposit-automatic-renewal",
+            "/page/deposit-belarusian-rubles",
+            "/page/deposit-close",
+            "/page/deposit-foreign-currency",
+            "/page/deposit-partial-withdrawal",
+            "/page/deposit-max-percent",
+            "/page/deposit-early-withdrawal",
+            "/page/deposit-with-capitalization",
+            "/page/fatca",
+            "/page/finance-organization-services",
+            "/page/insurance-case",
+            "/page/international-activity",
+            "/page/ios-app",
+            "/page/mailing",
+            "/page/online-payment",
+            "/page/online-repl-service",
+            "/page/online-replenishment-rates",
+            "/page/online-replenishment-repl",
+            "/page/order-presentation",
+            "/page/payment-overdraft",
+            "/page/press-contact",
+            "/page/press-media",
+            "/page/property_purchase",
+            "/page/replenishment-of-tickets",
+            "/page/representations",
+            "/page/safety-normatives",
+            "/page/sms-banking",
+            "/page/tenders",
+            "/page/tenders_cars",
+            "/page/tenders_cars_and_spare",
+            "/page/tenders_other",
+            "/page/tenders_realty",
+            "/page/tenders_technique",
+            "/page/trade_financing",
+            "/page/transfer-me-rates",
+            "/page/transfer-me-service",
+            "/page/transfer-me-transf",
+            "/page/transfers-internal",
+            "/page/ussd-banking",
+            "/page/vacancies-career",
+            "/page/vacancies-students",
+            "/page/vacancies-vacancies",
+            "/page/windows-phone-app",
+            "/page/financial-statements-IFRS",
+            "/page/credits-online",
+            "/page/work-with-us"
+		]
+	
+		ReactDOM.render(
+			<MobileList myArr={myArr} />
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
 </html>
