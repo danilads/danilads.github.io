@@ -1,0 +1,69 @@
+<html>
+  <head>
+	<style>
+.responsive-box {
+	position: relative;
+	
+}
+.responsive-box::before {
+	content: "";
+	display: block;
+	padding-top: 100%; /* С помощью этого padding мы задаем высоту равную ширине блока */
+}
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+	</style>
+  </head>
+  <body>
+    <div class="responsive-box">
+		<div class="content">Какой-то текст...</div>
+	</div>
+	<script>
+	var initialPoint;
+	var finalPoint;
+	
+	document.addEventListener('touchstart', function(event) {
+	
+	event.preventDefault();
+	event.stopPropagation();
+	
+	initialPoint=event.changedTouches[0];
+	}, false);
+	
+	document.addEventListener('touchend', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		finalPoint=event.changedTouches[0];
+		var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
+		var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+		if (xAbs > 20 || yAbs > 20) {
+		if (xAbs > yAbs) {
+			if (finalPoint.pageX < initialPoint.pageX){
+				/*СВАЙП ВЛЕВО*/
+					alert("ВЛЕВО");
+				}
+			else{
+					/*СВАЙП ВПРАВО*/
+					alert("ВПРАВО");
+				}
+			}
+			else {
+				if (finalPoint.pageY < initialPoint.pageY){
+					/*СВАЙП ВВЕРХ*/
+					alert("ВПРАВО");
+				}
+				else{
+					/*СВАЙП ВНИЗ*/
+					alert("ВНИЗ");
+				}
+			}
+		}
+	}, false);
+	</script>
+  </body>
+</html>
