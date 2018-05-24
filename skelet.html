@@ -1,27 +1,19 @@
 <html>
   <head>
 	<style>
-.responsive-box {
-	position: relative;
+#box {
+	margin: 25px;
+	width: 500px;
+	height: 500px;
+	background-color: #cef;
 	
 }
-.responsive-box::before {
-	content: "";
-	display: block;
-	padding-top: 100%; /* С помощью этого padding мы задаем высоту равную ширине блока */
-}
-.content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
+
 	</style>
   </head>
   <body>
-    <div class="responsive-box">
-		<div class="content">Какой-то текст...</div>
+    <div id="box">
+		
 	</div>
 	<script>
 	var initialPoint;
@@ -45,21 +37,25 @@
 		if (xAbs > yAbs) {
 			if (finalPoint.pageX < initialPoint.pageX){
 				/*СВАЙП ВЛЕВО*/
-					alert("ВЛЕВО");
+					
+					document.body.style.backgroundColor = "red";
 				}
 			else{
 					/*СВАЙП ВПРАВО*/
-					alert("ВПРАВО");
+				
+					document.body.style.backgroundColor = "green";
 				}
 			}
 			else {
 				if (finalPoint.pageY < initialPoint.pageY){
 					/*СВАЙП ВВЕРХ*/
-					alert("ВПРАВО");
+					
+					document.body.style.backgroundColor = "blue";
 				}
 				else{
 					/*СВАЙП ВНИЗ*/
-					alert("ВНИЗ");
+					
+					document.body.style.backgroundColor = "yellow";
 				}
 			}
 		}
