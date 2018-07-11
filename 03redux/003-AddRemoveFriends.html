@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.7/react-redux.min.js"></script>
+</head>
+<body>
+	<div id="container"></div> 
+	<script type="text/babel">
+
+	//////////////////-----------------------------
+	//**actions/counter.js
+		function counter () {
+			return{
+				type: "COUNTER",
+				payload: {}
+			}
+		}
+	
+	
+	//////////////////-----------------------------
+	//**reducers (index.js там храним все подключения в комбайне(комбинирует редюсеры в один ответ)
+		//testReducer.js (который подключен к index.js)
+		let initialState = {
+			loading: false,
+			error: [],
+			cnt: 0,
+		};
+		
+		const testReducer = (state = initialState, action) => {
+			switch(action.type) {
+				case "COUNTER": {
+					return {
+					...state,
+					cnt: state.cnt+= 1
+					}
+				}
+				default: return state;
+			}
+			return state;
+		};
+		
+		//index.js
+		const reducer = Redux.combineReducers({
+			testReducer,
+		});
+	
+	//////////////////-----------------------------
+	//**store index.js 
+		const store = Redux.createStore(reducer);
+		
+	//////////////////-----------------------------
+	//***BLOCK TEST
+	
+		class Test extends React.Component {
+			render() {
+				return (<React.Fragment>
+					<input type="button" value="Counter" onClick={this.props.counter} />
+					{this.props.cntFunc}
+				</React.Fragment>);
+			}
+		}
+		
+		
+	
+		//export
+		//1 аргумент это store 
+		//2 аргумент - actionCreater
+		const TestExport = ReactRedux.connect((state) => 
+		{
+			console.log('state', state);
+			return {
+				cntFunc: state.testReducer.cnt,
+			}
+		},
+		{
+			counter
+		})(Test)
+	
+	//////////////////-----------------------------
+	//***App Js
+		ReactDOM.render(
+				<ReactRedux.Provider store={store}>
+					<TestExport/>
+				</ReactRedux.Provider>
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
+</html>

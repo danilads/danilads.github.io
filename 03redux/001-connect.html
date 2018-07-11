@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.7/react-redux.min.js"></script>
+</head>
+<body>
+	<div id="container"></div> 
+	<script type="text/babel">
+	//***Redux import
+	
+	//хранилище
+	const store = Redux.createStore(reducer);
+	
+	//комбинирует редюсеры в один ответ
+	const reducer = Redux.combineReducers({
+		testReducer,
+	});
+	const testReducer = (state = {}, action) => {
+		console.log('--Пришёл экшн в редюсер 2', action);
+		return state;
+	};
+	
+	
+
+	
+	
+	//***BLOCK TEST
+	class Test extends React.Component {
+		render() {
+			return (
+				<div>hi</div>
+			);
+		}
+	}
+	
+	//export принцип Higher Order
+	const TestExport = ReactRedux.connect((state) => {
+		console.log('1', state);
+		return {}
+	})(Test)
+	
+	/* export  connect и webpack
+	export default connect(({state}) => ({
+		console.log('1', state);
+		return {}
+		breakpoint: common.breakpoint
+	}))(Test);
+	*/
+	
+	//***App Js
+		ReactDOM.render(
+				<ReactRedux.Provider store={store}>
+					<TestExport/>
+				</ReactRedux.Provider>
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
+</html>

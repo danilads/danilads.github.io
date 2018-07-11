@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Test</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.7/react-redux.min.js"></script>
+</head>
+<body>
+	<div id="container"></div> 
+	<script type="text/babel">
+	//***Redux import
+	
+
+	//writeInReducer - записываем в редюсер
+	/*
+	const testReducer = (state = {}, action) => {
+		switch(action.type) {
+			case "PAYMENT_NEWS": {
+				return {
+					writeInReducer: payload.a + payload.b,
+					...state,
+				}
+			}
+			default: return state;
+		}
+		console.log('--Пришёл экшн', action);
+		return state;
+	};
+	*/
+	/*
+	const testReducer2 = (state = 0, action) => {
+		console.log('--Пришёл экшн в редюсер 2', action);
+		switch(action.type) {
+			case "SOME_ACTION": {
+				return state += 1
+			}
+			default: return state;
+		}
+		return state;
+	};
+	*/
+	const testReducer = (state = {}, action) => {
+		console.log('--Пришёл экшн в редюсер 2', action);
+		return state;
+	};
+	
+	//комбинирует редюсеры в один ответ
+	const reducer = Redux.combineReducers({
+		testReducer,
+	});
+
+	const store = Redux.createStore(reducer);
+	
+	
+	//***BLOCK TEST
+	//let Test;
+	class Test extends React.Component {
+		render() {
+			return (
+				<div>hi</div>
+			);
+		}
+	}
+	
+	//action creators
+	
+	function ac1(){
+		return {
+			type: 'A1',
+			payload: {},
+		}
+	}
+	function ac2(){
+		return {
+			type: 'A1',
+			payload: {},
+		}
+	}
+	
+	const TestExport = ReactRedux.connect((state) => {
+		console.log('1', state);
+		return {}
+	}, {pure: false})(Test)
+	
+	/*
+	export default connect(({common}) => ({
+		breakpoint: common.breakpoint
+	}))(Test);
+	*/
+	
+	////////////////App Js
+		ReactDOM.render(
+				<ReactRedux.Provider store={store}>
+					<TestExport/>
+				</ReactRedux.Provider>
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
+</html>
