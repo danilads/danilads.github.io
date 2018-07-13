@@ -13,12 +13,23 @@
 	<div id="container"></div> 
 	<script type="text/babel">
 
+	//все изменения в redux должны быть имутабельными
+	//https://doesitmutate.xyz/
 	//////////////////-----------------------------
 	//**actions/counter.js
-		function counter () {
+		
+		function addFriend (e) {
 			return{
-				type: "COUNTER",
-				payload: {}
+				type: "ADD_FRIEND",
+				payload: {
+					friend: e
+				}
+			}
+		}
+		
+		function removeLastFriend () {
+			return{
+				type: "REMOVE_FRIEND",
 			}
 		}
 	
@@ -27,17 +38,21 @@
 	//**reducers (index.js там храним все подключения в комбайне(комбинирует редюсеры в один ответ)
 		//testReducer.js (который подключен к index.js)
 		let initialState = {
-			loading: false,
-			error: [],
-			cnt: 0,
+			list: [],
 		};
 		
 		const testReducer = (state = initialState, action) => {
 			switch(action.type) {
-				case "COUNTER": {
+				case "ADD_FRIEND": {
 					return {
-					...state,
-					cnt: state.cnt+= 1
+						...state,
+						list: state.list.concat(action.payload.friend)
+					}
+				}
+				case "REMOVE_FRIEND": {
+					return {
+						...state,
+						list: state.list.slice(0, -1)
 					}
 				}
 				default: return state;
@@ -58,16 +73,32 @@
 	//***BLOCK TEST
 	
 		class Test extends React.Component {
+			state = {
+				text: '',
+			};
+			changeText = (e) => {
+				this.setState({text: e.target.value});
+			};
+			addFriend = () => {
+				this.props.addFriend(this.state.text);
+			};
+			removeFriend = () => {
+				this.props.removeLastFriend();
+			};
 			render() {
 				return (<React.Fragment>
-					<input type="button" value="Counter" onClick={this.props.counter} />
-					{this.props.cntFunc}
+					<input type="input" onChange={this.changeText} value={this.state.text}/>
+					<input type="button" value="add" onClick={this.addFriend} />
+					<input type="button" value="remove" onClick={this.removeFriend} />
+					{this.props.friendList.map( (item, index) =>
+					<div key={index}>{item}</div>
+					)}
 				</React.Fragment>);
 			}
 		}
 		
 		
-	
+		
 		//export
 		//1 аргумент это store 
 		//2 аргумент - actionCreater
@@ -75,11 +106,12 @@
 		{
 			console.log('state', state);
 			return {
-				cntFunc: state.testReducer.cnt,
+				friendList: state.testReducer.list,
 			}
 		},
 		{
-			counter
+			addFriend,
+			removeLastFriend
 		})(Test)
 	
 	//////////////////-----------------------------

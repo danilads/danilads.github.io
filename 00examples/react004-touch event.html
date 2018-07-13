@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>VeryUsefullComponent</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+	<body>
+	<div id="container"></div> 
+	<script type="text/babel">
+///VeryUsefullComponent
+	class VeryUsefullComponent extends React.Component {
+		initialPoint: "";
+		finalPoint: "";
+		
+		  touchStart(event){
+			event.preventDefault();
+			event.stopPropagation();
+			
+			this.initialPoint=event.changedTouches[0];
+			
+		  }
+		  touchEnd(event){
+			event.preventDefault();
+			event.stopPropagation();
+			this.finalPoint=event.changedTouches[0];
+			var xAbs = Math.abs(this.initialPoint.pageX - this.finalPoint.pageX);
+			var yAbs = Math.abs(this.initialPoint.pageY - this.finalPoint.pageY);
+			if (xAbs > 20 || yAbs > 20) {
+			if (xAbs > yAbs) {
+				if (this.finalPoint.pageX < this.initialPoint.pageX){
+					/*СВАЙП ВЛЕВО*/
+						
+						document.body.style.backgroundColor = "red";
+					}
+				else{
+						/*СВАЙП ВПРАВО*/
+					
+						document.body.style.backgroundColor = "green";
+					}
+				}
+				else {
+					if (this.finalPoint.pageY < this.initialPoint.pageY){
+						/*СВАЙП ВВЕРХ*/
+						
+						document.body.style.backgroundColor = "blue";
+					}
+					else{
+						/*СВАЙП ВНИЗ*/
+						
+						document.body.style.backgroundColor = "yellow";
+					}
+				}
+			}
+		  }
+		  
+		  componentDidMount(){
+			document.addEventListener("touchstart", this.touchStart, false);
+			document.addEventListener('touchend', this.touchEnd, false);
+		  }
+		  componentWillUnmount(){
+			document.removeEventListener("touchstart", this.touchStart, false);
+			document.removeEventListener('touchend', this.touchEnd, false);
+		  }
+		
+		render() {
+		
+			return (
+				<div className="container">
+					hello
+				</div>
+			);
+		}
+	}
+	////////////////App Js
+			ReactDOM.render(
+			<VeryUsefullComponent/>
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
+</html>

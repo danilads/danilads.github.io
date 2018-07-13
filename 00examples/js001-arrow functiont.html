@@ -1,0 +1,45 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+		//анонимная функция
+		/////////////////////////////////
+		a => {
+		
+		}
+		
+		(function(a) {
+		
+		})();
+		
+		
+		/////////////////////////////////
+		const myFunc = data1 => data2 =>{
+			return data1 + data2
+		}		
+		
+		const a = myFunc(1); //присвоили функцию
+		
+		console.log(a(234)); //235
+		
+		
+		console.log(myFunc(2)(4)); //6
+		
+		/////////////////////////////////
+		is = data => typeof data;
+
+		//is.array = data => Array.isArray(data);
+
+		["string", "function", "object", "boolean"].forEach(key => {
+			is[key] = data => typeof data === key;
+		});
+		
+		console.log(is(234234)); //"number"
+		
+		console.log(is.string(234234));//false
+		console.log(is.string); //присвоили функцию
+		
+	</script>
+  </body>
+</html>
