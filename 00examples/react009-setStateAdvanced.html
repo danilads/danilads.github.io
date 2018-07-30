@@ -32,7 +32,12 @@
             }
         ],
 		}
-		
+		sumFunc = () => {
+			console.log(this.state.list);
+		}
+		func0 = () => {
+			this.setState({list: {name: "321"}}, ()=>this.sumFunc());
+		}
 		func1 = () => {
 			this.setState({
 				list: {...this.state.list, name: "green"}
@@ -58,6 +63,7 @@
 				<div>
 					<div>{this.state.list.name}</div>
 					<div>{this.state.array[0].name}</div>
+					<input type="button" onClick={this.func0} value="321"/>
 					<input type="button" onClick={this.func1} value="Change red"/>
 					<input type="button" onClick={this.func2} value="Change name"/>
 				</div>
