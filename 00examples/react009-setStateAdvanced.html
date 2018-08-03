@@ -56,6 +56,15 @@
 				})
 			});
 		}
+		func3 = () => {
+			this.setState((state) => {
+				let arr = this.state.array;
+				arr[0] = {name: "wtf"};
+				return {
+					array: arr,
+				}
+			});
+		}
 		render() {
 			
 			
@@ -66,6 +75,7 @@
 					<input type="button" onClick={this.func0} value="321"/>
 					<input type="button" onClick={this.func1} value="Change red"/>
 					<input type="button" onClick={this.func2} value="Change name"/>
+					<input type="button" onClick={this.func3} value="Change name2"/>
 				</div>
 			);
 		}
