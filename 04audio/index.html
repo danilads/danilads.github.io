@@ -25,6 +25,7 @@
 			  srcNode = actx.createBufferSource();  // create audio source
 			  srcNode.buffer = abuffer;             // use decoded buffer
 			  srcNode.connect(actx.destination);    // create output
+			  srcNode.duration = 500;
 			  srcNode.loop = true;                  // takes care of perfect looping
 			  srcNode.start();                      // play...
 			}
