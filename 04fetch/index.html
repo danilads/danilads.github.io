@@ -17,19 +17,17 @@
 			console.log(321);
 			let answer;
 			try {
-				answer = await fetch({
-					URI: "https://jsonplaceholder.typicode.com/todos/1",
-					fetchOptions: {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							'Accept': 'application/json',
-						},
-						body: JSON.stringify({
+				answer = await fetch('https://jsonplaceholder.typicode.com/todos/1', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Accept': 'application/json',
+					},
+					body: JSON.stringify({
 							pre: 321
 						})
-					}
-				},);
+				});
+				
 			} catch (e) {
 				console.log('error', e);
 			}
