@@ -12,19 +12,18 @@
 	<script type="text/babel">
 	////MobileList
 	class MobileList extends React.Component {
-		state = {
-			
+		run = (e) => {
+			//В кастом атрибуте только маленькие буквы
+			console.log(e.currentTarget.dataset.mycustomatr);
 		};
-		myFunc = (e)=>{
-			console.log(e);
-		};
-		
 		render() {
-			
+			let a = [1,2,3]
 			
 			return (
-				<div>
-					<input type="button" onClick={(e) => this.myFunc(e,'hi')} value="say hi"/>
+				<div>{a.map(i=>{
+					return <button data-mycustomatr={i} onClick={this.run}>{i}</button>
+				})}
+					
 				</div>
 			);
 		}
