@@ -22,7 +22,27 @@
 		//1 раз в самом начале когда еще компонента нету
 		constructor(props){
 			super(props);
+			//перезапишет state
+			this.state = {
+				step: 1,
+			}
+			
 		}
+		state = {
+			step: 1,
+		}
+		//срабатывает каждый раз перед рендером (статичный)
+		static getDerivedStateFromProps(props,state){
+			console.log(state.step);
+			//возвращает в state объекты
+			return {
+				newStep: 1,
+				newStep2: 2,
+			}
+		}
+		
+		
+		
 		//Перед вствкой в DOM
 		//Выпиливается в последнем реакте
 		componentWillMount(){
@@ -40,6 +60,7 @@
 		//Перед вызовом render
 		componentWillUpdate(nextProps, nextState){
 		}
+		
 		
 		
 		
