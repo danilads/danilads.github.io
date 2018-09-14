@@ -41,6 +41,16 @@
             left: 6px;
             display: block;
           }
+          .chckBx >input[type="checkbox"]:disabled + div::before {
+            width: 16px;
+            height: 16px;
+            content: '';
+            position: absolute;
+            background-color: rgba(27, 39, 51, 0.2);
+            left: -2px;
+            top: -2px;
+            z-index: 20;
+          }
     
 	</style>
 </head>
@@ -61,7 +71,9 @@
 						<div></div>
 					</label>
 				})}
-					
+					<label className="chckBx" onClick={() => this.run()}><input type="checkbox" name="checkbox" disabled={true} />
+						<div></div>
+					</label>
 				</div>
 			);
 		}
