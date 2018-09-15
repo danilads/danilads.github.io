@@ -36,7 +36,9 @@
 			console.log(this.state.list);
 		}
 		func0 = () => {
-			this.setState({list: {name: "321"}}, ()=>this.sumFunc());
+			let list = {name: "321"};
+			this.setState({list});
+			//this.setState({list: {name: "321"}}, ()=>this.sumFunc());
 		}
 		func1 = () => {
 			this.setState({
