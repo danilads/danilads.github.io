@@ -20,6 +20,8 @@ import Page_Content from './01_pages/Page_Content';
 //store
 import store from './redux/store';
 
+//css
+import './App.scss';
 
 ReactDOM.render(
 	

@@ -19,7 +19,7 @@ export const loadNews = () => async (dispatch, getState) => {
 	
 	let answer;
 	try {
-		answer = await fetch('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?l=german&appid=570&key=8BF24A2B3BEA4957FBC230A31E75AC63', {
+		answer = await fetch('https://cors-anywhere.herokuapp.com/http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?l=german&appid=570&key=8BF24A2B3BEA4957FBC230A31E75AC63', {
 					method: 'GET',
 				});
 		
