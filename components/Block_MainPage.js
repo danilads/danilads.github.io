@@ -61,8 +61,16 @@ class Block_MainPage extends React.PureComponent {
 					<div className="col-3 Main"><div className="cl1">1</div></div>
 					<div className="col-3 Main"><div className="cl1">1</div></div>
 				</div>
+
+				<div className="row no-gutters block">
+					<div className="col-12"><div className="cl1">но гатерс убирает отрицательный маргин</div></div>
+					<div className="col-3 Main"><div className="cl1">3</div></div>
+					<div className="col-3 Main"><div className="cl1">3</div></div>
+					<div className="col-3 Main"><div className="cl1">3</div></div>
+					<div className="col-3 Main"><div className="cl1">3</div></div>
+				</div>
 			</div>
-			
+
 			</Fragment>
 		);
 

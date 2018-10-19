@@ -1,7 +1,6 @@
 //variables
 $grid-breakpoints: (
-        xxs: 0,
-        xs: 672px,
+        xs: 0,
         sm: 768px,
         md: 984px,
         lg: 1280px,
@@ -12,7 +11,8 @@ $grid-breakpoints: (
 //
 // Define the maximum width of `.container` for different screen sizes.
 $container-max-widths: (
-        sm: 722px,	//688+32
+		xs: 94.6%,
+        sm: 720px,	//688+32
         md: 864px, 	//824+40
         lg: 1152px, //1104+48
         xl: 1152px  //1104+48
@@ -23,14 +23,22 @@ $container-max-widths: (
 $grid-columns: 12 !default;
 
 
-//Gutters
+//Gutters (расстояние между блоками)
 $grid-gutter-width: (
-		xxs: 18px,
-        xs: 40px,
+        xs: 4.5%,
         sm: 32px,
         md: 40px,
         lg: 48px,
         xl: 48px
+) !default;
+
+//Паддинг контейнера ( Обычно ставится как $grid-gutter-width / 2) но если у нас резиновая верстка можно их увеличить или уменьшить (только в тех breakpoint'ах где резина)
+$grid-padding-width: (
+		xs: 19px,
+		sm: 16px,
+		md: 20px,
+		lg: 24px,
+		xl: 24px
 ) !default;
 
 
@@ -152,7 +160,7 @@ $grid-gutter-width: (
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
-	@include make-grid-gutter-width(2, true);
+	@include make-grid-padding-width();
 }
   
   
@@ -178,6 +186,15 @@ $grid-gutter-width: (
 				margin-right: ($current-width / $divider);
 				margin-left: ($current-width / $divider);
 			}
+		}
+	}
+}
+//создаем кастомные padding контейнера, при резиновой верстке
+@mixin make-grid-padding-width() {
+	@each $breakpoint, $current-width in $grid-padding-width {
+		@include respond-up($breakpoint, $grid-breakpoints) {
+			padding-right: ($current-width);
+			padding-left: ($current-width);
 		}
 	}
 }
