@@ -3,11 +3,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+	//устанавливается в packaje.json (нужен cross-env)
+  //mode: process.env.NODE_ENV,
   mode: 'development',
   //mode: 'production',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin()
+      new UglifyJsPlugin({
+		uglifyOptions: {
+			output: {
+			  comments: false
+			}
+		  }
+	  })
     ]
   },
   devServer: {

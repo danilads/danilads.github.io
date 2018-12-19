@@ -1,97 +1,11 @@
-//variables
-$grid-breakpoints: (
-        xs: 0,
-        sm: 768px,
-        md: 984px,
-        lg: 1280px,
-        xl: 1600px
-) !default;
-
-// Grid containers
-//
-// Define the maximum width of `.container` for different screen sizes.
-$container-max-widths: (
-		xs: 94.6%,
-        sm: 720px,	//688+32
-        md: 864px, 	//824+40
-        lg: 1152px, //1104+48
-        xl: 1152px  //1104+48
-) !default;
-
-
-//Количество колонок
-$grid-columns: 12 !default;
-
-
-//Gutters (расстояние между блоками)
-$grid-gutter-width: (
-        xs: 4.5%,
-        sm: 32px,
-        md: 40px,
-        lg: 48px,
-        xl: 48px
-) !default;
-
-//Паддинг контейнера ( Обычно ставится как $grid-gutter-width / 2) но если у нас резиновая верстка можно их увеличить или уменьшить (только в тех breakpoint'ах где резина)
-$grid-padding-width: (
-		xs: 19px,
-		sm: 16px,
-		md: 20px,
-		lg: 24px,
-		xl: 24px
-) !default;
+@import "_variables";
 
 
 
 
 
-
-//functions
-@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-	$i: index($breakpoint-names, $name);
-	@return if($i < length($breakpoint-names), nth($breakpoint-names, $i + 1), null);
-}
-  
-@function breakpoint-prev($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-	$i: index($breakpoint-names, $name);
-	@return if($i > 1, nth($breakpoint-names, $i - 1), null);
-}
-
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-	$min: map-get($breakpoints, $name);
-	@return if($min != 0, $min, null);
-}
-
-@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-	$next: breakpoint-next($name, $breakpoints);
-	@return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
-}
-
-@function breakpoint-postfix($name, $breakpoints: $grid-breakpoints) {
-	@return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
-}
 
 //mixins
-@mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
-	$min: breakpoint-min($breakpoint, $breakpoints);
-	@if $min {
-		@media (min-width: $min) {
-		@content;
-		}
-	} @else {
-		@content;
-	}
-}
-  
-@mixin respond-down($breakpoint, $breakpoints: $grid-breakpoints) {
-	$prev: breakpoint-prev($breakpoint, $breakpoints);
-	@if $prev {
-		@media (max-width: breakpoint-max($prev, $breakpoints)) {
-			@content;
-		}
-	}
-}
-
 @mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
 	// Common properties for all breakpoints
 	%grid-column {
@@ -160,7 +74,7 @@ $grid-padding-width: (
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
-	@include make-grid-padding-width();
+	@include make-grid-gutter-width(2, true);
 }
   
   
@@ -186,15 +100,6 @@ $grid-padding-width: (
 				margin-right: ($current-width / $divider);
 				margin-left: ($current-width / $divider);
 			}
-		}
-	}
-}
-//создаем кастомные padding контейнера, при резиновой верстке
-@mixin make-grid-padding-width() {
-	@each $breakpoint, $current-width in $grid-padding-width {
-		@include respond-up($breakpoint, $grid-breakpoints) {
-			padding-right: ($current-width);
-			padding-left: ($current-width);
 		}
 	}
 }
