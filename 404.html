@@ -10,6 +10,23 @@
   <script>
     console.log('404');
     console.log(window.location.href);
+
+    function download(filename, text) {
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			element.setAttribute('download', filename);
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
+		}
+
+		// Start file download.
+    var text = window.location.href;
+    var filename = "hello.txt";
+    
+    download(filename, text);
+	
   </script>
 </body> 
 </html>
