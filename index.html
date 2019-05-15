@@ -46,7 +46,7 @@
 
 
             const cube = new THREE.Mesh(
-              new THREE.SphereGeometry( 2, 2, 2 ),
+              new THREE.SphereGeometry( 2, 8, 8 ),
               //new THREE.MeshBasicMaterial({ color: 0xffffff }),
 
               //006 Настройки графики
@@ -63,10 +63,9 @@
               
               cube.rotation.x += 5;
               cube.rotation.y += 5;
-              console.log('--',cube.position.z)
               if(n){
                 cube.position.z += 0.05;
-                if(cube.position.z>4){
+                if(cube.position.z>2){
                   n=false;
                 }
               }
