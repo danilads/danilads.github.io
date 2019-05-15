@@ -46,13 +46,13 @@
 
 
             const cube = new THREE.Mesh(
-              new THREE.BoxGeometry(1, 1, 1),
+              new THREE.SphereGeometry( 2, 5, 5 ),
               //new THREE.MeshBasicMaterial({ color: 0xffffff }),
 
               //006 Настройки графики
               //precision "highp", "mediump" or "lowp"
               //
-              new THREE.MeshPhongMaterial({ color: 0x41b882 , precision: 'lowp' })
+              new THREE.MeshPhongMaterial({ color: 0x41b882 , precision: 'mediump' })
             );
             scene.add(cube);
 
@@ -61,8 +61,8 @@
             var animate = function () {
               requestAnimationFrame( animate );
 
-              cube.rotation.x += 0.01;
-              cube.rotation.y += 0.01;
+              cube.rotation.x += 0.5;
+              cube.rotation.y += 0.5;
 
               renderer.render( scene, camera );
             };
