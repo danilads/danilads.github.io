@@ -46,7 +46,7 @@
 
 
             const cube = new THREE.Mesh(
-              new THREE.SphereGeometry( 2, 5, 5 ),
+              new THREE.SphereGeometry( 2, 2, 2 ),
               //new THREE.MeshBasicMaterial({ color: 0xffffff }),
 
               //006 Настройки графики
@@ -57,13 +57,27 @@
             scene.add(cube);
 
             
-
+            var n = true;
             var animate = function () {
               requestAnimationFrame( animate );
-
-              cube.rotation.x += 0.5;
-              cube.rotation.y += 0.5;
-
+              
+              cube.rotation.x += 5;
+              cube.rotation.y += 5;
+              console.log('--',cube.position.z)
+              if(n){
+                cube.position.z += 0.05;
+                if(cube.position.z>4){
+                  n=false;
+                }
+              }
+              else{
+                cube.position.z -= 0.05;
+                if(cube.position.z<0){
+                  n=true;
+                }
+              }
+              
+             
               renderer.render( scene, camera );
             };
 
