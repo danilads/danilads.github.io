@@ -36,44 +36,50 @@
             const scene = new THREE.Scene();
             
             const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-          
+            camera.position.x=5;
+            camera.position.z=20;
+           
             const renderer = new THREE.WebGLRenderer({
               canvas: document.querySelector('#c'),
               antialias: true,
             });
             renderer.setClearColor(0xffffff);
             renderer.setSize( window.innerWidth, window.innerHeight );
-
-
-            const cube = new THREE.Mesh(
-              new THREE.SphereGeometry( 2, 8, 8 ),
-              //new THREE.MeshBasicMaterial({ color: 0xffffff }),
-
-              //006 Настройки графики
-              //precision "highp", "mediump" or "lowp"
-              //
-              new THREE.MeshPhongMaterial({ color: 0x41b882 , precision: 'mediump' })
-            );
-            scene.add(cube);
+            
+            var y=10;
+            var x=0;
+       
+            for(let i=1000;i>0;i--){
+             
+              window['sp'+i] = new THREE.Mesh(
+                new THREE.SphereGeometry( 1, 8, 8 ),
+                new THREE.MeshPhongMaterial({ color: 0x41b882 , precision: 'mediump', specular: 0x050505, shininess: 100})
+              );
+              
+              if(i%10===0){
+                y-=1;
+                x=0;
+              }
+              window['sp'+i].position.x = x;
+              x++;
+              window['sp'+i].position.y = y;
+              scene.add(window['sp'+i]);
+            }
+           
+    
+            
 
             
             var n = true;
             var animate = function () {
               requestAnimationFrame( animate );
               
-              cube.rotation.x += 5;
-              cube.rotation.y += 5;
-              if(n){
-                cube.position.z += 0.05;
-                if(cube.position.z>2){
-                  n=false;
-                }
-              }
-              else{
-                cube.position.z -= 0.05;
-                if(cube.position.z<0){
-                  n=true;
-                }
+              sp1.rotation.x += 5;
+              sp1.rotation.y += 5;
+              for(let i=1000;i>0;i--){
+                window['sp'+i].rotation.x += 5;
+                window['sp'+i].rotation.y += 5;
+              
               }
               
              
@@ -86,28 +92,7 @@
             const interaction = new THREE.Interaction(renderer, scene, camera);
             
             
-            //002 interaction
-            cube.cursor = 'pointer';
-            cube.on('click', function(ev) {
-              console.log('click')
-            });
-            cube.on('touchstart', function(ev) {});
-            cube.on('touchcancel', function(ev) {});
-            cube.on('touchmove', function(ev) {});
-            cube.on('touchend', function(ev) {});
-            cube.on('mousedown', function(ev) {});
-            cube.on('mouseout', function(ev) {});
-            cube.on('mouseover', function(ev) {});
-            cube.on('mousemove', function(ev) {});
-            cube.on('mouseup', function(ev) {});
-           
-            scene.on('touchstart', ev => {
-            console.log(ev);
-            })
-            scene.on('touchmove', ev => {
-            console.log(ev);
-            })
-            
+      
             //resizer
             let BaseCamera = 5;
             
