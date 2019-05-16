@@ -6,6 +6,7 @@
 	<title>MobileList</title>
 	<script src="000 - three.min.js"></script>
 	<script src="000 - three.interaction.js"></script>
+	<script src="000 - three.fps.js"></script>
 	<style>
 			html{ background-color: black; }
 			body { margin: 0; }
@@ -73,32 +74,56 @@
 
             
             var n = true;
-            var animate = function () {
-              requestAnimationFrame( animate );
-              
-              sp1.rotation.x += 5;
-              sp1.rotation.y += 5;
-              for(let i=1000;i>0;i--){
-                window['sp'+i].rotation.x += 5;
-                window['sp'+i].rotation.y += 5;
-              
-              }
+           
+            // animation
+            // readme
+            // 60 - это 60 кадров в секунду будет проходить основная анимация
+            var timerId = setInterval(function() {
+                // console.log('----ТИК');
+                sp1.rotation.x += 5;
+                sp1.rotation.y += 5;
+                for(let i=1000;i>0;i--){
+                  window['sp'+i].rotation.x += 5;
+                  window['sp'+i].rotation.y += 5;
+                
+                }
 
-              if(n){
-                camera.position.z-=1;
-                if(camera.position.z<2){
-                  n=false
+                if(n){
+                  camera.position.z-=1;
+                  if(camera.position.z<2){
+                    n=false
+                  }
                 }
-              }
-              else{
-                camera.position.z+=1;
-                if(camera.position.z>10){
-                  n=true
+                else{
+                  camera.position.z+=1;
+                  if(camera.position.z>10){
+                    n=true
+                  }
                 }
-              }
-             
+            }, 1000/ 60);
+
+            // главный render
+            // readme
+            // 60 - это 60 кадров в секунду будет проходить перерисовка сцены
+            const fpsElem = document.querySelector("#fps");
+            let then = 0;
+            function animate(now) {
+
+              setTimeout( function() {
+                now *= 0.001;                          // convert to seconds
+                const deltaTime = now - then;          // compute time since last frame
+                then = now;                            // remember time for next frame
+                const fps = 1 / deltaTime;             // compute frames per second
+                fpsElem.textContent = fps.toFixed(1);  // update fps display
+                
+                  requestAnimationFrame( animate );
+
+              }, 1000 / 60 );
+
               renderer.render( scene, camera );
-            };
+
+            }
+           
 
             animate();
 
@@ -135,23 +160,7 @@
             light.position.set(0, -20, 0);
             scene.add(light);
 
-
-            //007 fps
-            const fpsElem = document.querySelector("#fps");
-
-            let then = 0;
-            function render(now) {
-              now *= 0.001;                          // convert to seconds
-              const deltaTime = now - then;          // compute time since last frame
-              then = now;                            // remember time for next frame
-              const fps = 1 / deltaTime;             // compute frames per second
-              fpsElem.textContent = fps.toFixed(1);  // update fps display
-              
-            
-              requestAnimationFrame(render);
-            }
-            requestAnimationFrame(render);
-
+          
 
 
 	</script>
