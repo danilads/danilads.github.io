@@ -131,8 +131,8 @@
             //006 ambient
             var ambient = new THREE.AmbientLight( 0x666666 );
             scene.add( ambient );
-            var light = new THREE.PointLight(0xffffff);
-            light.position.set(20, 50, 10);
+            var light = new THREE.PointLight({color : 0xffffff, intensity : 100, distance : 0, decay : 1});
+            light.position.set(0, -20, 0);
             scene.add(light);
 
 
