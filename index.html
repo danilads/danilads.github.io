@@ -1,168 +1,80 @@
+
 <!DOCTYPE html> 
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>MobileList</title>
-	<script src="000 - three.min.js"></script>
-	<script src="000 - three.interaction.js"></script>
-	<script src="000 - three.fps.js"></script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title></title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 	<style>
-			html{ background-color: black; }
-			body { margin: 0; }
-			canvas { width: 100%!important; height: 100%!important }
-      #container {
-        position: relative;   /* needed so child elements use this as their base */
-      }
-      #hud {
-        position: absolute;
-        left: 5px;
-        top: 5px;
-        background: rgba(0, 0, 0, 0.5);  /* 50% opaque black */
-        color: white;
-        padding: .5em;
-        font-family: monospace;
-        border-radius: .5em;
-      }
-		</style>
+		.bor{
+			border: 1px dashed black;
+			width:20px;
+		}
+	</style>
 </head>
 <body>
-<body>
-    <div id="container">
-        <canvas id="c"></canvas>
-        <div id="hud">fps: <span id="fps"></span></div>
-    </div>
-  <script>	 
-            //001 index
-            const scene = new THREE.Scene();
-            
-            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-            camera.position.z=10;
-            camera.position.x=5;
+	<div id="container"></div> 
+	<script type="text/babel">
+	/////MobileList
+	class MobileList extends React.PureComponent {
+		state={
+		input:"",
+		storage:"",
 
-          
-           
-            const renderer = new THREE.WebGLRenderer({
-              canvas: document.querySelector('#c'),
-              antialias: true,
-            });
-            renderer.setClearColor(0xffffff);
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            
-            var y=10;
-            var x=0;
-       
-            for(let i=1000;i>0;i--){
-             
-              window['sp'+i] = new THREE.Mesh(
-                new THREE.SphereGeometry( 1, 8, 8 ),
-                new THREE.MeshPhongMaterial({ color: 0x41b882 , precision: 'mediump', specular: 0x050505, shininess: 100})
-              );
-              
-              if(i%10===0){
-                y-=1;
-                x=0;
-              }
-              window['sp'+i].position.x = x;
-              x++;
-              window['sp'+i].position.y = y;
-              scene.add(window['sp'+i]);
-            }
-           
-    
-            
+	}
 
-            
-            var n = true;
-           
-            // animation
-            // readme
-            // 60 - это 60 кадров в секунду будет проходить основная анимация
-            var timerId = setInterval(function() {
-                // console.log('----ТИК');
-                sp1.rotation.x += 5;
-                sp1.rotation.y += 5;
-                for(let i=1000;i>0;i--){
-                  window['sp'+i].rotation.x += 5;
-                  window['sp'+i].rotation.y += 5;
-                
-                }
+	addItem=()=>{
+		console.log('set');
+		localStorage.setItem('someKey', this.state.input)
+	}
+	getItem=()=>{
+		console.log('get');
+		console.log('--get',localStorage.getItem('someKey'))
+	}
 
-                if(n){
-                  camera.position.z-=1;
-                  if(camera.position.z<2){
-                    n=false
-                  }
-                }
-                else{
-                  camera.position.z+=1;
-                  if(camera.position.z>10){
-                    n=true
-                  }
-                }
-            }, 1000/ 60);
+	set=(e)=>{
+		this.setState({input:e.target.value})
+	}
+	
+	//не работает на странице, которая вносит изменения
+	//но срабатывает на открытых страницах домена в броузере
+	componentDidMount(){
+		window.addEventListener('storage',(e)=> { console.log('watafak') })
+	}
+	componentWillUnmount(){
+		window.removeEventListener('storage',(e)=> { console.log('watafak') })
+	}
+	
+	
+  	render() {
+		return (
+			<div className="Block_MainPage" style={{backgroundColor:this.state.color}}>
+				<div>
+					{this.state.storage}
+				</div>
+				<div>
+					<input onChange={this.set} value={this.state.input} style={{width:"100%"}} type={"text"}/>
+				</div>
+				<div>
+					<input onClick={this.addItem} style={{width:"100%"}} value="add to storage" type={"button"}/>
+				</div>
+				<div>
+					<input onClick={this.getItem} style={{width:"100%"}} value="get from storage" type={"button"}/>
+				</div>
+			</div>
+			
+		);
 
-            // главный render
-            // readme
-            // 60 - это 60 кадров в секунду будет проходить перерисовка сцены
-            const fpsElem = document.querySelector("#fps");
-            let then = 0;
-            function animate(now) {
-
-              setTimeout( function() {
-                now *= 0.001;                          // convert to seconds
-                const deltaTime = now - then;          // compute time since last frame
-                then = now;                            // remember time for next frame
-                const fps = 1 / deltaTime;             // compute frames per second
-                fpsElem.textContent = fps.toFixed(1);  // update fps display
-                
-                  requestAnimationFrame( animate );
-
-              }, 1000 / 60 );
-
-              renderer.render( scene, camera );
-
-            }
-           
-
-            animate();
-
-            // new a interaction, then you can add interaction-event with your free style
-            const interaction = new THREE.Interaction(renderer, scene, camera);
-            
-            
-      
-            //resizer
-            let BaseCamera = 5;
-            
-            window.addEventListener('resize', onWindowResize, false);
-
-            function onWindowResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-
-                //меняем модификатор камеры
-                if(window.innerHeight>window.innerWidth){
-                  camera.position.z = BaseCamera/(window.innerWidth / window.innerHeight);
-                }
-                else{
-                  camera.position.z = BaseCamera;
-                }
-            }
-            //запускаем при старте
-            onWindowResize();
-
-            //006 ambient
-            var ambient = new THREE.AmbientLight( 0x666666 );
-            scene.add( ambient );
-            var light = new THREE.PointLight({color : 0xffffff, intensity : 100, distance : 0, decay : 1});
-            light.position.set(0, -20, 0);
-            scene.add(light);
-
-          
-
-
+	  }
+	}
+	////////////////App Js
+		ReactDOM.render(
+			<MobileList/>
+			,document.getElementById('container')
+		);
 	</script>
-</body>
+</body> 
 </html>
