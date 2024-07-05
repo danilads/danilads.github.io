@@ -13,6 +13,7 @@
 	body {width: 100%; margin: 0;}
 	#container {width: 100%; margin: 0;}
 	#main {width: 100%; margin: 0;}
+	#answerArea {width: 100%;}
 
 </style>
 <body>
@@ -304,7 +305,7 @@
 		return (
 				<div id="main">
 					{/* SELECT */}
-					<span>v0.3</span>
+					<span>v0.4</span>
 					<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 						{allLang.map(it => {
 							return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
@@ -330,9 +331,9 @@
 					<div style={{display: 'flex'}}>
 						<button onClick={() => listenTextarea(inputContent)}>LISTEN</button>
 						<textarea
+							id="answerArea"
 							ref={textareaRef}
 							rows={10}
-							cols={100}
 							value={inputContent}
 							onChange={e => setInputContent(e.target.value)}
 						/>
