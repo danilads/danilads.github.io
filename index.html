@@ -1,27 +1,326 @@
 <!DOCTYPE html> 
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title></title>
-  <script src="marvinj-1.0.min.js"></script>
-  <style>
-
-  </style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title></title>
+	<script crossorigin src="https://unpkg.com/react@16.8.0/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <body>
-  <img id='i' src="img.bmp" alt="some"/>
-  <script>
-    let bmp = document.getElementById('i');
-    console.log(bmp.src);
-    let image = new MarvinImage();
-    image.load(bmp.src, imageLoaded);
-
-    function imageLoaded(){
-      console.log("(0,0): "+(image.getAlphaComponent(0,0) > 0 ? "NOT_TRANSPARENT" : "TRANSPARENT"));
-      console.log("(150,150): "+(image.getAlphaComponent(150,150) > 0 ? "NOT_TRANSPARENT" : "TRANSPARENT"));
-    }
-  </script>
-<body>
+	<div id="container"></div> 
+	<script type="text/babel">
+	const SELECTED_LANG = 'SELECTED_LANG';
+	// TODO++ доделать аудио
+	// TODO++ проверка на повторы
 	
-</body>
+	// A
+	// B
+	// C
+	// D
+	// E
+	// F
+	// G
+	// H
+	// I
+	// J
+	// K
+	// L
+	// M
+	// N
+	// O
+	// P
+	// R
+	// S
+	// T
+	// U
+	// W
+	// Y
+	// Z
+
+	const WORDS = [
+        // A
+		['a', 'а'],
+		['ale', 'но'],
+		['architekt', 'архитектор'],
+        // B
+		['bez', 'без'],
+		['blisko', 'близко'],
+		['brązowy', 'коричневый'],
+		['biały', 'белый'],
+		['biuro', 'бюро'],
+		['bardzo', 'очень'],
+        // C
+		['co', 'что'],
+		['czećś', 'привет'],
+		['czarny', 'черный'],
+		['czerwony', 'красный'],
+        // D
+		['do', 'к'],
+		['dla', 'для'],
+		['dzisiaj', 'сегодня'],
+		['dziesięć', 'десять'],
+		['dentysta', 'дантист'],
+		['dziennikarz', 'журналист'],
+		['dom', 'дом'],
+		['dokumenty', 'документы'],
+		['dziękuję', 'спасибо'],
+		
+        // E
+		// F
+		['fotograf', 'фотограф'],
+		['fotografia', 'фотография'],
+		['firma', 'фирма'],
+		// G
+		['gdzie', 'где'],
+		['gabinet', 'кабинет'],
+		['gotować', 'готовить'],
+		// H
+		['hotel', 'отель'],
+		// I
+		['i', 'и'],
+		['informacja', 'информация'],
+		// J
+		['jest', 'есть'],
+		['jak', 'как'],
+		['język', 'язык'],
+		['jedzenie', 'еда'],
+		// K
+		['który', 'который'],
+		['kolor', 'цвет'],
+		['konkretny', 'конкретный'],
+		['kelner', 'официант'],
+		['komputer', 'компьютер'],
+		['kucharz', 'повар'],
+		['kryzys', 'кризис'],
+		// L
+		['lekarz', 'врач'],
+		['leczyć', 'лечить'],
+		['ludzie', 'люди'],
+		// M
+		['my', 'мы'],
+		['między', 'между'],
+		// N
+		['na', 'на'],
+		['nad', 'над'],
+		['nie', 'нет'],
+		['naprzeciw', 'напротив'],
+		['niedaleko', 'недалеко'],
+		['niebieski', 'синий'],
+		['nauczyciel', 'учитель'],
+		// O
+		['od', 'от'],
+		['obok', 'рядом'],
+		['około', 'около'],
+		['oprócz', 'кроме'],
+		['osoba', 'человек'],
+		['ostatni', 'последний'],
+		// P
+		['pierwszy', 'первый'],
+		['pisać', 'писать'],
+
+		['pod', 'под'],
+		['po', 'после'],
+		['poza', 'вне'],
+		['podczas', 'во время'],
+		['poniżej', 'ниже'],
+		['powyżej', 'выше'],
+		['pomarańczowy', 'оранжевый'],
+		['poznać', 'познать'],
+		['popularny', 'популярный'],
+		['powiedzieć', 'сказать'],
+		
+		['przy', 'при'],
+		['przez', 'через'],
+		['przed', 'перед'],
+		['przeciw', 'против'],
+		['pracuje', 'работает'],
+		['prezentować', 'презентовать'],
+		['pracować', 'работать'],
+		['program', 'программа'],
+		['projektować', 'проектировать'],
+		['przygotowywać', 'подготавливать'],
+
+		['pytanie', 'вопрос'],
+		// R
+		['robić', 'делать'],
+		['restauracja', 'ресторан'],
+		['radio', 'радио'],
+		['rysunek', 'рисунок'],
+		// S
+		['szpital', 'больница'],
+		['student', 'студент'],
+		['szkoła', 'школа'],
+		['serwuje', 'сервирует'],
+		['studio', 'студия'],
+		['sobie', 'себе'],
+		['siebie', 'себя'],
+		// T
+		['to', 'это'],
+		['telewizja', 'телевизор'],
+		['telefon', 'телефон'],
+		// U
+		['u', 'у'],
+		['ulubiony', 'любимый'],
+		['uczy', 'учит'],
+		['uczeń', 'ученик'],
+		['urzędnik', 'чиновник'],
+		['urząd', 'учреждение'],
+		['uwaga', 'внимание'],
+		['uniwersytet', 'университет'],
+		// W
+		['w', 'в'],
+		['wśród', 'среди'],
+		['wzdłuż', 'вдоль'],
+		['wokół', 'вокруг'],
+		// Y
+		// Z
+		['z', 'из'],
+		['za', 'за'],
+		['zamiast', 'вместо'],
+		['zawód', 'профессия'],
+		['zaczynać', 'начинать'],
+		['zaprezentować', 'презентовать'],
+		['żółty', 'желтый'],
+		['zielony', 'зеленый'],
+		['zęby', 'зубы'],
+		['zwierzę', 'животное']
+		
+		// МЕСТОИМЕНИЯ
+		// jego, jej
+        //  tylko, ten, tak, ona, był, ale, dla, go, już, tego, przy, czy, dobrze, bardzo, tutaj, jeszcze, są, jeśli, bo, może, było, tobie, będzie, nas, ich, kto, tam, każdy, ty, nic, bardziej, ani, pan, mają, trzeba, coś, nigdy, lub, więcej, zawsze, taki, nim, też, być, mieć, czas, potem, czego, wiedzieć, teraz, sam, gdy, kiedy, nasze, wasz, tamtego, oraz, wszyscy, wszystko, żaden, ma, nad, robić, mój, niż, znowu, wielki, jakikolwiek, zaraz, kogoś, powoli, właśnie, czekać, kochać, miłość, nikt, trochę, ktoś, czasami, móc, śmiać, grać, gra, stąd, mówić, zapytać, odpowiedzieć, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, pod, między, naprzeciwko, daleko, blisko, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, każdy, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, teraz, tam, jedynie, bez, rzeczy, swoje, wszystkich, nawet, jakieś, nowe, nasze, twoje, około, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, kobieta, dziecko, dom, samochód, książka, piosenka, praca, szkoła, jedzenie, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, komputer, telefon, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, kolor, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, dom, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, radio, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, komputer, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, telefon, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, sprzeciw, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, urząd, biuro, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, gabinet, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, zawód, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, informacja, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
+    ];
+	
+	// MAIN COMPONENT
+	const Main = ({words}) => {
+		const textareaRef = React.useRef();
+
+		const [allLang, setAllLang] = React.useState([]);
+		const [selectedLang, setSelectedLang] = React.useState(null);
+		const [inputContent, setInputContent] = React.useState('');
+		
+		const [mainQuestion, setMainQuestion] = React.useState([]);
+		const [testQuestion, setTestQuestion] = React.useState('');
+		const [help, setHelp] = React.useState('');
+
+		const [scoreCorrect, setScoreCorrect] = React.useState(0);
+		const [scoreIncorrect, setScoreIncorrect] = React.useState(0);
+
+		// фильтр языков
+		const FILTER = ['pl-PL', 'en-US'];
+		const POLISH_LETTERS = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'];
+
+		const rand = (min, max) => {
+			let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
+			//может вернуть -0
+		    if(answer===0){
+				answer=0;
+			}
+			return answer;
+		};
+
+		const startTest = () => {
+			const rnd = rand(0, words.length -1);
+
+			setMainQuestion(words[rnd]);
+			setTestQuestion(words[rnd][1]);
+		};
+
+		const checkResult = () => {
+			if (mainQuestion[0] === inputContent) {
+				startTest();
+				listenTextarea(inputContent);
+				setInputContent('')
+				console.log('--+ CORRECT --', mainQuestion[0]);
+				setHelp('');
+				setScoreCorrect(scoreCorrect + 1);
+			} else {
+				listenTextarea(mainQuestion[0]);
+				setScoreIncorrect(scoreIncorrect + 1);
+				setHelp(mainQuestion[0]);
+				console.log('--+ INCORRECT --', mainQuestion[0]);
+			}
+			
+		};
+
+		const listenTextarea = (txt) => {
+			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
+			const msg = new SpeechSynthesisUtterance();
+			msg.volume = 1;
+			msg.rate = 0.8;
+			msg.pitch = 1;
+			msg.text = txt;
+			msg.voice = selected;
+			speechSynthesis.speak(msg);
+		};
+
+		React.useEffect(async () => {
+			// --- LOCAL STORAGE
+			const selLang = localStorage.getItem(SELECTED_LANG);
+			if (selLang) setSelectedLang(selLang);
+
+			// --- VOICE
+			const setVoices = voicesArr => {
+				const filteredVoices = voicesArr.filter(it => FILTER.includes(it.lang));
+				setAllLang(filteredVoices);
+				if (!selLang) setSelectedLang(filteredVoices[0].voiceURI);
+			};
+
+			// firefox
+			if (speechSynthesis.getVoices().length) {
+				setVoices(speechSynthesis.getVoices());
+			}
+			// chrome
+			speechSynthesis.addEventListener("voiceschanged", () => {
+				setVoices(speechSynthesis.getVoices());
+			})
+			
+			
+		}, []);
+
+		return (
+				<div>
+					{/* SELECT */}
+					<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
+						{allLang.map(it => {
+							return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
+						})}
+					</select>
+					<hr />
+					{/* CONTROL */} {/* QUESTION */}
+					<div>
+						<div style={{paddingBottom: '10px'}}><button onClick={startTest} disabled={testQuestion}>START TEST</button> <span>{`SCORE - `}</span><span style={{color: 'green'}}>{`CORRECT: ${scoreCorrect}`}</span><span> / </span><span style={{color: 'red'}}>{`INCORRECT: ${scoreIncorrect}`}</span></div>
+						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>question</div><div>help</div></div>
+						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', border: '1px solid black'}}><div>{testQuestion}</div><div>{help}</div></div>
+					</div>
+					<hr />
+
+					{/* POLISH LETTERS */}
+					<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
+						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {setInputContent(inputContent + it); textareaRef.current.focus()}}>{it}</span>
+					})}</div>
+
+					{/* INPUT */}
+					<div style={{display: 'flex'}}>
+						<button onClick={() => listenTextarea(inputContent)}>LISTEN</button>
+						<textarea
+							ref={textareaRef}
+							rows={20}
+							cols={100}
+							value={inputContent}
+							onChange={e => setInputContent(e.target.value)}
+						/>
+						<button onClick={checkResult}>ANSWER</button>
+					</div>
+				</div>
+			);
+	}
+	////////////////App Js
+		ReactDOM.render(
+			<Main words={WORDS} />
+			,document.getElementById('container')
+		);
+	</script>
+</body> 
 </html>

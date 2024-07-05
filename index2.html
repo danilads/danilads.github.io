@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script src="marvinj-1.0.min.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <img id='i' src="img.bmp" alt="some"/>
+  <script>
+    let bmp = document.getElementById('i');
+    console.log(bmp.src);
+    let image = new MarvinImage();
+    image.load(bmp.src, imageLoaded);
+
+    function imageLoaded(){
+      console.log("(0,0): "+(image.getAlphaComponent(0,0) > 0 ? "NOT_TRANSPARENT" : "TRANSPARENT"));
+      console.log("(150,150): "+(image.getAlphaComponent(150,150) > 0 ? "NOT_TRANSPARENT" : "TRANSPARENT"));
+    }
+  </script>
+<body>
+	
+</body>
+</html>
