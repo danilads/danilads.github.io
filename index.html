@@ -9,10 +9,10 @@
 	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <style>
-	html {width: 100%;}
-	body {width: 100%;}
-	#container {width: 100%;}
-	#main {width: 100%;}
+	html {width: 100%; margin: 0;}
+	body {width: 100%; margin: 0;}
+	#container {width: 100%; margin: 0;}
+	#main {width: 100%; margin: 0;}
 
 </style>
 <body>
@@ -304,7 +304,7 @@
 		return (
 				<div id="main">
 					{/* SELECT */}
-					<span>v0.2</span>
+					<span>v0.3</span>
 					<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 						{allLang.map(it => {
 							return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
