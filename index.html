@@ -61,7 +61,7 @@
 		['bardzo', 'очень'],
         // C
 		['co', 'что'],
-		['czećś', 'привет'],
+		['cześć', 'привет'],
 		['czarny', 'черный'],
 		['czerwony', 'красный'],
         // D
@@ -110,6 +110,7 @@
 		// M
 		['my', 'мы'],
 		['między', 'между'],
+		['mniej', 'меньше'],
 		// N
 		['na', 'на'],
 		['nad', 'над'],
@@ -134,8 +135,8 @@
 		['po', 'после'],
 		['poza', 'вне'],
 		['podczas', 'во время'],
-		['poniżej', 'ниже'],
-		['powyżej', 'выше'],
+		['niżej', 'ниже'],
+		['wyżej', 'выше'],
 		['pomarańczowy', 'оранжевый'],
 		['poznać', 'познать'],
 		['popularny', 'популярный'],
@@ -184,6 +185,7 @@
 		['wśród', 'среди'],
 		['wzdłuż', 'вдоль'],
 		['wokół', 'вокруг'],
+		['więcej', 'больше'],
 		// Y
 		// Z
 		['z', 'из'],
@@ -305,7 +307,7 @@
 		return (
 				<div id="main">
 					{/* SELECT */}
-					<span>v0.4</span>
+					<span>v0.5</span>
 					<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 						{allLang.map(it => {
 							return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
