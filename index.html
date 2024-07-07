@@ -308,7 +308,6 @@
 			const start = Date.now();
 			setInterval(() => {
 				const delta = Math.round((Date.now() - start) / 1000);
-				console.log('--+ delta', delta);
 				const minutes = Math.floor(delta / 60);
 				const seconds = delta - minutes * 60;
 
