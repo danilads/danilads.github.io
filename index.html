@@ -422,7 +422,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.5</span>
+						<span>v0.05</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
