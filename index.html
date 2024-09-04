@@ -380,7 +380,7 @@
 
 		const listenTextarea = (txt) => {
 			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
-			setTest(`--+ it.voiceURI ${selectedLang} --+ selected ${selected}`);
+			setTest(`--+ it.voiceURI ${selectedLang} --+ selected ${selected.voiceURI}`);
 			const msg = new SpeechSynthesisUtterance();
 			msg.volume = 1;
 			msg.rate = 0.8;
@@ -444,7 +444,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.06</span>
+						<span>v0.07</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
