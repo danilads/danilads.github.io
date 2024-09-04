@@ -380,7 +380,7 @@
 
 		const listenTextarea = (txt) => {
 			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
-			setTest(`--+ it.voiceURI ${it.voiceURI}`);
+			setTest(`--+ it.voiceURI ${selectedLang} --+ selected ${selected}`);
 			const msg = new SpeechSynthesisUtterance();
 			msg.volume = 1;
 			msg.rate = 0.8;
