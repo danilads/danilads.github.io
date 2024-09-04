@@ -21,7 +21,10 @@
 	<script type="text/babel">
 	const SELECTED_LANG = 'SELECTED_LANG';
 
-	// TODO++ доделать аудио - пробема в озвуч
+	// TODO++ доделать аудио - пробема в о
+	// msg.voiceURI = selectedVoice.voiceURI;
+    // msg.lang = selectedVoice.lang;
+
 
 	// TODO++ проверка на повторы
  	// TODO++ 1 add enter as submit')
@@ -387,7 +390,10 @@
 			msg.rate = 0.8;
 			msg.pitch = 1;
 			msg.text = txt;
-			msg.voiceURI = selected;
+			msg.voice = selected;
+			// TODO
+			msg.voiceURI = selected.voiceURI;
+    		msg.lang = selected.lang;
 			speechSynthesis.speak(msg);
 		};
 
@@ -445,7 +451,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.08</span>
+						<span>v0.10</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
