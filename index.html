@@ -10,8 +10,8 @@
 </head>
 <style>
 	html {width: 100%; margin: 0;}
-	body {width: 100%; margin: 0; padding: 15px}
-	#container {width: 100%; margin: 0;}
+	body {width: 100%; margin: 0;}
+	#container {padding: 15px}
 	#main {width: 100%; margin: 0;}
 	#answerArea {width: 100%;}
 
@@ -397,7 +397,11 @@
 			// --- VOICE
 			const setVoices = voicesArr => {
 				const filteredVoices = voicesArr.filter(it => FILTER.includes(it.lang));
-				setAllLang(filteredVoices);
+				if (filteredVoices?.length) {
+					setAllLang(filteredVoices);
+				} else {
+					setAllLang(voicesArr);
+				}
 				if (!selLang) setSelectedLang(filteredVoices[0].voiceURI);
 			};
 			
@@ -417,6 +421,11 @@
 				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI} + 3-${speechSynthesis.getVoices().length} + 3-${speechSynthesis.getVoices().filter(it => FILTER.includes(it.lang))}`);
 				setVoices(speechSynthesis.getVoices());
 			}, 5000)
+
+			setTimeout(() => {
+				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI} + 3-${speechSynthesis.getVoices().length} + 3-${speechSynthesis.getVoices().filter(it => FILTER.includes(it.lang))}`);
+				setVoices(speechSynthesis.getVoices());
+			}, 30000)
 			
 			// timer
 			const start = Date.now();
@@ -434,7 +443,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.05</span>
+						<span>v0.06</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
