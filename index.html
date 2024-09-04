@@ -397,7 +397,7 @@
 			// --- VOICE
 			const setVoices = voicesArr => {
 				const filteredVoices = voicesArr.filter(it => FILTER.includes(it.lang));
-				if (filteredVoices?.length) {
+				if (Array.isArray(filteredVoices) && filteredVoices.length) {
 					setAllLang(filteredVoices);
 				} else {
 					setAllLang(voicesArr);
