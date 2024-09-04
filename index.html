@@ -380,6 +380,7 @@
 
 		const listenTextarea = (txt) => {
 			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
+			setTest(`--+ it.voiceURI ${it.voiceURI}`);
 			const msg = new SpeechSynthesisUtterance();
 			msg.volume = 1;
 			msg.rate = 0.8;
@@ -449,6 +450,8 @@
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
 							})}
 						</select>
+					</div>
+					<div>
 						{/* TEST */}
 						<span>{timer}</span>
 						<span>{test}</span>
