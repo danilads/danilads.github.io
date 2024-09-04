@@ -10,7 +10,7 @@
 </head>
 <style>
 	html {width: 100%; margin: 0;}
-	body {width: 100%; margin: 0;}
+	body {width: 100%; margin: 0; padding: 15px}
 	#container {width: 100%; margin: 0;}
 	#main {width: 100%; margin: 0;}
 	#answerArea {width: 100%;}
@@ -20,8 +20,11 @@
 	<div id="container"></div> 
 	<script type="text/babel">
 	const SELECTED_LANG = 'SELECTED_LANG';
-	// TODO++ доделать аудио
+	// TODO++ доделать аудио - пробема в фильтре
 	// TODO++ проверка на повторы
+ 	// TODO++ 1 add enter as submit')
+	// TODO++ padding body
+	// TODO++ caret after add new verb
 
 	// A
 	// B
@@ -204,21 +207,25 @@
 		['i', 'и'],
 		['informacja', 'информация'],
 		// J
-		['jest', 'есть'],
+		['już', 'уже'],
 		['jak', 'как'],
+		['jest', 'есть'],
 		['język', 'язык'],
 		['jedzenie', 'еда'],
-		['już', 'уже'],
+		
 		// K
+		['kraj', 'страна'],
 		['który', 'который'],
 		['kolor', 'цвет'],
 		['konkretny', 'конкретный'],
 		['komputer', 'компьютер'],
 		['kryzys', 'кризис'],
+		['kiedy', 'когда'],
 		// L
 		['leczyć', 'лечить'],
 		['ludzie', 'люди'],
 		// M
+		['ma', 'имеет'],
 		['między', 'между'],
 		['mniej', 'меньше'],
 		['mówić', 'говорить'],
@@ -228,6 +235,8 @@
 		['nie', 'нет'],
 		['naprzeciw', 'напротив'],
 		['niedaleko', 'недалеко'],
+		['nawet', 'даже'],
+		['niżej', 'ниже'],
 		// O
 		['o', 'о'],
 		['od', 'от'],
@@ -236,15 +245,16 @@
 		['oprócz', 'кроме'],
 		['osoba', 'человек'],
 		['ostatni', 'последний'],
+		['odpowiedzieć', 'ответить'],
+		
 		// P
-		['pisać', 'писать'],
-
-		['pod', 'под'],
 		['po', 'после'],
+		['pod', 'под'],
 		['poza', 'вне'],
 		['podczas', 'во время'],
-		['niżej', 'ниже'],
-		['wyżej', 'выше'],
+		['pisać', 'писать'],
+
+	
 		['poznać', 'познать'],
 		['popularny', 'популярный'],
 		['powiedzieć', 'сказать'],
@@ -272,13 +282,14 @@
 		['szkoła', 'школа'],
 		['serwuje', 'сервирует'],
 		['studio', 'студия'],
+		['sprzeciw', 'возражение']
 		// T
 		['to', 'это'],
 		['telewizja', 'телевизор'],
 		['telefon', 'телефон'],
 		// U
 		['u', 'у'],
-		['ulubiony', 'любимый'],
+		['kochany', 'любимый'],
 		['uczy', 'учит'],
 		['uczeń', 'ученик'],
 		['urząd', 'учреждение'],
@@ -290,6 +301,7 @@
 		['wzdłuż', 'вдоль'],
 		['wokół', 'вокруг'],
 		['więcej', 'больше'],
+		['wyżej', 'выше'],
 		// Z
 		['z', 'из'],
 		['za', 'за'],
@@ -303,10 +315,10 @@
 		// W_NAME
 		// ja, ty, on, ona, ono, wy, oni, one, się, ci, mi, go, mu, ją, je, jej, im, ich, mnie, ciebie, jego, jemu, nami, wami, ich, im
 		
-		// tam, kto, co, gdy, raz, tak, nie, tu, te, to, gdy, jak, ile, czy, lub, ani
+		// tam, kto, co, gdy, raz, tak, nie, tu, te, to, gdy, ile, czy, lub, ani
 		// ten, był, dobrze, tylko, tego, tutaj, jeszcze, jeśli
 
-        //  go, są, jeśli, bo, może, było, tobie, będzie, nas, kto, tam, każdy, nic, bardziej, ani, pan, mają, trzeba, coś, nigdy, lub, zawsze, taki, nim, też, być, mieć, czas, potem, czego, wiedzieć, teraz, sam, gdy, kiedy, nasze, wasz, tamtego, oraz, wszyscy, wszystko, żaden, ma, nad, robić, mój, niż, znowu, wielki, jakikolwiek, zaraz, kogoś, powoli, właśnie, czekać, kochać, miłość, nikt, trochę, ktoś, czasami, móc, śmiać, grać, gra, stąd, zapytać, odpowiedzieć, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, pod, między, naprzeciwko, daleko, blisko, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, każdy, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, teraz, tam, jedynie, bez, rzeczy, swoje, wszystkich, nawet, jakieś, nowe, nasze, twoje, około, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, kobieta, dziecko, dom, samochód, książka, piosenka, praca, szkoła, jedzenie, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, komputer, telefon, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, kolor, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, dom, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, radio, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, komputer, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, telefon, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, sprzeciw, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, urząd, biuro, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, gabinet, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, zawód, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, informacja, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
+        //  go, są, jeśli, bo, może, było, tobie, będzie, nas, kto, tam, każdy, nic, bardziej, ani, pan, mają, trzeba, coś, nigdy, lub, zawsze, taki, nim, też, być, mieć, czas, potem, czego, wiedzieć, teraz, sam, gdy, nasze, wasz, tamtego, oraz, wszyscy, wszystko, żaden, mój, niż, znowu, wielki, jakikolwiek, zaraz, kogoś, powoli, właśnie, czekać, kochać, miłość, nikt, trochę, ktoś, czasami, móc, śmiać, grać, gra, stąd, zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, każdy, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, teraz, tam, jedynie, rzeczy, swoje, wszystkich, jakieś, nowe, nasze, twoje, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, kobieta, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
     ];
 	
 	// MAIN COMPONENT
@@ -402,7 +414,7 @@
 
 			// other
 			setTimeout(() => {
-				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI}`);
+				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI} + 3-${speechSynthesis.getVoices().length} + 3-${speechSynthesis.getVoices().filter(it => FILTER.includes(it.lang))}`);
 				setVoices(speechSynthesis.getVoices());
 			}, 5000)
 			
@@ -444,7 +456,18 @@
 
 					{/* POLISH LETTERS */}
 					<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
-						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {setInputContent(inputContent + it); textareaRef.current.focus()}}>{it}</span>
+						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {
+							setInputContent(inputContent + it);
+							textareaRef.current.focus();
+							console.log('--+ TODO++ caret textareaRef', textareaRef);
+							console.log('--+ TODO++ caret selectionStart', textareaRef.current.selectionStart);
+							console.log('--+ TODO++ caret focus', textareaRef.current.focus);
+							console.log('--+ TODO++ caret setSelectionRange', textareaRef.current.setSelectionRange);
+							// elem.selectionStart;
+							// elem.focus();
+							// elem.setSelectionRange(caretPos, caretPos);
+
+						}}>{it}</span>
 					})}</div>
 
 					{/* INPUT */}
@@ -455,7 +478,10 @@
 							ref={textareaRef}
 							rows={10}
 							value={inputContent}
-							onChange={e => setInputContent(e.target.value)}
+							onChange={e => {
+								console.log('--+ TODO++ 1 add enter as submit')
+								setInputContent(e.target.value)
+							}}
 						/>
 						<button onClick={checkResult}>ANSWER</button>
 					</div>
