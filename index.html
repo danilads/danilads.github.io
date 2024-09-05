@@ -21,11 +21,6 @@
 	<script type="text/babel">
 	const SELECTED_LANG = 'SELECTED_LANG';
 
-	// TODO++ доделать аудио - пробема в о
-	// msg.voiceURI = selectedVoice.voiceURI;
-    // msg.lang = selectedVoice.lang;
-
-
 	// TODO++ проверка на повторы
  	// TODO++ 1 add enter as submit')
 	// TODO++ caret after add new verb
@@ -451,7 +446,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.10</span>
+						<span>v0.11</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
@@ -478,6 +473,7 @@
 						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {
 							setInputContent(inputContent + it);
 							textareaRef.current.focus();
+
 							console.log('--+ TODO++ caret textareaRef', textareaRef);
 							console.log('--+ TODO++ caret selectionStart', textareaRef.current.selectionStart);
 							console.log('--+ TODO++ caret focus', textareaRef.current.focus);
@@ -492,7 +488,7 @@
 					{/* INPUT */}
 					<div style={{display: 'flex'}}>
 						<button onClick={() => listenTextarea(inputContent)}>LISTEN</button>
-						<textarea
+						<input
 							id="answerArea"
 							ref={textareaRef}
 							rows={10}
