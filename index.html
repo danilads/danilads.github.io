@@ -441,7 +441,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.14</span>
+						<span>v0.15</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
@@ -469,14 +469,14 @@
 							// setInputContent(inputContent + it);
 							setInputContent(inputContent.slice(0, textareaRef.current.selectionStart) + it + inputContent.slice(textareaRef.current.selectionStart));
 							// textareaRef.current.focus();
-
+							textareaRef.current.setSelectionRange(textareaRef.current.selectionStart + 1, textareaRef.current.selectionStart + 1);
 							console.log('--+ TODO++ caret textareaRef', textareaRef);
 							console.log('--+ TODO++ caret selectionStart', textareaRef.current.selectionStart);
 							console.log('--+ TODO++ caret focus', textareaRef.current.focus);
 							console.log('--+ TODO++ caret setSelectionRange', textareaRef.current.setSelectionRange);
 							// elem.selectionStart;
 							// elem.focus();
-							// elem.setSelectionRange(caretPos, caretPos);
+							//
 
 						}}>{it}</span>
 					})}</div>
