@@ -13,7 +13,7 @@
 	body {width: 100%; margin: 0;}
 	#container {padding: 15px}
 	#main {width: 100%; margin: 0;}
-	#answerArea {width: 100%;}
+	#answerArea {width: 100%; height: 40px; font-size: 22px;}
 
 </style>
 <body>
@@ -379,7 +379,6 @@
 
 		const listenTextarea = (txt) => {
 			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
-			setTest(`--+ it.voiceURI ${selectedLang} --+ selected ${selected.voiceURI}`);
 			const msg = new SpeechSynthesisUtterance();
 			msg.volume = 1;
 			msg.rate = 0.8;
@@ -411,22 +410,18 @@
 			// firefox
 			if (speechSynthesis.getVoices().length) {
 				setVoices(speechSynthesis.getVoices());
-				setTest(`1-${speechSynthesis.getVoices().length}`);
 			}
 			// chrome
 			speechSynthesis.addEventListener("voiceschanged", () => {
 				setVoices(speechSynthesis.getVoices());
-				setTest(`2-${speechSynthesis.getVoices().length}`);
 			})
 
 			// other
 			setTimeout(() => {
-				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI} + 3-${speechSynthesis.getVoices().length} + 3-${speechSynthesis.getVoices().filter(it => FILTER.includes(it.lang))}`);
 				setVoices(speechSynthesis.getVoices());
 			}, 5000)
 
 			setTimeout(() => {
-				setTest(`3-${speechSynthesis.getVoices()[0].voiceURI} + 3-${speechSynthesis.getVoices().length} + 3-${speechSynthesis.getVoices().filter(it => FILTER.includes(it.lang))}`);
 				setVoices(speechSynthesis.getVoices());
 			}, 30000)
 			
@@ -446,7 +441,7 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', gap: '10px'}}>
-						<span>v0.11</span>
+						<span>v0.12</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
