@@ -388,7 +388,7 @@
 		const [help, setHelp] = React.useState('');
 
 		// right block
-		const [timer, setTimer] = React.useState(0);
+		const [timer, setTimer] = React.useState('0: 00');
 		const [itemsLeft, setItemsLeft] = React.useState(null);
 		const [inCorrectCnt, setInCorrectCnt] = React.useState(0);
 
@@ -489,8 +489,8 @@
 				const delta = Math.round((Date.now() - start) / 1000);
 				const minutes = Math.floor(delta / 60);
 				const seconds = delta - minutes * 60;
-
-				setTimer(`${minutes}: ${seconds}`)
+				console.log('--+ seconds.length', seconds/10);
+				setTimer(`${minutes}: ${seconds.toString().length === 1 ? '0'+seconds : seconds}`)
 			}, 1000)
 			
 			// --- START
@@ -504,7 +504,7 @@
 					{/* TOP SECTION */}
 					<div className={'additionalText'} style={{textAlign: 'center', paddingBottom: '10px'}}>select language to polish</div>
 					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-						<span>v0.2</span>
+						<span>v0.3</span>
 						<select style={{width: '150px'}} value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
@@ -512,7 +512,7 @@
 						</select>
 				
 						<span style={{minWidth: '40px'}}>{timer}</span>
-						<span style={{minWidth: '40px'}}>{`${itemsLeft} : ${WORDS.length -1} / ${inCorrectCnt}`}</span>
+						<span style={{minWidth: '40px'}}>{`${itemsLeft} ( ${WORDS.length -1} / ${inCorrectCnt} )`}</span>
 
 					</div>
 	
