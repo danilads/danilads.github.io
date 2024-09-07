@@ -492,15 +492,15 @@
 				<div id="main">
 					{/* TOP SECTION */}
 					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-						<span>v0.15</span>
+						<span>v0.2</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
 							})}
 						</select>
 				
-						<span style={{minWidth: '100px'}}>{timer}</span>
-						<span style={{minWidth: '100px'}}>{itemsLeft}</span>
+						<span style={{minWidth: '40px'}}>{timer}</span>
+						<span style={{minWidth: '40px'}}>{itemsLeft}</span>
 
 					</div>
 	
@@ -510,12 +510,14 @@
 					</div>
 
 					<hr />
+					<br />
+					<br />
 					{/* CONTROL */} {/* QUESTION */}
 					<div>
 						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>question</div><div>help</div></div>
-						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', border: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
+						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', borderTop: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
 					</div>
-					<hr />
+					<br />
 
 					{/* POLISH LETTERS */}
 					<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
