@@ -12,18 +12,20 @@
 	html {width: 100%; margin: 0;}
 	body {width: 100%; margin: 0;}
 	#container {padding: 15px}
-	#main {width: 100%; margin: 0;}
+	#main {width: 100%; margin: 0; max-width: 800px;}
 	#answerArea {width: 100%; height: 40px; font-size: 22px;}
+	.animOff { left: 2px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; z-index: -1; opacity: 0; }
+	.animOn { left: 2px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; animation: fadeOut 3s; z-index: 2; opacity: 0; }
+	@keyframes fadeOut {
+		0% { opacity: 1; top: 10px}
+		100% { opacity: 0; top: -20px}
+	}
 
 </style>
 <body>
 	<div id="container"></div> 
 	<script type="text/babel">
 	const SELECTED_LANG = 'SELECTED_LANG';
-
-	// TODO++ проверка на повторы
- 	// TODO++ 1 add enter as submit')
-	// TODO++ caret after add new verb
 
 	// A
 	// B
@@ -320,57 +322,107 @@
         //  go, są, jeśli, bo, może, było, tobie, będzie, nas, kto, tam, każdy, nic, bardziej, ani, pan, mają, trzeba, coś, nigdy, lub, zawsze, taki, nim, też, być, mieć, czas, potem, czego, wiedzieć, teraz, sam, gdy, nasze, wasz, tamtego, oraz, wszyscy, wszystko, żaden, mój, niż, znowu, wielki, jakikolwiek, zaraz, kogoś, powoli, właśnie, czekać, kochać, miłość, nikt, trochę, ktoś, czasami, móc, śmiać, grać, gra, stąd, zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, każdy, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, teraz, tam, jedynie, rzeczy, swoje, wszystkich, jakieś, nowe, nasze, twoje, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, kobieta, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
     ];
 	
+	// UTILS
+	function useCustomState(init) {
+		const [state, setState] = React.useState(init);
+		const cbRef = React.useRef();
+
+		const setCustomState = (newState, callback) => {
+			cbRef.current = callback;
+			setState(newState);
+		};
+
+		React.useEffect(() => {
+			if (cbRef.current) {
+				cbRef.current(state);
+			}
+			cbRef.current = undefined;
+		}, [state]);
+
+		return [state, setCustomState];
+	}
+	
+	function rand(min, max) {
+		let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
+		if(answer===0){
+			answer=0;
+		}
+		return answer;
+	};
+
 	// MAIN COMPONENT
-	const Main = ({words}) => {
+	const Main = () => {
 		const textareaRef = React.useRef();
 
+		// game mode
+		const [gameMode, setGameMode] = React.useState('uniq'); // 'repeat' 'uniq'
+
+		// words
+		const [words, setWords] = React.useState([]);
+		const wordsRef = React.useRef(words); // HERE will be imidiate state
+
+		const TrueUpdateState = (newState) => {
+			setWords(newState);
+			wordsRef.current = newState;
+		};
+
+		// lang
 		const [allLang, setAllLang] = React.useState([]);
 		const [selectedLang, setSelectedLang] = React.useState(null);
-		const [inputContent, setInputContent] = React.useState('');
-		
+
+		const [inputContent, setInputContent] = useCustomState('');
+		const [inputAnimContent, setInputAnimContent] = useCustomState('');
+		const [inputAnimClass, setInputAnimClass] = useCustomState('animOff');
+
 		const [mainQuestion, setMainQuestion] = React.useState([]);
-		const [testQuestion, setTestQuestion] = React.useState('');
+
 		const [help, setHelp] = React.useState('');
 
+		// right block
 		const [timer, setTimer] = React.useState(0);
+		const [itemsLeft, setItemsLeft] = React.useState(null);
 
 		// test
 		const [test, setTest] = React.useState('');
-
-		const [scoreCorrect, setScoreCorrect] = React.useState(0);
-		const [scoreIncorrect, setScoreIncorrect] = React.useState(0);
 
 		// фильтр языков
 		const FILTER = ['pl-PL', 'en-US'];
 		const POLISH_LETTERS = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'];
 
-		const rand = (min, max) => {
-			let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
-			//может вернуть -0
-		    if(answer===0){
-				answer=0;
+		const startNextWord = () => {
+			console.log('--+ RES WORDS', wordsRef.current);
+			console.log('--+ RES mode', gameMode);
+
+			if (wordsRef.current.length && gameMode === 'repeat') {
+				const rnd = rand(0, wordsRef.current.length -1);
+
+				setMainQuestion(wordsRef.current[rnd]);
+			} else if (wordsRef.current.length && gameMode === 'uniq') {
+				const rnd = rand(0, wordsRef.current.length -1);
+				
+				setMainQuestion([...wordsRef.current[rnd]]);
+
+				TrueUpdateState(wordsRef.current.filter((_, i) => i !== rnd));
+				console.log('--+ HERE', wordsRef.current.length);
+				setItemsLeft(wordsRef.current.length);
 			}
-			return answer;
-		};
-
-		const startTest = () => {
-			const rnd = rand(0, words.length -1);
-
-			setMainQuestion(words[rnd]);
-			setTestQuestion(words[rnd][1]);
 		};
 
 		const checkResult = () => {
 			if (mainQuestion[0] === inputContent.toLowerCase()) {
-				startTest();
+				startNextWord();
 				listenTextarea(inputContent);
-				setInputContent('')
+				setInputAnimContent(inputContent);
+				setInputContent('');
+				setInputAnimContent(inputContent);
+				setInputAnimClass('animOn');
+				setTimeout(() => {
+					setInputAnimClass('animOff');
+				}, 3000);
 				console.log('--+ CORRECT --', mainQuestion[0]);
 				setHelp('');
-				setScoreCorrect(scoreCorrect + 1);
 			} else {
 				listenTextarea(mainQuestion[0]);
-				setScoreIncorrect(scoreIncorrect + 1);
 				setHelp(mainQuestion[0]);
 				console.log('--+ INCORRECT --', mainQuestion[0]);
 			}
@@ -385,13 +437,12 @@
 			msg.pitch = 1;
 			msg.text = txt;
 			msg.voice = selected;
-			// TODO
 			msg.voiceURI = selected.voiceURI;
     		msg.lang = selected.lang;
 			speechSynthesis.speak(msg);
 		};
 
-		React.useEffect(async () => {
+		React.useEffect(() => {
 			// --- LOCAL STORAGE
 			const selLang = localStorage.getItem(SELECTED_LANG);
 			if (selLang) setSelectedLang(selLang);
@@ -416,14 +467,10 @@
 				setVoices(speechSynthesis.getVoices());
 			})
 
-			// other
+			// for mobile chrome
 			setTimeout(() => {
 				setVoices(speechSynthesis.getVoices());
 			}, 5000)
-
-			setTimeout(() => {
-				setVoices(speechSynthesis.getVoices());
-			}, 30000)
 			
 			// timer
 			const start = Date.now();
@@ -435,62 +482,68 @@
 				setTimer(`${minutes}: ${seconds}`)
 			}, 1000)
 			
+			// --- START
+			TrueUpdateState(WORDS);
+			startNextWord();
+			
 		}, []);
 
 		return (
 				<div id="main">
 					{/* TOP SECTION */}
-					<div style={{display: 'flex', gap: '10px'}}>
+					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
 						<span>v0.15</span>
 						<select value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
 							{allLang.map(it => {
 								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
 							})}
 						</select>
+				
+						<span style={{minWidth: '100px'}}>{timer}</span>
+						<span style={{minWidth: '100px'}}>{itemsLeft}</span>
+
 					</div>
+	
+					{/* TEST */}
 					<div>
-						{/* TEST */}
-						<span>{timer}</span>
 						<span>{test}</span>
 					</div>
 
 					<hr />
 					{/* CONTROL */} {/* QUESTION */}
 					<div>
-						<div style={{paddingBottom: '10px'}}><button onClick={startTest} disabled={testQuestion}>START TEST</button> <span>{`SCORE - `}</span><span style={{color: 'green'}}>{`CORRECT: ${scoreCorrect}`}</span><span> / </span><span style={{color: 'red'}}>{`INCORRECT: ${scoreIncorrect}`}</span></div>
 						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>question</div><div>help</div></div>
-						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', border: '1px solid black'}}><div>{testQuestion}</div><div>{help}</div></div>
+						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', border: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
 					</div>
 					<hr />
 
 					{/* POLISH LETTERS */}
 					<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
 						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {
-							// setInputContent(inputContent + it);
-							setInputContent(inputContent.slice(0, textareaRef.current.selectionStart) + it + inputContent.slice(textareaRef.current.selectionStart));
-							// textareaRef.current.focus();
-							textareaRef.current.setSelectionRange(textareaRef.current.selectionStart + 1, textareaRef.current.selectionStart + 1);
-							console.log('--+ TODO++ caret textareaRef', textareaRef);
-							console.log('--+ TODO++ caret selectionStart', textareaRef.current.selectionStart);
-							console.log('--+ TODO++ caret focus', textareaRef.current.focus);
-							console.log('--+ TODO++ caret setSelectionRange', textareaRef.current.setSelectionRange);
-							// elem.selectionStart;
-							// elem.focus();
-							//
+							let caret = textareaRef.current.selectionStart;
 
+							setInputContent(inputContent.slice(0, caret) + it + inputContent.slice(caret), () => {
+								textareaRef.current.focus();
+								textareaRef.current.selectionStart = caret + 1;
+								textareaRef.current.selectionEnd = caret + 1;
+							})
 						}}>{it}</span>
 					})}</div>
 
 					{/* INPUT */}
-					<div style={{display: 'flex'}}>
-						<button onClick={() => listenTextarea(inputContent)}>LISTEN</button>
+					<div style={{display: 'flex', position: 'relative'}}>
+						<div className={inputAnimClass}>{inputAnimContent}</div>
 						<input
 							id="answerArea"
 							ref={textareaRef}
 							rows={10}
 							value={inputContent}
+							onKeyDown={e => {
+								if (e.key === 'Enter') {
+									checkResult();
+								}
+							}}
 							onChange={e => {
-								console.log('--+ TODO++ 1 add enter as submit')
 								setInputContent(e.target.value)
 							}}
 						/>
@@ -501,7 +554,7 @@
 	}
 	////////////////App Js
 		ReactDOM.render(
-			<Main words={WORDS} />
+			<Main />
 			,document.getElementById('container')
 		);
 	</script>
