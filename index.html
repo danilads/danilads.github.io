@@ -393,7 +393,7 @@
 		const [inCorrectCnt, setInCorrectCnt] = React.useState(0);
 
 		// test
-		const [test, setTest] = React.useState('v0.4');
+		const [test, setTest] = React.useState('v0.5');
 
 		// фильтр языков
 		const FILTER = ['pl-PL', 'en-US'];
@@ -560,12 +560,17 @@
 								setInputContent(e.target.value)
 							}}
 						/>
-						<button style={{fontFamily: 'my'}} onClick={e => {
-							e.stopPropagation();
-							e.preventDefault();
-							checkResult(e);
-
-						}}>ANSWER</button>
+						<button style={{fontFamily: 'my'}}
+							onTouchEnd={e => {
+								e.stopPropagation();
+								e.preventDefault();
+							}}
+							onClick={e => {
+								e.stopPropagation();
+								e.preventDefault();
+								checkResult(e);
+							}
+						}>ANSWER</button>
 					</div>
 				</div>
 			);
