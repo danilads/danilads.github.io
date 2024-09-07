@@ -9,14 +9,22 @@
 	<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <style>
-	html {width: 100%; margin: 0;}
-	body {width: 100%; margin: 0;}
-	#container {padding: 15px}
-	#main {width: 100%; margin: 0; max-width: 800px;}
+	html {font-family: my; width: 100%; height: 100%; margin: 0;
+	}
+	body {width: 100%; margin: 0;
+		background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); 
+	}
+	@font-face {
+		font-family: my;
+		src: url(RobotoSlab-VariableFont_wght.ttf);
+	}
+
+	#container {padding: 15px; display: flex; justify-content: center;}
+	#main {width: 100%; margin: 0; max-width: 650px;}
 	#answerArea {width: 100%; height: 40px; font-size: 22px;}
 	.additionalText { font-size: 12px; color: #444}
-	.animOff { left: 2px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; z-index: -1; opacity: 0; }
-	.animOn { left: 2px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; animation: fadeOut 3s; z-index: 2; opacity: 0; }
+	.animOff { left: 3px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; z-index: -1; opacity: 0; }
+	.animOn { left: 3px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; animation: fadeOut 4s; z-index: 2; opacity: 0; }
 	@keyframes fadeOut {
 		0% { opacity: 1; top: 10px}
 		100% { opacity: 0; top: -20px}
@@ -382,6 +390,7 @@
 		// right block
 		const [timer, setTimer] = React.useState(0);
 		const [itemsLeft, setItemsLeft] = React.useState(null);
+		const [inCorrectCnt, setInCorrectCnt] = React.useState(0);
 
 		// test
 		const [test, setTest] = React.useState('');
@@ -425,6 +434,7 @@
 			} else {
 				listenTextarea(mainQuestion[0]);
 				setHelp(mainQuestion[0]);
+				setInCorrectCnt(inCorrectCnt + 1);
 				console.log('--+ INCORRECT --', mainQuestion[0]);
 			}
 			
@@ -502,7 +512,7 @@
 						</select>
 				
 						<span style={{minWidth: '40px'}}>{timer}</span>
-						<span style={{minWidth: '40px'}}>{itemsLeft}</span>
+						<span style={{minWidth: '40px'}}>{`${itemsLeft} : ${WORDS.length -1} / ${inCorrectCnt}`}</span>
 
 					</div>
 	
@@ -536,8 +546,9 @@
 
 					{/* INPUT */}
 					<div style={{display: 'flex', position: 'relative'}}>
-						<div className={inputAnimClass}>{inputAnimContent}</div>
+						<div style={{fontFamily: 'my'}} className={inputAnimClass}>{inputAnimContent}</div>
 						<input
+							style={{fontFamily: 'my'}}
 							id="answerArea"
 							ref={textareaRef}
 							rows={10}
@@ -551,7 +562,7 @@
 								setInputContent(e.target.value)
 							}}
 						/>
-						<button onClick={checkResult}>ANSWER</button>
+						<button style={{fontFamily: 'my'}} onClick={checkResult}>ANSWER</button>
 					</div>
 				</div>
 			);
