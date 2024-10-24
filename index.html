@@ -291,7 +291,7 @@
 		['szkoła', 'школа'],
 		['serwuje', 'сервирует'],
 		['studio', 'студия'],
-		['sprzeciw', 'возражение']
+		['sprzeciw', 'возражение'],
 		// T
 		['to', 'это'],
 		['telewizja', 'телевизор'],
@@ -410,11 +410,9 @@
 				setMainQuestion(wordsRef.current[rnd]);
 			} else if (wordsRef.current.length && gameMode === 'uniq') {
 				const rnd = rand(0, wordsRef.current.length -1);
-				
 				setMainQuestion([...wordsRef.current[rnd]]);
-
 				TrueUpdateState(wordsRef.current.filter((_, i) => i !== rnd));
-				setItemsLeft(wordsRef.current.length + 1);
+				setItemsLeft(wordsRef.current.length);
 			}
 		};
 
@@ -467,6 +465,10 @@
 			speechSynthesis.speak(msg);
 		};
 
+		const testArray = () => {
+			
+		};
+
 		React.useEffect(() => {
 			// --- LOCAL STORAGE
 			const selLang = localStorage.getItem(SELECTED_LANG);
@@ -507,6 +509,7 @@
 			}, 1000)
 			
 			// --- START
+			testArray(WORDS);
 			TrueUpdateState(WORDS);
 			startNextWord();
 			
