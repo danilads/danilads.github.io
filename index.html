@@ -465,8 +465,17 @@
 			speechSynthesis.speak(msg);
 		};
 
-		const testArray = () => {
-			
+		const testArray = (words) => {
+			let isArrayCorrupt = false;
+			words.forEach(it => {
+				if (!Array.isArray(it)) {
+					isArrayCorrupt = true;
+				}
+			})
+			if (isArrayCorrupt) {
+				const container = document.getElementById("container");
+				container.innerHTML = 'МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)';
+			}
 		};
 
 		React.useEffect(() => {
