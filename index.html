@@ -43,60 +43,66 @@
 	// translate this to polish but using only simple words, because it's for 3-5 years old kids -
 	// translate to russian - 
 
-	const text0 = [
-"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
-"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
-"Mieszkał chłopiec o imieniu Mały Janek.",
-"Жил мальчик по имени Маленький Янек.",
-"Był mały, ale miał wielkie serce pełne dobroci.",
-"Он был маленьким, но у него было большое сердце, полное доброты.",
-"Mały Janek lubił pomagać wszystkim.",
-"Маленький Янек любил всем помогать. ",
-"Pomagał rolnikom nosić warzywa.",
-"Он помогал фермерам носить овощи. ",
-"Pomagał piekarzowi zamiatać podłogę.",
-"Помогал пекарю подметать пол. ",
-"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
-"А ещё помогал маленьким птичкам, давая им крошки.",
-"Pewnego dnia z lasu dobiegł głośny ryk.",
-"Однажды из леса раздался громкий рык. ",
-"Zwierzęta uciekły i schowały się.",
-"Животные убежали и спрятались. ",
-"Ludzie się przestraszyli.",
-"Люди испугались.",
-"„Co to może być?” szeptali.",
-"«Что это может быть?» – шептали они.",
-"Mały Janek też się bał, ale wziął głęboki oddech.",
-"Маленький Янек тоже испугался, но глубоко вздохнул. ",
-"„Dowiem się,” powiedział odważnie.",
-"«Я узнаю», – сказал он смело. ",
-"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
-"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
-"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
-"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
-"Zobaczył duży cień!",
-"Вдруг он увидел большую тень!",
-"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
-"Но когда подошёл ближе, то понял, что это не был монстр",
-"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
-"Это был большой медведь, который застрял в колючих кустах!",
-"„Nie bój się,” powiedział cicho Mały Janek.",
-"«Не бойся», – тихо сказал Маленький Янек.",
-"Delikatnie pomógł niedźwiedziowi się uwolnić.",
-"Он осторожно помог медведю освободиться.",
-"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
-"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
-"Mały Janek uśmiechnął się i wrócił do wioski.",
-"Маленький Янек улыбнулся и вернулся в деревню.",
-"Wszyscy wiwatowali!",
-"Все радостно закричали!",
-"„Mały Janku, jesteś taki odważny!” mówili.",
-"«Маленький Янек, ты такой храбрый!» – говорили они.",
-"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
-"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
-"Ale też najodważniejszym.",
-"Но и самым храбрым."
-	];
+	const TEXTS = {
+		t01: [
+			"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
+			"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
+			"Mieszkał chłopiec o imieniu Mały Janek.",
+			"Жил мальчик по имени Маленький Янек.",
+			"Był mały, ale miał wielkie serce pełne dobroci.",
+			"Он был маленьким, но у него было большое сердце, полное доброты.",
+			"Mały Janek lubił pomagać wszystkim.",
+			"Маленький Янек любил всем помогать. ",
+			"Pomagał rolnikom nosić warzywa.",
+			"Он помогал фермерам носить овощи. ",
+			"Pomagał piekarzowi zamiatać podłogę.",
+			"Помогал пекарю подметать пол. ",
+			"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
+			"А ещё помогал маленьким птичкам, давая им крошки.",
+			"Pewnego dnia z lasu dobiegł głośny ryk.",
+			"Однажды из леса раздался громкий рык. ",
+			"Zwierzęta uciekły i schowały się.",
+			"Животные убежали и спрятались. ",
+			"Ludzie się przestraszyli.",
+			"Люди испугались.",
+			"„Co to może być?” szeptali.",
+			"«Что это может быть?» – шептали они.",
+			"Mały Janek też się bał, ale wziął głęboki oddech.",
+			"Маленький Янек тоже испугался, но глубоко вздохнул. ",
+			"„Dowiem się,” powiedział odważnie.",
+			"«Я узнаю», – сказал он смело. ",
+			"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
+			"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
+			"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
+			"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
+			"Zobaczył duży cień!",
+			"Вдруг он увидел большую тень!",
+			"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
+			"Но когда подошёл ближе, то понял, что это не был монстр",
+			"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
+			"Это был большой медведь, который застрял в колючих кустах!",
+			"„Nie bój się,” powiedział cicho Mały Janek.",
+			"«Не бойся», – тихо сказал Маленький Янек.",
+			"Delikatnie pomógł niedźwiedziowi się uwolnić.",
+			"Он осторожно помог медведю освободиться.",
+			"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
+			"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
+			"Mały Janek uśmiechnął się i wrócił do wioski.",
+			"Маленький Янек улыбнулся и вернулся в деревню.",
+			"Wszyscy wiwatowali!",
+			"Все радостно закричали!",
+			"„Mały Janku, jesteś taki odważny!” mówili.",
+			"«Маленький Янек, ты такой храбрый!» – говорили они.",
+			"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
+			"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
+			"Ale też najodważniejszym.",
+			"Но и самым храбрым."
+		],
+		t02: [
+			"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
+			"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
+		]
+	};
 
 	</script>
 
@@ -437,238 +443,197 @@
 
 	<!-- APP Words -->
 	<script type="text/babel">
-	// UTILS
-	function useCustomState(init) {
-		const [state, setState] = React.useState(init);
-		const cbRef = React.useRef();
+		// Words COMPONENT
+		const Words = ({propsWords}) => {
+			const textareaRef = React.useRef();
 
-		const setCustomState = (newState, callback) => {
-			cbRef.current = callback;
-			setState(newState);
-		};
+			// game mode
+			const [gameMode, setGameMode] = React.useState('uniq'); // 'repeat' 'uniq'
 
-		React.useEffect(() => {
-			if (cbRef.current) {
-				cbRef.current(state);
-			}
-			cbRef.current = undefined;
-		}, [state]);
+			// words
+			const [words, setWords] = React.useState([]);
+			const wordsRef = React.useRef(words); // HERE will be imidiate state
 
-		return [state, setCustomState];
-	}
-	
-	function rand(min, max) {
-		let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
-		if(answer===0){
-			answer=0;
-		}
-		return answer;
-	};
+			const TrueUpdateState = (newState) => {
+				setWords(newState);
+				wordsRef.current = newState;
+			};
 
-	// Words COMPONENT
-	const Words = ({propsWords}) => {
-		const textareaRef = React.useRef();
+			const [inputContent, setInputContent] = useCustomState('');
+			const [inputAnimContent, setInputAnimContent] = useCustomState('');
+			const [inputAnimClass, setInputAnimClass] = useCustomState('animOff');
 
-		// game mode
-		const [gameMode, setGameMode] = React.useState('uniq'); // 'repeat' 'uniq'
+			const [mainQuestion, setMainQuestion] = React.useState([]);
 
-		// words
-		const [words, setWords] = React.useState([]);
-		const wordsRef = React.useRef(words); // HERE will be imidiate state
+			const [help, setHelp] = React.useState('');
 
-		const TrueUpdateState = (newState) => {
-			setWords(newState);
-			wordsRef.current = newState;
-		};
+			// right block
+			const [timer, setTimer] = React.useState('0: 00');
+			const [itemsLeft, setItemsLeft] = React.useState(null);
 
-		const [inputContent, setInputContent] = useCustomState('');
-		const [inputAnimContent, setInputAnimContent] = useCustomState('');
-		const [inputAnimClass, setInputAnimClass] = useCustomState('animOff');
+			// mistakes
+			const [mistakesWords, setMistakesWords] = React.useState([]);
 
-		const [mainQuestion, setMainQuestion] = React.useState([]);
+			// END
+			const [isEnd, setEnd] = React.useState(false);
 
-		const [help, setHelp] = React.useState('');
+			const POLISH_LETTERS = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'];
 
-		// right block
-		const [timer, setTimer] = React.useState('0: 00');
-		const [itemsLeft, setItemsLeft] = React.useState(null);
+			const startNextWord = () => {
+				if (wordsRef.current.length && gameMode === 'repeat') {
+					const rnd = rand(0, wordsRef.current.length -1);
 
-		// mistakes
-		const [mistakesWords, setMistakesWords] = React.useState([]);
-
-		// END
-		const [isEnd, setEnd] = React.useState(false);
-
-		const POLISH_LETTERS = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'];
-
-		const startNextWord = () => {
-			if (wordsRef.current.length && gameMode === 'repeat') {
-				const rnd = rand(0, wordsRef.current.length -1);
-
-				setMainQuestion(wordsRef.current[rnd]);
-			} else if (wordsRef.current.length && gameMode === 'uniq') {
-				const rnd = rand(0, wordsRef.current.length -1);
-				setMainQuestion([...wordsRef.current[rnd]]);
-				TrueUpdateState(wordsRef.current.filter((_, i) => i !== rnd));
-				setItemsLeft(wordsRef.current.length);
-			}
-		};
-
-		const checkResult = () => {
-			if (mainQuestion[0] === inputContent.toLowerCase().trim()) {
-				listenTextarea(inputContent);
-				setInputAnimContent(inputContent);
-				setInputContent('');
-				setInputAnimContent(inputContent);
-				setInputAnimClass('animOn');
-				setTimeout(() => {
-					setInputAnimClass('animOff');
-				}, 3000);
-				console.log('--+ CORRECT --', mainQuestion[0]);
-				setHelp('');
-				
-				// END
-				if (words.length === 0) {
-					setItemsLeft(0);
-					setEnd(true);
-					setMainQuestion('');
+					setMainQuestion(wordsRef.current[rnd]);
+				} else if (wordsRef.current.length && gameMode === 'uniq') {
+					const rnd = rand(0, wordsRef.current.length -1);
+					setMainQuestion([...wordsRef.current[rnd]]);
+					TrueUpdateState(wordsRef.current.filter((_, i) => i !== rnd));
+					setItemsLeft(wordsRef.current.length);
 				}
-				// NEXT WORD
-				else {
-					startNextWord();
+			};
+
+			const checkResult = () => {
+				if (mainQuestion[0] === inputContent.toLowerCase().trim()) {
+					VOICE_THE_TEXT(inputContent);
+					setInputAnimContent(inputContent);
+					setInputContent('');
+					setInputAnimContent(inputContent);
+					setInputAnimClass('animOn');
+					setTimeout(() => {
+						setInputAnimClass('animOff');
+					}, 3000);
+					console.log('--+ CORRECT --', mainQuestion[0]);
+					setHelp('');
 					
+					// END
+					if (words.length === 0) {
+						setItemsLeft(0);
+						setEnd(true);
+						setMainQuestion('');
+					}
+					// NEXT WORD
+					else {
+						startNextWord();
+						
+					}
+					
+				} else {
+					VOICE_THE_TEXT(mainQuestion[0]);
+					setHelp(mainQuestion[0]);
+					if (!mistakesWords.includes(mainQuestion[0])){
+						setMistakesWords([...mistakesWords, mainQuestion[0]])
+					}
+					console.log('--+ INCORRECT --', mainQuestion[0]);
 				}
 				
-			} else {
-				listenTextarea(mainQuestion[0]);
-				setHelp(mainQuestion[0]);
-				if (!mistakesWords.includes(mainQuestion[0])){
-					setMistakesWords([...mistakesWords, mainQuestion[0]])
-				}
-				console.log('--+ INCORRECT --', mainQuestion[0]);
-			}
-			
-		};
+			};
 
-		const listenTextarea = (txt) => {
-			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === lang);
-			const msg = new SpeechSynthesisUtterance();
-			msg.volume = 1;
-			msg.rate = 0.8;
-			msg.pitch = 1;
-			msg.text = txt;
-			msg.voice = selected;
-			msg.voiceURI = selected.voiceURI;
-    		msg.lang = selected.lang;
-			speechSynthesis.speak(msg);
-		};
-
-		const testArray = (words) => {
-			let isArrayCorrupt = false;
-			words.forEach(it => {
-				if (!Array.isArray(it)) {
-					isArrayCorrupt = true;
-				}
-			})
-			if (isArrayCorrupt) {
-				const container = document.getElementById("container");
-				container.innerHTML = 'МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)';
-			}
-		};
-
-		React.useEffect(() => {
-			// timer
-			const start = Date.now();
-			setInterval(() => {
-				const delta = Math.round((Date.now() - start) / 1000);
-				const minutes = Math.floor(delta / 60);
-				const seconds = delta - minutes * 60;
-				setTimer(`${minutes}: ${seconds.toString().length === 1 ? '0'+seconds : seconds}`)
-			}, 1000)
-			
-			// --- START
-			testArray(propsWords);
-			TrueUpdateState(propsWords);
-			startNextWord();
-			
-		}, []);
-
-		return (
-				<div id="main">
-					{/* TOP SECTION */}
-					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-						<span style={{minWidth: '50px'}}>{timer}</span>
-						<span style={{fontSize: '10px'}}> осталось слов:</span>
-						<span style={{minWidth: '40px'}}>{`${itemsLeft}`}</span>
-						
-					</div>
-					<br />
-					<br />
-					{/* CONTROL */} {/* QUESTION */} {/* END SCREEN */}
-					{isEnd ? <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-						<span style={{textAlign: 'center'}}>СЛОВА ЗАКОНЧИЛИСЬ!</span>
-						<span style={{textAlign: 'center'}}>НЕ ЗАБУДЬТЕ ПРОПИСАТЬ СЛОВА В КОТОРЫХ СДЕЛАЛИ ОШИБКИ</span>
-					</div> : 
-					<div>
-						<div className={'additionalText'} style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>вопрос</div><div>подсказка</div></div>
-						<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', borderTop: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
-					</div>
+			const testArray = (words) => {
+				let isArrayCorrupt = false;
+				words.forEach(it => {
+					if (!Array.isArray(it)) {
+						isArrayCorrupt = true;
 					}
-					<br />
+				})
+				if (isArrayCorrupt) {
+					const container = document.getElementById("container");
+					container.innerHTML = 'МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)';
+				}
+			};
 
-					{/* POLISH LETTERS */}
-					<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
-						return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {
-							let caret = textareaRef.current.selectionStart;
+			React.useEffect(() => {
+				// timer
+				const start = Date.now();
+				setInterval(() => {
+					const delta = Math.round((Date.now() - start) / 1000);
+					const minutes = Math.floor(delta / 60);
+					const seconds = delta - minutes * 60;
+					setTimer(`${minutes}: ${seconds.toString().length === 1 ? '0'+seconds : seconds}`)
+				}, 1000)
+				
+				// --- START
+				testArray(propsWords);
+				TrueUpdateState(propsWords);
+				startNextWord();
+				
+			}, []);
 
-							setInputContent(inputContent.slice(0, caret) + it + inputContent.slice(caret), () => {
-								textareaRef.current.focus();
-								textareaRef.current.selectionStart = caret + 1;
-								textareaRef.current.selectionEnd = caret + 1;
-							})
-						}}>{it}</span>
-					})}</div>
+			return (
+					<div id="main">
+						{/* TOP SECTION */}
+						<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+							<span style={{minWidth: '50px'}}>{timer}</span>
+							<span style={{fontSize: '10px'}}> осталось слов:</span>
+							<span style={{minWidth: '40px'}}>{`${itemsLeft}`}</span>
+							
+						</div>
+						<br />
+						<br />
+						{/* CONTROL */} {/* QUESTION */} {/* END SCREEN */}
+						{isEnd ? <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+							<span style={{textAlign: 'center'}}>СЛОВА ЗАКОНЧИЛИСЬ!</span>
+							<span style={{textAlign: 'center'}}>НЕ ЗАБУДЬТЕ ПРОПИСАТЬ СЛОВА В КОТОРЫХ СДЕЛАЛИ ОШИБКИ</span>
+						</div> : 
+						<div>
+							<div className={'additionalText'} style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>вопрос</div><div>подсказка</div></div>
+							<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', borderTop: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
+						</div>
+						}
+						<br />
 
-					{/* INPUT */}
-					<div style={{display: 'flex', position: 'relative'}}>
-						<div style={{fontFamily: 'my'}} className={inputAnimClass}>{inputAnimContent}</div>
-						<input
-							style={{fontFamily: 'my'}}
-							id="answerArea"
-							ref={textareaRef}
-							rows={10}
-							value={inputContent}
-							onKeyDown={e => {
-								if (e.key === 'Enter') {
-									checkResult();
+						{/* POLISH LETTERS */}
+						<div style={{margin: '5px'}}>{POLISH_LETTERS.map(it => {
+							return <span style={{margin: '5px', padding: '0 5px', border: '1px solid black'}} onClick={() => {
+								let caret = textareaRef.current.selectionStart;
+
+								setInputContent(inputContent.slice(0, caret) + it + inputContent.slice(caret), () => {
+									textareaRef.current.focus();
+									textareaRef.current.selectionStart = caret + 1;
+									textareaRef.current.selectionEnd = caret + 1;
+								})
+							}}>{it}</span>
+						})}</div>
+
+						{/* INPUT */}
+						<div style={{display: 'flex', position: 'relative'}}>
+							<div style={{fontFamily: 'my'}} className={inputAnimClass}>{inputAnimContent}</div>
+							<input
+								style={{fontFamily: 'my'}}
+								id="answerArea"
+								ref={textareaRef}
+								rows={10}
+								value={inputContent}
+								onKeyDown={e => {
+									if (e.key === 'Enter') {
+										checkResult();
+									}
+								}}
+								onChange={e => {
+									setInputContent(e.target.value)
+								}}
+							/>
+							<button style={{fontFamily: 'my'}}
+								onTouchEnd={e => {
+									e.stopPropagation();
+									e.preventDefault();
+									checkResult(e);
+								}}
+								onClick={e => {
+									e.stopPropagation();
+									e.preventDefault();
+									checkResult(e);
 								}
-							}}
-							onChange={e => {
-								setInputContent(e.target.value)
-							}}
-						/>
-						<button style={{fontFamily: 'my'}}
-							onTouchEnd={e => {
-								e.stopPropagation();
-								e.preventDefault();
-								checkResult(e);
-							}}
-							onClick={e => {
-								e.stopPropagation();
-								e.preventDefault();
-								checkResult(e);
-							}
-						}>ОТВЕТИТЬ</button>
-					</div>
+							}>ОТВЕТИТЬ</button>
+						</div>
 
-					<div style={{paddingTop: '30px'}} className="additionalText">эти слова нужно прописать в строчку</div>
-					<div style={{maxWidth: '650px', display: 'flex', flexWrap: 'wrap'}}>
-						
-						<div>{mistakesWords.map(it => <div style={{padding: '5px'}}>{it}</div>)}</div>
+						<div style={{paddingTop: '30px'}} className="additionalText">эти слова нужно прописать в строчку</div>
+						<div style={{maxWidth: '650px', display: 'flex', flexWrap: 'wrap'}}>
+							
+							<div>{mistakesWords.map(it => <div style={{padding: '5px'}}>{it}</div>)}</div>
+						</div>
 					</div>
-				</div>
-			);
-	}
+				);
+		}
 	</script>
 
 
@@ -682,22 +647,93 @@
 	
 	<!-- APP TEXTS -->
 	<script type="text/babel">
-	
+		const SELECTED_TEXT = 'SELECTED_TEXT';
 		const Texts = () => {
 			// text0 ['pol', 'рус']
+			const [selectedText, setSelectedText] = React.useState('t01');
+			const allTexts = ['t01', 't02'];
+			React.useEffect(() => {
+					// --- LOCAL STORAGE
+					const selText = localStorage.getItem(SELECTED_TEXT);
+					if (selText) {
+						setSelectedText(selText);
+					}	
+				}, []);
+			const render = () => {
+				console.log(TEXTS[selectedText])
+				return (
+					<div>{TEXTS[selectedText].map((it, ind) => {
+						if (ind % 2) {
+							return <div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{it}</div>;
+						} else {
+							return <div>
+								<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', position: 'absolute', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px', marginTop: '7px'}}>⚟</div>
+								<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
+							</div>;
+						}
+					})}</div>
+				);
+			};
 			return (
-				<div>
-
+				<div style={{overflow: 'auto'}}>
+					<select style={{width: '150px'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
+						{allTexts.map(it => {
+							return <option onSelect={console.log} value={it}>{`tex${it}`}</option>;
+						})}
+					</select>
+					{render()}
 				</div>
 			);
 		}
 	</script>
 
-	<!-- SYSTEM -->
+	<!-- SYSTEM STATE ROUTE UTILS-->
 	<script type="text/babel">
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
+		// USE THIS OBJ to detect lang
 		let lang = {};
+
+		const VOICE_THE_TEXT = (txt) => {
+			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === lang);
+			const msg = new SpeechSynthesisUtterance();
+			msg.volume = 1;
+			msg.rate = 0.8;
+			msg.pitch = 1;
+			msg.text = txt;
+			msg.voice = selected;
+			msg.voiceURI = selected.voiceURI;
+			msg.lang = selected.lang;
+			speechSynthesis.speak(msg);
+		};
+
+		// UTILS
+		function useCustomState(init) {
+			const [state, setState] = React.useState(init);
+			const cbRef = React.useRef();
+
+			const setCustomState = (newState, callback) => {
+				cbRef.current = callback;
+				setState(newState);
+			};
+
+			React.useEffect(() => {
+				if (cbRef.current) {
+					cbRef.current(state);
+				}
+				cbRef.current = undefined;
+			}, [state]);
+
+			return [state, setCustomState];
+		}
+		
+		function rand(min, max) {
+			let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
+			if(answer===0){
+				answer=0;
+			}
+			return answer;
+		};
 
 		const Router = () => {
 			const [Route, setRoute] = React.useState(null);
@@ -759,8 +795,8 @@
 
 					</div>
 					<div style={{display: 'flex', gap: '10px'}}>
-						<div onClick={() => setRoute(1)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
-						<div onClick={() => setRoute(2)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
+						<div onClick={() => setRoute(1)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
+						<div onClick={() => setRoute(2)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
 					</div>
 				</div>
 			)
