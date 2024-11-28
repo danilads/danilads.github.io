@@ -35,198 +35,79 @@
 </style>
 <body>
 	<div id="container"></div> 
+
 	<!-- ТЕКСТА -->
 	<script type="text/babel">
 
-	// generate me fairy tale sentence, about "вставить имя или предмет"
-	// made a small story using this text (only simple words, for kids 3-5 years old) - 
-	// translate this to polish but using only simple words, because it's for 3-5 years old kids -
-	// translate to russian - 
+		// generate me fairy tale sentence, about "вставить имя или предмет"
+		// made a small story using this text (only simple words, for kids 3-5 years old) - 
+		// translate this to polish but using only simple words, because it's for 3-5 years old kids -
+		// translate to russian - 
 
-	const TEXTS = {
-		t01: [
-			"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
-			"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
-			"Mieszkał chłopiec o imieniu Mały Janek.",
-			"Жил мальчик по имени Маленький Янек.",
-			"Był mały, ale miał wielkie serce pełne dobroci.",
-			"Он был маленьким, но у него было большое сердце, полное доброты.",
-			"Mały Janek lubił pomagać wszystkim.",
-			"Маленький Янек любил всем помогать. ",
-			"Pomagał rolnikom nosić warzywa.",
-			"Он помогал фермерам носить овощи. ",
-			"Pomagał piekarzowi zamiatać podłogę.",
-			"Помогал пекарю подметать пол. ",
-			"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
-			"А ещё помогал маленьким птичкам, давая им крошки.",
-			"Pewnego dnia z lasu dobiegł głośny ryk.",
-			"Однажды из леса раздался громкий рык. ",
-			"Zwierzęta uciekły i schowały się.",
-			"Животные убежали и спрятались. ",
-			"Ludzie się przestraszyli.",
-			"Люди испугались.",
-			"„Co to może być?” szeptali.",
-			"«Что это может быть?» – шептали они.",
-			"Mały Janek też się bał, ale wziął głęboki oddech.",
-			"Маленький Янек тоже испугался, но глубоко вздохнул. ",
-			"„Dowiem się,” powiedział odważnie.",
-			"«Я узнаю», – сказал он смело. ",
-			"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
-			"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
-			"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
-			"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
-			"Zobaczył duży cień!",
-			"Вдруг он увидел большую тень!",
-			"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
-			"Но когда подошёл ближе, то понял, что это не был монстр",
-			"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
-			"Это был большой медведь, который застрял в колючих кустах!",
-			"„Nie bój się,” powiedział cicho Mały Janek.",
-			"«Не бойся», – тихо сказал Маленький Янек.",
-			"Delikatnie pomógł niedźwiedziowi się uwolnić.",
-			"Он осторожно помог медведю освободиться.",
-			"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
-			"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
-			"Mały Janek uśmiechnął się i wrócił do wioski.",
-			"Маленький Янек улыбнулся и вернулся в деревню.",
-			"Wszyscy wiwatowali!",
-			"Все радостно закричали!",
-			"„Mały Janku, jesteś taki odważny!” mówili.",
-			"«Маленький Янек, ты такой храбрый!» – говорили они.",
-			"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
-			"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
-			"Ale też najodważniejszym.",
-			"Но и самым храбрым."
-		],
-		t02: [
-			"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
-			"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
-		]
-	};
-
+		const TEXTS = {
+			t00: [
+				"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
+				"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
+				"Mieszkał chłopiec o imieniu Mały Janek.",
+				"Жил мальчик по имени Маленький Янек.",
+				"Był mały, ale miał wielkie serce pełne dobroci.",
+				"Он был маленьким, но у него было большое сердце, полное доброты.",
+				"Mały Janek lubił pomagać wszystkim.",
+				"Маленький Янек любил всем помогать. ",
+				"Pomagał rolnikom nosić warzywa.",
+				"Он помогал фермерам носить овощи. ",
+				"Pomagał piekarzowi zamiatać podłogę.",
+				"Помогал пекарю подметать пол. ",
+				"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
+				"А ещё помогал маленьким птичкам, давая им крошки.",
+				"Pewnego dnia z lasu dobiegł głośny ryk.",
+				"Однажды из леса раздался громкий рык. ",
+				"Zwierzęta uciekły i schowały się.",
+				"Животные убежали и спрятались. ",
+				"Ludzie się przestraszyli.",
+				"Люди испугались.",
+				"„Co to może być?” szeptali.",
+				"«Что это может быть?» – шептали они.",
+				"Mały Janek też się bał, ale wziął głęboki oddech.",
+				"Маленький Янек тоже испугался, но глубоко вздохнул. ",
+				"„Dowiem się,” powiedział odważnie.",
+				"«Я узнаю», – сказал он смело. ",
+				"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
+				"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
+				"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
+				"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
+				"Zobaczył duży cień!",
+				"Вдруг он увидел большую тень!",
+				"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
+				"Но когда подошёл ближе, то понял, что это не был монстр",
+				"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
+				"Это был большой медведь, который застрял в колючих кустах!",
+				"„Nie bój się,” powiedział cicho Mały Janek.",
+				"«Не бойся», – тихо сказал Маленький Янек.",
+				"Delikatnie pomógł niedźwiedziowi się uwolnić.",
+				"Он осторожно помог медведю освободиться.",
+				"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
+				"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
+				"Mały Janek uśmiechnął się i wrócił do wioski.",
+				"Маленький Янек улыбнулся и вернулся в деревню.",
+				"Wszyscy wiwatowali!",
+				"Все радостно закричали!",
+				"„Mały Janku, jesteś taki odważny!” mówili.",
+				"«Маленький Янек, ты такой храбрый!» – говорили они.",
+				"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
+				"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
+				"Ale też najodważniejszym.",
+				"Но и самым храбрым."
+			],
+			t01: [
+				
+			]
+		};
 	</script>
 
 	<!-- СЛОВА -->
 	<script type="text/babel">
 		// A
-	// B
-	// C
-	// D
-	// E
-	// F
-	// G
-	// H
-	// I
-	// J
-	// K
-	// L
-	// M
-	// N
-	// O
-	// P
-	// R
-	// S
-	// T
-	// U
-	// W
-	// Z
-
-	const W_PROF = [
-		// A
-		['architekt', 'архитектор'],
-		// B
-		// C
-		// D
-		['dentysta', 'дантист'],
-		['dziennikarz', 'журналист'],
-		// E
-		// F
-		['fotograf', 'фотограф'],
-		// G
-		// H
-		// I
-		// J
-		// K
-		['kelner', 'официант'],
-		['kucharz', 'повар'],
-		// L
-		['lekarz', 'врач'],
-		// M
-		// N
-		['nauczyciel', 'учитель'],
-		// O
-		// P
-		// R
-		// S
-		// T
-		// U
-		['urzędnik', 'чиновник']
-		// W
-		// Z
-	];
-
-	const W_NUMB = [
-		// A
-		// B
-		// C
-		// D
-		['dziesięć', 'десять'],
-		// E
-		// F
-		// G
-		// H
-		// I
-		// J
-		// K
-		// L
-		// M
-		// N
-		// O
-		// P
-		['pierwszy', 'первый']
-		// R
-		// S
-		// T
-		// U
-		// W
-		// Z
-	];
-
-	const W_COLOR = [
-		// A
-		// B
-		['biały', 'белый'],
-		['brązowy', 'коричневый'],
-		// C
-		['czarny', 'черный'],
-		['czerwony', 'красный'],
-		// D
-		// E
-		// F
-		// G
-		// H
-		// I
-		// J
-		// K
-		// L
-		// M
-		// N
-		['niebieski', 'синий'],
-		// O
-		// P
-		['pomarańczowy', 'оранжевый'],
-		// R
-		// S
-		// T
-		// U
-		// W
-		// Z
-		['żółty', 'желтый'],
-		['zielony', 'зеленый']
-	];
-
-	const W_NAME = [
-		// A
 		// B
 		// C
 		// D
@@ -239,206 +120,323 @@
 		// K
 		// L
 		// M
-		['my', 'мы'],
 		// N
 		// O
 		// P
 		// R
 		// S
-		['sobie', 'себе'],
-		['siebie', 'себя']
 		// T
 		// U
 		// W
 		// Z
-	];
-	const WORDS = [
-        // A
-		['a', 'а'],
-		['ale', 'но'],
-        // B
-		['bardzo', 'очень'],
-		['bardziej', 'более'],
-		['bez', 'без'],
-		['będzie', 'будет'],
-		['blisko', 'близко'],
-		['biuro', 'бюро'],
-		['bo', 'потому что'],
-		['było', 'было'],
-		['być', 'быть'],
-        // C
-		['co', 'что'],
-		['ciebie', 'тебя'],
-		['czas', 'время'],
-		['cześć', 'привет'],
-		['czego', 'чего'],
-		['czekać', 'ждать'],
-		
-        // D
-		['do', 'к'],
-		['dla', 'для'],
-		['dzisiaj', 'сегодня'],
-		['dom', 'дом'],
-		['dokumenty', 'документы'],
-		['dziękuję', 'спасибо'],
-		['dopóki', 'пока'],
-		['dobrze', 'хорошо'],
-		['daleko', 'далеко'],
-		
-        // E
-		// F
-		['fotografia', 'фотография'],
-		['firma', 'фирма'],
-		// G
-		['grać', 'играть'],
-		['gdzie', 'где'],
-		['gabinet', 'кабинет'],
-		['gotować', 'готовить'],
-		// H
-		['hotel', 'отель'],
-		// I
-		['i', 'и'],
-		['informacja', 'информация'],
-		// J
-		['już', 'уже'],
-		['jak', 'как'],
-		['jest', 'есть'],
-		['język', 'язык'],
-		['jedzenie', 'еда'],
-		['jeśli', 'если'],
-		['jeszcze', 'еще'],
-		
-		// K
-		['każdy', 'каждый'],
-		['kraj', 'страна'],
-		['który', 'который'],
-		['kolor', 'цвет'],
-		['konkretny', 'конкретный'],
-		['komputer', 'компьютер'],
-		['kobieta', 'женщина'],
-		['kryzys', 'кризис'],
-		['kiedy', 'когда'],
-		// L
-		['leczyć', 'лечить'],
-		['ludzie', 'люди'],
-		// M
-		['ma', 'имеет'],
-		['między', 'между'],
-		['mieć', 'иметь'],
-		['mniej', 'меньше'],
-		['może', 'может'],
-		['mówić', 'говорить'],
-		// N
-		['na', 'на'],
-		['nad', 'над'],
-		['naprzeciw', 'напротив'],
-		['nawet', 'даже'],
-		['nie', 'нет'],
-		['nic', 'ничего'],
-		['niżej', 'ниже'],
-		['nigdy', 'никогда'],
-		['niedaleko', 'недалеко'],
+
+		const W_PROF = [
+			// A
+			['architekt', 'архитектор'],
+			// B
+			// C
+			// D
+			['dentysta', 'дантист'],
+			['dziennikarz', 'журналист'],
+			// E
+			// F
+			['fotograf', 'фотограф'],
+			// G
+			// H
+			// I
+			// J
+			// K
+			['kelner', 'официант'],
+			['kucharz', 'повар'],
+			// L
+			['lekarz', 'врач'],
+			// M
+			// N
+			['nauczyciel', 'учитель'],
+			// O
+			// P
+			// R
+			// S
+			// T
+			// U
+			['urzędnik', 'чиновник']
+			// W
+			// Z
+		];
+
+		const W_NUMB = [
+			// A
+			// B
+			// C
+			// D
+			['dziesięć', 'десять'],
+			// E
+			// F
+			// G
+			// H
+			// I
+			// J
+			// K
+			// L
+			// M
+			// N
+			// O
+			// P
+			['pierwszy', 'первый']
+			// R
+			// S
+			// T
+			// U
+			// W
+			// Z
+		];
+
+		const W_COLOR = [
+			// A
+			// B
+			['biały', 'белый'],
+			['brązowy', 'коричневый'],
+			// C
+			['czarny', 'черный'],
+			['czerwony', 'красный'],
+			// D
+			// E
+			// F
+			// G
+			// H
+			// I
+			// J
+			// K
+			// L
+			// M
+			// N
+			['niebieski', 'синий'],
+			// O
+			// P
+			['pomarańczowy', 'оранжевый'],
+			// R
+			// S
+			// T
+			// U
+			// W
+			// Z
+			['żółty', 'желтый'],
+			['zielony', 'зеленый']
+		];
+
+		const W_NAME = [
+			// A
+			// B
+			// C
+			// D
+			// E
+			// F
+			// G
+			// H
+			// I
+			// J
+			// K
+			// L
+			// M
+			['my', 'мы'],
+			// N
+			// O
+			// P
+			// R
+			// S
+			['sobie', 'себе'],
+			['siebie', 'себя']
+			// T
+			// U
+			// W
+			// Z
+		];
+		const WORDS = [
+			// A
+			['a', 'а'],
+			['ale', 'но'],
+			// B
+			['bardzo', 'очень'],
+			['bardziej', 'более'],
+			['bez', 'без'],
+			['będzie', 'будет'],
+			['blisko', 'близко'],
+			['biuro', 'бюро'],
+			['bo', 'потому что'],
+			['było', 'было'],
+			['być', 'быть'],
+			// C
+			['co', 'что'],
+			['ciebie', 'тебя'],
+			['czas', 'время'],
+			['cześć', 'привет'],
+			['czego', 'чего'],
+			['czekać', 'ждать'],
+			
+			// D
+			['do', 'к'],
+			['dla', 'для'],
+			['dzisiaj', 'сегодня'],
+			['dom', 'дом'],
+			['dokumenty', 'документы'],
+			['dziękuję', 'спасибо'],
+			['dopóki', 'пока'],
+			['dobrze', 'хорошо'],
+			['daleko', 'далеко'],
+			
+			// E
+			// F
+			['fotografia', 'фотография'],
+			['firma', 'фирма'],
+			// G
+			['grać', 'играть'],
+			['gdzie', 'где'],
+			['gabinet', 'кабинет'],
+			['gotować', 'готовить'],
+			// H
+			['hotel', 'отель'],
+			// I
+			['i', 'и'],
+			['informacja', 'информация'],
+			// J
+			['już', 'уже'],
+			['jak', 'как'],
+			['jest', 'есть'],
+			['język', 'язык'],
+			['jedzenie', 'еда'],
+			['jeśli', 'если'],
+			['jeszcze', 'еще'],
+			
+			// K
+			['każdy', 'каждый'],
+			['kraj', 'страна'],
+			['który', 'который'],
+			['kolor', 'цвет'],
+			['konkretny', 'конкретный'],
+			['komputer', 'компьютер'],
+			['kobieta', 'женщина'],
+			['kryzys', 'кризис'],
+			['kiedy', 'когда'],
+			// L
+			['leczyć', 'лечить'],
+			['ludzie', 'люди'],
+			// M
+			['ma', 'имеет'],
+			['między', 'между'],
+			['mieć', 'иметь'],
+			['mniej', 'меньше'],
+			['może', 'может'],
+			['mówić', 'говорить'],
+			// N
+			['na', 'на'],
+			['nad', 'над'],
+			['naprzeciw', 'напротив'],
+			['nawet', 'даже'],
+			['nie', 'нет'],
+			['nic', 'ничего'],
+			['niżej', 'ниже'],
+			['nigdy', 'никогда'],
+			['niedaleko', 'недалеко'],
 
 
-		// O
-		['o', 'о'],
-		['od', 'от'],
-		['obok', 'рядом'],
-		['około', 'около'],
-		['oprócz', 'кроме'],
-		['osoba', 'человек'],
-		['ostatni', 'последний'],
-		['odpowiedzieć', 'ответить'],
-		
-		// P
-		['po', 'после'],
-		['pod', 'под'],
-		['poza', 'вне'],
-		['podczas', 'во время'],
-		['pisać', 'писать'],
+			// O
+			['o', 'о'],
+			['od', 'от'],
+			['obok', 'рядом'],
+			['około', 'около'],
+			['oprócz', 'кроме'],
+			['osoba', 'человек'],
+			['ostatni', 'последний'],
+			['odpowiedzieć', 'ответить'],
+			
+			// P
+			['po', 'после'],
+			['pod', 'под'],
+			['poza', 'вне'],
+			['podczas', 'во время'],
+			['pisać', 'писать'],
 
-	
-		['poznać', 'познать'],
-		['popularny', 'популярный'],
-		['powiedzieć', 'сказать'],
-		['potem', 'потом'],
 		
-		['przy', 'при'],
-		['przez', 'через'],
-		['przed', 'перед'],
-		['przeciw', 'против'],
-		['pracuje', 'работает'],
-		['prezentować', 'презентовать'],
-		['pracować', 'работать'],
-		['program', 'программа'],
-		['projektować', 'проектировать'],
-		['przygotować', 'приготовить'],
+			['poznać', 'познать'],
+			['popularny', 'популярный'],
+			['powiedzieć', 'сказать'],
+			['potem', 'потом'],
+			
+			['przy', 'при'],
+			['przez', 'через'],
+			['przed', 'перед'],
+			['przeciw', 'против'],
+			['pracuje', 'работает'],
+			['prezentować', 'презентовать'],
+			['pracować', 'работать'],
+			['program', 'программа'],
+			['projektować', 'проектировать'],
+			['przygotować', 'приготовить'],
 
-		['pytanie', 'вопрос'],
-		// R
-		['robić', 'делать'],
-		['restauracja', 'ресторан'],
-		['radio', 'радио'],
-		['rysunek', 'рисунок'],
-		// S
-		['szpital', 'больница'],
-		['student', 'студент'],
-		['szkoła', 'школа'],
-		['serwuje', 'сервирует'],
-		['studio', 'студия'],
-		['sprzeciw', 'возражение'],
-		// T
-		['to', 'это'],
-		['telewizja', 'телевизор'],
-		['telefon', 'телефон'],
-		['też', 'тоже'],
-		['teraz', 'сейчас'],
-		['tutaj', 'здесь'],
-		['trzeba', 'нужно'],
-		['trochę', 'чуть-чуть'],
-		['tylko', 'только'],
-		// U
-		['u', 'у'],
-		['kochany', 'любимый'],
-		['uczy', 'учит'],
-		['uczeń', 'ученик'],
-		['urząd', 'учреждение'],
-		['uwaga', 'внимание'],
-		['uniwersytet', 'университет'],
-		// W
-		['w', 'в'],
-		['więcej', 'больше'],
-		['wiedzieć', 'знать'],
-		['wielki', 'великий'],
-		['wokół', 'вокруг'],
-		['wśród', 'среди'],
-		['wszystko', 'всё'],
-		['wyżej', 'выше'],
-		['wzdłuż', 'вдоль'],
-	
-	
-		// Z
-		['z', 'из'],
-		['za', 'за'],
-		['zamiast', 'вместо'],
-		['zaraz', 'скоро'],
-		['zawód', 'профессия'],
-		['zaczynać', 'начинать'],
-		['zawsze', 'всегда'],
-		['zęby', 'зубы'],
-		['zwierzę', 'животное']
+			['pytanie', 'вопрос'],
+			// R
+			['robić', 'делать'],
+			['restauracja', 'ресторан'],
+			['radio', 'радио'],
+			['rysunek', 'рисунок'],
+			// S
+			['szpital', 'больница'],
+			['student', 'студент'],
+			['szkoła', 'школа'],
+			['serwuje', 'сервирует'],
+			['studio', 'студия'],
+			['sprzeciw', 'возражение'],
+			// T
+			['to', 'это'],
+			['telewizja', 'телевизор'],
+			['telefon', 'телефон'],
+			['też', 'тоже'],
+			['teraz', 'сейчас'],
+			['tutaj', 'здесь'],
+			['trzeba', 'нужно'],
+			['trochę', 'чуть-чуть'],
+			['tylko', 'только'],
+			// U
+			['u', 'у'],
+			['kochany', 'любимый'],
+			['uczy', 'учит'],
+			['uczeń', 'ученик'],
+			['urząd', 'учреждение'],
+			['uwaga', 'внимание'],
+			['uniwersytet', 'университет'],
+			// W
+			['w', 'в'],
+			['więcej', 'больше'],
+			['wiedzieć', 'знать'],
+			['wielki', 'великий'],
+			['wokół', 'вокруг'],
+			['wśród', 'среди'],
+			['wszystko', 'всё'],
+			['wyżej', 'выше'],
+			['wzdłuż', 'вдоль'],
 		
-		// by, czy, ni, no, że, że
-		// W_NAME
-		// tobie, są, ja, ty, on, ona, ono, wy, oni, one, się
-		// ci, mi, go, mu, ją, je, jej, im, ich, mnie, jego, jemu, nami, wami, ich, im
 		
-		// nas, tam, kto, co, gdy, raz, tak, nie, tu, te, to, ile, czy, lub, ani
-		// ten, był, tego
+			// Z
+			['z', 'из'],
+			['za', 'за'],
+			['zamiast', 'вместо'],
+			['zaraz', 'скоро'],
+			['zawód', 'профессия'],
+			['zaczynać', 'начинать'],
+			['zawsze', 'всегда'],
+			['zęby', 'зубы'],
+			['zwierzę', 'животное']
+			
+			// by, czy, ni, no, że, że
+			// W_NAME
+			// tobie, są, ja, ty, on, ona, ono, wy, oni, one, się
+			// ci, mi, go, mu, ją, je, jej, im, ich, mnie, jego, jemu, nami, wami, ich, im
+			
+			// nas, tam, kto, co, gdy, raz, tak, nie, tu, te, to, ile, czy, lub, ani
+			// ten, był, tego
 
-        //  pan, mają, coś, lub, taki, nim, sam, nasze, wasz, tamtego, oraz, wszyscy, żaden, mój, niż, znowu, jakikolwiek, kogoś, powoli, właśnie, kochać, miłość, nikt, ktoś, czasami, móc, śmiać, gra, stąd, zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, tam, jedynie, rzeczy, swoje, wszystkich, jakieś, nowe, nasze, twoje, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
-    ];
-	
+			//  pan, mają, coś, lub, taki, nim, sam, nasze, wasz, tamtego, oraz, wszyscy, żaden, mój, niż, znowu, jakikolwiek, kogoś, powoli, właśnie, kochać, miłość, nikt, ktoś, czasami, móc, śmiać, gra, stąd, zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, tam, jedynie, rzeczy, swoje, wszystkich, jakieś, nowe, nasze, twoje, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
+		];
 	</script>
 
 	<!-- APP Words -->
@@ -560,6 +558,7 @@
 
 			return (
 					<div id="main">
+						<h2 style={{textAlign: 'center'}}>Учим Слова</h2>
 						{/* TOP SECTION */}
 						<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
 							<span style={{minWidth: '50px'}}>{timer}</span>
@@ -637,9 +636,8 @@
 	</script>
 
 
-	<!-- APP GPT не сделано -->
+	<!-- APP GPT !!! не сделано -->
 	<script type="text/babel">
-	
 		const GPT = () => {
 			return <iframe frameborder="0" src="https://chatgpt.com" allow="camera; clipboard-write; fullscreen; microphone; geolocation"></iframe>;
 		}
@@ -650,8 +648,8 @@
 		const SELECTED_TEXT = 'SELECTED_TEXT';
 		const Texts = () => {
 			// text0 ['pol', 'рус']
-			const [selectedText, setSelectedText] = React.useState('t01');
-			const allTexts = ['t01', 't02'];
+			const [selectedText, setSelectedText] = React.useState('t00');
+			const allTexts = ['t00', 't01'];
 			React.useEffect(() => {
 					// --- LOCAL STORAGE
 					const selText = localStorage.getItem(SELECTED_TEXT);
@@ -663,19 +661,22 @@
 				console.log(TEXTS[selectedText])
 				return (
 					<div>{TEXTS[selectedText].map((it, ind) => {
+						let result;
 						if (ind % 2) {
-							return <div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{it}</div>;
+							result = <div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{it}</div>;
 						} else {
-							return <div>
+							result = <div>
 								<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', position: 'absolute', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px', marginTop: '7px'}}>⚟</div>
 								<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
 							</div>;
 						}
+						return <div style={{position: 'relative'}}>{result}</div>;
 					})}</div>
 				);
 			};
 			return (
 				<div style={{overflow: 'auto'}}>
+					<h2 style={{textAlign: 'center'}}>Читаем Текст</h2>
 					<select style={{width: '150px'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
 						{allTexts.map(it => {
 							return <option onSelect={console.log} value={it}>{`tex${it}`}</option>;
@@ -687,7 +688,20 @@
 		}
 	</script>
 
-	<!-- SYSTEM STATE ROUTE UTILS-->
+	<!-- RADIO -->
+	<script type="text/babel">
+		const Radio = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>Радио Онлайн</h2>
+					<div>Просто слушать два часа в день</div>
+					<audio controls src="https://27953.live.streamtheworld.com/RADIO_TOKFM.mp3"></audio>
+				</div>
+			)
+		}
+	</script>
+
+	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
@@ -783,6 +797,9 @@
 			if (Route === 2) {
 				return <Texts />;
 			}
+			if (Route === 3) {
+				return <Radio />;
+			}
 			return (
 				<div>
 					<div className={'additionalText'} style={{textAlign: 'center', paddingBottom: '10px'}}>выберите польский язык</div>
@@ -797,6 +814,7 @@
 					<div style={{display: 'flex', gap: '10px'}}>
 						<div onClick={() => setRoute(1)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
 						<div onClick={() => setRoute(2)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
+						<div onClick={() => setRoute(3)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Радио</div>
 					</div>
 				</div>
 			)
