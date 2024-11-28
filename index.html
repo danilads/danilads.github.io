@@ -11,16 +11,18 @@
 <style>
 	html {font-family: my; width: 100%; height: 100%; margin: 0;
 	}
-	body {width: 100%; margin: 0;
-		background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); 
+	body {height: 100%; width: 100%; margin: 0;
 	}
 	@font-face {
 		font-family: my;
 		src: url(RobotoSlab-VariableFont_wght.ttf);
 	}
 
-	#container {padding: 15px; display: flex; justify-content: center;}
-	#main {width: 100%; margin: 0; max-width: 650px; position: relative;}
+	#container {
+		background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); 
+		height: 100%;
+		padding: 15px; display: flex; justify-content: center;}
+	#main {overflow: auto; width: 100%; margin: 0; max-width: 650px; position: relative;}
 	#answerArea {width: 100%; height: 40px; font-size: 22px;}
 	.additionalText { font-size: 12px; color: #444}
 	.animOff { left: 3px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; z-index: -1; opacity: 0; }
@@ -33,10 +35,75 @@
 </style>
 <body>
 	<div id="container"></div> 
-	<script type="text/babel">
-	const SELECTED_LANG = 'SELECTED_LANG';
 
-	// A
+	<!-- ТЕКСТА -->
+	<script type="text/babel">
+
+	// generate me fairy tale sentence, about "вставить имя или предмет"
+	// made a small story using this text (only simple words, for kids 3-5 years old) - 
+	// translate this to polish but using only simple words, because it's for 3-5 years old kids -
+	// translate to russian - 
+
+	const text0 = [
+"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
+"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
+"Mieszkał chłopiec o imieniu Mały Janek.",
+"Жил мальчик по имени Маленький Янек.",
+"Był mały, ale miał wielkie serce pełne dobroci.",
+"Он был маленьким, но у него было большое сердце, полное доброты.",
+"Mały Janek lubił pomagać wszystkim.",
+"Маленький Янек любил всем помогать. ",
+"Pomagał rolnikom nosić warzywa.",
+"Он помогал фермерам носить овощи. ",
+"Pomagał piekarzowi zamiatać podłogę.",
+"Помогал пекарю подметать пол. ",
+"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
+"А ещё помогал маленьким птичкам, давая им крошки.",
+"Pewnego dnia z lasu dobiegł głośny ryk.",
+"Однажды из леса раздался громкий рык. ",
+"Zwierzęta uciekły i schowały się.",
+"Животные убежали и спрятались. ",
+"Ludzie się przestraszyli.",
+"Люди испугались.",
+"„Co to może być?” szeptali.",
+"«Что это может быть?» – шептали они.",
+"Mały Janek też się bał, ale wziął głęboki oddech.",
+"Маленький Янек тоже испугался, но глубоко вздохнул. ",
+"„Dowiem się,” powiedział odważnie.",
+"«Я узнаю», – сказал он смело. ",
+"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
+"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
+"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
+"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
+"Zobaczył duży cień!",
+"Вдруг он увидел большую тень!",
+"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
+"Но когда подошёл ближе, то понял, что это не был монстр",
+"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
+"Это был большой медведь, который застрял в колючих кустах!",
+"„Nie bój się,” powiedział cicho Mały Janek.",
+"«Не бойся», – тихо сказал Маленький Янек.",
+"Delikatnie pomógł niedźwiedziowi się uwolnić.",
+"Он осторожно помог медведю освободиться.",
+"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
+"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
+"Mały Janek uśmiechnął się i wrócił do wioski.",
+"Маленький Янек улыбнулся и вернулся в деревню.",
+"Wszyscy wiwatowali!",
+"Все радостно закричали!",
+"„Mały Janku, jesteś taki odważny!” mówili.",
+"«Маленький Янек, ты такой храбрый!» – говорили они.",
+"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
+"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
+"Ale też najodważniejszym.",
+"Но и самым храбрым."
+	];
+
+	</script>
+
+	<!-- СЛОВА -->
+	<script type="text/babel">
+		// A
 	// B
 	// C
 	// D
@@ -367,6 +434,13 @@
         //  pan, mają, coś, lub, taki, nim, sam, nasze, wasz, tamtego, oraz, wszyscy, żaden, mój, niż, znowu, jakikolwiek, kogoś, powoli, właśnie, kochać, miłość, nikt, ktoś, czasami, móc, śmiać, gra, stąd, zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz, na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno, źle, lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo, krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, mimo, albo, zarówno, ktoś, nikt, tak, aby, czasami, ponieważ, zatem, po prostu, tam, jedynie, rzeczy, swoje, wszystkich, jakieś, nowe, nasze, twoje, kilka, dni, noce, lata, tygodni, miesięcy, godzin, minut, sekund, wiesz, robi, mężczyzna, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, kawa, herbata, woda, piwo, wino, mięso, ryba, warzywa, owoce, zegarek, ubranie, buty, spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, biały, czarny, czerwony, zielony, niebieski, żółty, brązowy, szary, różowy, fioletowy, pomarańczowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze, rzeka, jezioro, góra, las, łąka, pole, miasto, wieś, droga, ulica, most, budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, okno, drzwi, podłoga, sufit, ściana, łóżko, stół, krzesło, fotel, kanapa, półka, szafa, dywan, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, zlew, wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, nóż, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik, toster, blender, mikser, odkurzacz, żelazko, wiadro, mop, zmiotka, szufelka, worek, kosz, lampka, świeca, zapałka, zapalniczka, mysz, klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt, długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, klej, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz, mapa, bilet, gazeta, czasopismo, list, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, akt, dokument, kwit, rachunek, faktura, umowa, formularz, druk, wniosek, petycja, podanie, prośba, skarga, apel, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie, zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie, mandat, kara, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz, instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, pakt, układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat, misja, komisja, komitet, rada, zgromadzenie, parlament, senat, sejm, rząd, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, test, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca, etat, stanowisko, posada, profesja, specjalność, funkcja, rola, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność, korzyść, profit, zysk, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor, reputacja, autorytet, sława, renoma, marka, imię, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja, paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, znak, symbol, ikona, piktogram, logo, emblemat, herb, godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie, komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat, komedia, tragedia, farsa, burleska, skecz, gag, dowcip, żart, kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
     ];
 	
+	</script>
+
+	<!-- APP <Words /> ТЕКСТА -->
+	<script type="text/babel">
+
+	const SELECTED_LANG = 'SELECTED_LANG';
+
 	// UTILS
 	function useCustomState(init) {
 		const [state, setState] = React.useState(init);
@@ -395,8 +469,8 @@
 		return answer;
 	};
 
-	// MAIN COMPONENT
-	const Main = ({propsWords}) => {
+	// Words COMPONENT
+	const Words = ({propsWords}) => {
 		const textareaRef = React.useRef();
 
 		// game mode
@@ -650,12 +724,52 @@
 				</div>
 			);
 	}
+	</script>
 
-	////////////////App Js
-		ReactDOM.render(
-			<Main propsWords={[...WORDS, ...W_NAME, ...W_COLOR, ...W_NUMB, ...W_PROF]} />
-			,document.getElementById('container')
-		);
+
+	<!-- GPT не сделано -->
+	<script type="text/babel">
+	
+		const GPT = () => {
+			return <iframe frameborder="0" src="https://chatgpt.com" allow="camera; clipboard-write; fullscreen; microphone; geolocation"></iframe>;
+		}
+	</script>
+	
+	<!-- TEXTS -->
+	<script type="text/babel">
+	
+		const Texts = () => {
+			// text0 ['pol', 'рус']
+			return (
+				<div>
+
+				</div>
+			);
+		}
+	</script>
+
+	<!-- ROUTER -->
+	<script type="text/babel">
+	const Router = () => {
+		const [Route, setRoute] = React.useState(null);
+
+		if (Route === 1) {
+			return <Words propsWords={[...WORDS, ...W_NAME, ...W_COLOR, ...W_NUMB, ...W_PROF]} />;
+		}
+		if (Route === 2) {
+			return <Texts />;
+		}
+		return (
+			<div style={{display: 'flex', gap: '10px'}}>
+				<div onClick={() => setRoute(1)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
+				<div onClick={() => setRoute(2)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
+			</div>
+		)
+	}
+	ReactDOM.render(
+		<Router />
+		,document.getElementById('container')
+	);
 	</script>
 </body> 
 </html>
