@@ -35,7 +35,6 @@
 </style>
 <body>
 	<div id="container"></div> 
-
 	<!-- ТЕКСТА -->
 	<script type="text/babel">
 
@@ -436,11 +435,8 @@
 	
 	</script>
 
-	<!-- APP <Words /> ТЕКСТА -->
+	<!-- APP Words -->
 	<script type="text/babel">
-
-	const SELECTED_LANG = 'SELECTED_LANG';
-
 	// UTILS
 	function useCustomState(init) {
 		const [state, setState] = React.useState(init);
@@ -485,10 +481,6 @@
 			wordsRef.current = newState;
 		};
 
-		// lang
-		const [allLang, setAllLang] = React.useState([]);
-		const [selectedLang, setSelectedLang] = React.useState(null);
-
 		const [inputContent, setInputContent] = useCustomState('');
 		const [inputAnimContent, setInputAnimContent] = useCustomState('');
 		const [inputAnimClass, setInputAnimClass] = useCustomState('animOff');
@@ -504,14 +496,9 @@
 		// mistakes
 		const [mistakesWords, setMistakesWords] = React.useState([]);
 
-		// test
-		const [test, setTest] = React.useState('v0.6');
-
 		// END
 		const [isEnd, setEnd] = React.useState(false);
 
-		// фильтр языков
-		const FILTER = ['pl-PL', 'en-US'];
 		const POLISH_LETTERS = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'];
 
 		const startNextWord = () => {
@@ -564,7 +551,7 @@
 		};
 
 		const listenTextarea = (txt) => {
-			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === selectedLang);
+			const selected = speechSynthesis.getVoices().find(it => it.voiceURI === lang);
 			const msg = new SpeechSynthesisUtterance();
 			msg.volume = 1;
 			msg.rate = 0.8;
@@ -590,35 +577,6 @@
 		};
 
 		React.useEffect(() => {
-			// --- LOCAL STORAGE
-			const selLang = localStorage.getItem(SELECTED_LANG);
-			if (selLang) setSelectedLang(selLang);
-
-			// --- VOICE
-			const setVoices = voicesArr => {
-				const filteredVoices = voicesArr.filter(it => FILTER.includes(it.lang));
-				if (Array.isArray(filteredVoices) && filteredVoices.length) {
-					setAllLang(filteredVoices);
-				} else {
-					setAllLang(voicesArr);
-				}
-				if (!selLang) setSelectedLang(filteredVoices[0].voiceURI);
-			};
-			
-			// firefox
-			if (speechSynthesis.getVoices().length) {
-				setVoices(speechSynthesis.getVoices());
-			}
-			// chrome
-			speechSynthesis.addEventListener("voiceschanged", () => {
-				setVoices(speechSynthesis.getVoices());
-			})
-
-			// for mobile chrome
-			setTimeout(() => {
-				setVoices(speechSynthesis.getVoices());
-			}, 5000)
-			
 			// timer
 			const start = Date.now();
 			setInterval(() => {
@@ -638,25 +596,12 @@
 		return (
 				<div id="main">
 					{/* TOP SECTION */}
-					<div className={'additionalText'} style={{textAlign: 'center', paddingBottom: '10px'}}>выберите польский язык</div>
 					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-						<select style={{width: '150px'}} value={selectedLang} onChange={e => {setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
-							{allLang.map(it => {
-								return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
-							})}
-						</select>
-				
-						<span style={{minWidth: '40px'}}>{timer}</span>
+						<span style={{minWidth: '50px'}}>{timer}</span>
+						<span style={{fontSize: '10px'}}> осталось слов:</span>
 						<span style={{minWidth: '40px'}}>{`${itemsLeft}`}</span>
-
+						
 					</div>
-	
-					{/* TEST */}
-					<div>
-						<span style={{fontSize: '10px'}}>{test}</span>
-					</div>
-
-					<br />
 					<br />
 					<br />
 					{/* CONTROL */} {/* QUESTION */} {/* END SCREEN */}
@@ -727,7 +672,7 @@
 	</script>
 
 
-	<!-- GPT не сделано -->
+	<!-- APP GPT не сделано -->
 	<script type="text/babel">
 	
 		const GPT = () => {
@@ -735,7 +680,7 @@
 		}
 	</script>
 	
-	<!-- TEXTS -->
+	<!-- APP TEXTS -->
 	<script type="text/babel">
 	
 		const Texts = () => {
@@ -748,28 +693,82 @@
 		}
 	</script>
 
-	<!-- ROUTER -->
+	<!-- SYSTEM -->
 	<script type="text/babel">
-	const Router = () => {
-		const [Route, setRoute] = React.useState(null);
+		const FILTER = ['pl-PL'];
+		const SELECTED_LANG = 'SELECTED_LANG';
+		let lang = {};
 
-		if (Route === 1) {
-			return <Words propsWords={[...WORDS, ...W_NAME, ...W_COLOR, ...W_NUMB, ...W_PROF]} />;
+		const Router = () => {
+			const [Route, setRoute] = React.useState(null);
+			const [allLang, setAllLang] = React.useState([]);
+			const [selectedLang, setSelectedLang] = React.useState(null);
+
+				React.useEffect(() => {
+					// --- LOCAL STORAGE
+					const selLang = localStorage.getItem(SELECTED_LANG);
+					if (selLang) {
+						setSelectedLang(selLang);
+						lang = selLang;
+					}
+
+					// --- VOICE
+					const setVoices = voicesArr => {
+						const filteredVoices = voicesArr.filter(it => FILTER.includes(it.lang));
+						if (Array.isArray(filteredVoices) && filteredVoices.length) {
+							setAllLang(filteredVoices);
+						} else {
+							setAllLang(voicesArr);
+						}
+						if (!selLang) {
+							setSelectedLang(filteredVoices[0].voiceURI);
+							lang = filteredVoices[0].voiceURI;
+						}
+					};
+					
+					// firefox
+					if (speechSynthesis.getVoices().length) {
+						setVoices(speechSynthesis.getVoices());
+					}
+					// chrome
+					speechSynthesis.addEventListener("voiceschanged", () => {
+						setVoices(speechSynthesis.getVoices());
+					})
+
+					// for mobile chrome
+					setTimeout(() => {
+						setVoices(speechSynthesis.getVoices());
+					}, 5000)		
+				}, []);
+
+			if (Route === 1) {
+				return <Words propsWords={[...WORDS, ...W_NAME, ...W_COLOR, ...W_NUMB, ...W_PROF]} />;
+			}
+			if (Route === 2) {
+				return <Texts />;
+			}
+			return (
+				<div>
+					<div className={'additionalText'} style={{textAlign: 'center', paddingBottom: '10px'}}>выберите польский язык</div>
+					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', paddingBottom: '10px'}}>
+							<select style={{width: '150px'}} value={selectedLang} onChange={e => {lang = e.target.value; setSelectedLang(e.target.value); localStorage.setItem(SELECTED_LANG, e.target.value);}} id={selectedLang}>
+								{allLang.map(it => {
+									return <option onSelect={console.log} value={it.voiceURI}>{`${it.lang} ${it.name}`}</option>;
+								})}
+							</select>
+
+					</div>
+					<div style={{display: 'flex', gap: '10px'}}>
+						<div onClick={() => setRoute(1)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
+						<div onClick={() => setRoute(2)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
+					</div>
+				</div>
+			)
 		}
-		if (Route === 2) {
-			return <Texts />;
-		}
-		return (
-			<div style={{display: 'flex', gap: '10px'}}>
-				<div onClick={() => setRoute(1)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
-				<div onClick={() => setRoute(2)} style={{fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
-			</div>
-		)
-	}
-	ReactDOM.render(
-		<Router />
-		,document.getElementById('container')
-	);
+		ReactDOM.render(
+			<Router />
+			,document.getElementById('container')
+		);
 	</script>
 </body> 
 </html>
