@@ -21,7 +21,7 @@
 	#container {
 		background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); 
 		height: 100%;
-		padding: 15px; display: flex; justify-content: center;}
+		display: flex; justify-content: center;}
 	#main {overflow: auto; width: 100%; margin: 0; max-width: 650px; position: relative;}
 	#answerArea {width: 100%; height: 40px; font-size: 22px;}
 	.additionalText { font-size: 12px; color: #444}
@@ -40,67 +40,71 @@
 	<script type="text/babel">
 
 		// generate me fairy tale sentence, about "вставить имя или предмет"
-		// made a small story using this text (only simple words, for kids 3-5 years old) - 
+		// made a small story using this text (only simple words, for kids 3-5 years old) and no more than 10 words in a sentence. - 
 		// translate this to polish but using only simple words, because it's for 3-5 years old kids -
-		// translate to russian - 
+		// translate to russian exactly with the preservation of punctuation - 
 
+		// d01 - dialogs
+		// t01 - tale
+		// с01 - рожд
 		const TEXTS = {
-			t00: [
-				"Dawno, dawno temu, w małej, cichej wiosce, blisko dużego, starego lasu.",
-				"Давным-давно, в маленькой тихой деревне, рядом с большим старым лесом",
-				"Mieszkał chłopiec o imieniu Mały Janek.",
-				"Жил мальчик по имени Маленький Янек.",
-				"Był mały, ale miał wielkie serce pełne dobroci.",
-				"Он был маленьким, но у него было большое сердце, полное доброты.",
-				"Mały Janek lubił pomagać wszystkim.",
-				"Маленький Янек любил всем помогать. ",
-				"Pomagał rolnikom nosić warzywa.",
-				"Он помогал фермерам носить овощи. ",
-				"Pomagał piekarzowi zamiatać podłogę.",
-				"Помогал пекарю подметать пол. ",
-				"Pomagał też małym ptaszkom, dając im okruszki do jedzenia.",
-				"А ещё помогал маленьким птичкам, давая им крошки.",
-				"Pewnego dnia z lasu dobiegł głośny ryk.",
-				"Однажды из леса раздался громкий рык. ",
-				"Zwierzęta uciekły i schowały się.",
-				"Животные убежали и спрятались. ",
-				"Ludzie się przestraszyli.",
-				"Люди испугались.",
-				"„Co to może być?” szeptali.",
-				"«Что это может быть?» – шептали они.",
-				"Mały Janek też się bał, ale wziął głęboki oddech.",
-				"Маленький Янек тоже испугался, но глубоко вздохнул. ",
-				"„Dowiem się,” powiedział odważnie.",
-				"«Я узнаю», – сказал он смело. ",
-				"Z uśmiechem i latarnią w ręce poszedł do ciemnego lasu.",
-				"С улыбкой и фонарём в руке он пошёл в тёмный лес.",
-				"Szedł obok wysokich drzew i nasłuchiwał dźwięków.",
-				"Он шёл мимо высоких деревьев и прислушивался к звукам. ",
-				"Zobaczył duży cień!",
-				"Вдруг он увидел большую тень!",
-				"Ale kiedy podszedł bliżej, zobaczył, że to nie był potwór",
-				"Но когда подошёл ближе, то понял, что это не был монстр",
-				"To był duży niedźwiedź, który utknął w krzakach z kolcami!",
-				"Это был большой медведь, который застрял в колючих кустах!",
-				"„Nie bój się,” powiedział cicho Mały Janek.",
-				"«Не бойся», – тихо сказал Маленький Янек.",
-				"Delikatnie pomógł niedźwiedziowi się uwolnić.",
-				"Он осторожно помог медведю освободиться.",
-				"Niedźwiedź zaryczał znowu, ale tym razem brzmiało to jak radosne „Dziękuję!”",
-				"Медведь снова зарычал, но в этот раз это было похоже на радостное «Спасибо!»",
-				"Mały Janek uśmiechnął się i wrócił do wioski.",
-				"Маленький Янек улыбнулся и вернулся в деревню.",
-				"Wszyscy wiwatowali!",
-				"Все радостно закричали!",
-				"„Mały Janku, jesteś taki odważny!” mówili.",
-				"«Маленький Янек, ты такой храбрый!» – говорили они.",
-				"Od tego dnia Mały Janek był nie tylko najżyczliwszym chłopcem w wiosce.",
-				"С тех пор Маленький Янек был не только самым добрым мальчиком в деревне.",
-				"Ale też najodważniejszym.",
-				"Но и самым храбрым."
+			c01: [
+"Bałwanek i Śnieżny Aniołek",
+"Pewnego dnia mały bałwanek stał zupełnie sam.",
+"Popatrzył w niebo i pomyślał życzenie.",
+"„Chciałbym mieć przyjaciela,” szepnął bałwanek.",
+"Niedaleko dziecko zrobiło na śniegu aniołka.",
+"Nagle aniołek zaczął się ruszać!",
+"„Cześć, Bałwanku! Jestem twoim nowym przyjacielem!” powiedział aniołek.",
+"Bałwanek się uśmiechnął i poczuł się bardzo szczęśliwy.",
+"Bawili się w śniegu każdego dnia.",
+"Lepili śnieżki i budowali fortece razem.",
+"Przytulenie aniołka ogrzało bałwanka.",
+"Teraz mały bałwanek już nigdy nie był sam.",
+"Miał przyjaciela, z którym dzielił radosne zimowe dni.",
+"Снеговик и Снежный Ангел",
+"Однажды маленький снеговик стоял совсем один.",
+"Он посмотрел на небо и загадал желание.",
+"«Я бы хотел иметь друга,» — прошептал снеговик.",
+"Недалеко ребенок сделал на снегу ангела.",
+"Вдруг ангел начал двигаться!",
+"«Привет, Снеговик! Я твой новый друг!» — сказал ангел.",
+"Снеговик улыбнулся и почувствовал себя очень счастливым.",
+"Они играли в снегу каждый день.",
+"Лепили снежки и строили крепости вместе.",
+"Объятие ангела согрело снеговика.",
+"Теперь маленький снеговик больше никогда не был один.",
+"У него был друг, с которым он делил радостные зимние дни."
 			],
-			t01: [
-				
+			c02: [
+"Nowy Przyjaciel Bałwanka",
+"Pewnego zimowego dnia mały bałwanek stał całkiem sam.",
+"Spojrzał w niebo i pomyślał życzenie.",
+"„Chcę mieć przyjaciela,” szepnął cicho bałwanek.",
+"Niedaleko dziecko zrobiło dużego, pięknego aniołka ze śniegu.",
+"Aniołek ze śniegu zabłyszczał i zaczął się ruszać!",
+"Otworzył ramiona i uśmiechnął się jasno.",
+"„Będę twoim przyjacielem!” powiedział z radością.",
+"Bałwanek i aniołek bawili się razem w śniegu.",
+"Lepili śnieżki i tańczyli w zimowym świetle.",
+"Codziennie śmiali się i bawili wesoło.",
+"Bałwanek już nie był sam.",
+"Jego życzenie się spełniło—przyjaciel na zimowe dni!",
+
+
+"Новый Друг Снеговика",
+"Однажды зимним днем маленький снеговик стоял совсем один.",
+"Он посмотрел на небо и загадал желание.",
+"«Я хочу друга,» тихо прошептал снеговик.",
+"Недалеко ребенок сделал большого, красивого снежного ангела.",
+"Снежный ангел засверкал и начал двигаться!",
+"Он раскрыл руки и ярко улыбнулся.",
+"«Я буду твоим другом!» сказал он с радостью.",
+"Снеговик и ангел играли вместе в снегу.",
+"Они лепили снежки и танцевали в зимнем свете.",
+"Каждый день они смеялись и весело играли.",
+"Снеговик больше не был один.",
+"Его желание сбылось — друг на зимние дни!"
 			]
 		};
 	</script>
@@ -272,6 +276,7 @@
 			['cześć', 'привет'],
 			['czego', 'чего'],
 			['czekać', 'ждать'],
+			['czekając', 'ожидая'],
 			
 			// D
 			['do', 'к'],
@@ -330,6 +335,7 @@
 			// N
 			['na', 'на'],
 			['nad', 'над'],
+			['nagle', 'вдруг'],
 			['naprzeciw', 'напротив'],
 			['nawet', 'даже'],
 			['nie', 'нет'],
@@ -366,6 +372,7 @@
 			['przez', 'через'],
 			['przed', 'перед'],
 			['przeciw', 'против'],
+			['przyjaciel', 'друг'],
 			['pracuje', 'работает'],
 			['prezentować', 'презентовать'],
 			['pracować', 'работать'],
@@ -378,8 +385,10 @@
 			['robić', 'делать'],
 			['restauracja', 'ресторан'],
 			['radio', 'радио'],
+			['ruszać', 'двигаться'],
 			['rysunek', 'рисунок'],
 			// S
+			['słuchając', 'слушая'],
 			['szpital', 'больница'],
 			['student', 'студент'],
 			['szkoła', 'школа'],
@@ -649,7 +658,7 @@
 		const Texts = () => {
 			// text0 ['pol', 'рус']
 			const [selectedText, setSelectedText] = React.useState('t00');
-			const allTexts = ['t00', 't01'];
+			const allTexts = Object.keys(TEXTS);
 			React.useEffect(() => {
 					// --- LOCAL STORAGE
 					const selText = localStorage.getItem(SELECTED_TEXT);
@@ -658,28 +667,32 @@
 					}	
 				}, []);
 			const render = () => {
-				console.log(TEXTS[selectedText])
+				if (!TEXTS[selectedText]) {
+					return;
+				}
+				const plArr = TEXTS[selectedText].slice(0, TEXTS[selectedText].length / 2);
+				const ruArr = TEXTS[selectedText].slice(TEXTS[selectedText].length / 2, TEXTS[selectedText].length);
 				return (
-					<div>{TEXTS[selectedText].map((it, ind) => {
-						let result;
-						if (ind % 2) {
-							result = <div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{it}</div>;
-						} else {
-							result = <div>
-								<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', position: 'absolute', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px', marginTop: '7px'}}>⚟</div>
-								<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
-							</div>;
+					<div>{plArr.map((it, ind) => {
+						return (
+							<div style={{position: 'relative'}}>
+								<div>
+									<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', position: 'absolute', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px', marginTop: '7px'}}>⚟</div>
+									<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
+								</div>
+								<div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{ruArr[ind]}</div>
+							</div>
+							)})
 						}
-						return <div style={{position: 'relative'}}>{result}</div>;
-					})}</div>
+					</div>
 				);
 			};
 			return (
-				<div style={{overflow: 'auto'}}>
+				<div style={{maxWidth: '650px',overflow: 'auto'}}>
 					<h2 style={{textAlign: 'center'}}>Читаем Текст</h2>
 					<select style={{width: '150px'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
 						{allTexts.map(it => {
-							return <option onSelect={console.log} value={it}>{`tex${it}`}</option>;
+							return <option onSelect={console.log} value={it}>{`text - ${it}`}</option>;
 						})}
 					</select>
 					{render()}
@@ -819,6 +832,7 @@
 				</div>
 			)
 		}
+
 		ReactDOM.render(
 			<Router />
 			,document.getElementById('container')
