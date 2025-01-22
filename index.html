@@ -50,334 +50,12 @@
 	<script src="texts.js"></script>
 
 	<!-- СЛОВА -->
+	<script src="wordsLess4.js"></script>
+	<script src="wordsMore4.js"></script>
 	<script type="text/babel">
-		// A
-		// B
-		// C
-		// D
-		// E
-		// F
-		// G
-		// H
-		// I
-		// J
-		// K
-		// L
-		// M
-		// N
-		// O
-		// P
-		// R
-		// S
-		// T
-		// U
-		// W
-		// Z
-
-		const W_PROF = [
-			// A
-			['architekt', 'архитектор'],
-			// B
-			// C
-			// D
-			['dentysta', 'дантист'],
-			['dziennikarz', 'журналист'],
-			// E
-			// F
-			['fotograf', 'фотограф'],
-			// G
-			// H
-			// I
-			// J
-			// K
-			['kelner', 'официант'],
-			['kucharz', 'повар'],
-			// L
-			['lekarz', 'врач'],
-			// M
-			// N
-			['nauczyciel', 'учитель'],
-			// O
-			// P
-			// R
-			// S
-			// T
-			// U
-			['urzędnik', 'чиновник']
-			// W
-			// Z
-		];
-
-		const W_NUMB = [
-			// A
-			// B
-			// C
-			// D
-			['dziesięć', 'десять'],
-			// E
-			// F
-			// G
-			// H
-			// I
-			// J
-			// K
-			// L
-			// M
-			// N
-			// O
-			// P
-			['pierwszy', 'первый']
-			// R
-			// S
-			// T
-			// U
-			// W
-			// Z
-		];
-
-		const W_COLOR = [
-			// A
-			// B
-			['biały', 'белый'],
-			['brązowy', 'коричневый'],
-			// C
-			['czarny', 'черный'],
-			['czerwony', 'красный'],
-			// D
-			// E
-			// F
-			// G
-			// H
-			// I
-			// J
-			// K
-			// L
-			// M
-			// N
-			['niebieski', 'синий'],
-			// O
-			// P
-			['pomarańczowy', 'оранжевый'],
-			// R
-			// S
-			// T
-			// U
-			// W
-			// Z
-			['żółty', 'желтый'],
-			['zielony', 'зеленый']
-		];
-
-		const W_NAME = [
-			// A
-			// B
-			// C
-			// D
-			// E
-			// F
-			// G
-			// H
-			// I
-			// J
-			// K
-			// L
-			// M
-			['my', 'мы'],
-			// N
-			// O
-			// P
-			// R
-			// S
-			['sobie', 'себе'],
-			['siebie', 'себя']
-			// T
-			// U
-			// W
-			// Z
-		];
 		const WORDS = [
-			// A
-			['a', 'а'],
-			['ale', 'но'],
-			// B
-			['bardzo', 'очень'],
-			['bardziej', 'более'],
-			['bez', 'без'],
-			['będzie', 'будет'],
-			['blisko', 'близко'],
-			['biuro', 'бюро'],
-			['bo', 'потому что'],
-			['było', 'было'],
-			['być', 'быть'],
-			// C
-			['co', 'что'],
-			['ciebie', 'тебя'],
-			['czas', 'время'],
-			['cześć', 'привет'],
-			['czego', 'чего'],
-			['czekać', 'ждать'],
-			['czekając', 'ожидая'],
-			
-			// D
-			['do', 'к'],
-			['dla', 'для'],
-			['dzisiaj', 'сегодня'],
-			['dom', 'дом'],
-			['dokumenty', 'документы'],
-			['dziękuję', 'спасибо'],
-			['dopóki', 'пока'],
-			['dobrze', 'хорошо'],
-			['daleko', 'далеко'],
-			
-			// E
-			// F
-			['fotografia', 'фотография'],
-			['firma', 'фирма'],
-			// G
-			['grać', 'играть'],
-			['gdzie', 'где'],
-			['gabinet', 'кабинет'],
-			['gotować', 'готовить'],
-			// H
-			['hotel', 'отель'],
-			// I
-			['i', 'и'],
-			['informacja', 'информация'],
-			// J
-			['już', 'уже'],
-			['jak', 'как'],
-			['jest', 'есть'],
-			['język', 'язык'],
-			['jedzenie', 'еда'],
-			['jeśli', 'если'],
-			['jeszcze', 'еще'],
-			
-			// K
-			['każdy', 'каждый'],
-			['kraj', 'страна'],
-			['który', 'который'],
-			['kolor', 'цвет'],
-			['konkretny', 'конкретный'],
-			['komputer', 'компьютер'],
-			['kobieta', 'женщина'],
-			['kryzys', 'кризис'],
-			['kiedy', 'когда'],
-			// L
-			['leczyć', 'лечить'],
-			['ludzie', 'люди'],
-			// M
-			['ma', 'имеет'],
-			['między', 'между'],
-			['mieć', 'иметь'],
-			['mniej', 'меньше'],
-			['może', 'может'],
-			['mówić', 'говорить'],
-			// N
-			['na', 'на'],
-			['nad', 'над'],
-			['nagle', 'вдруг'],
-			['naprzeciw', 'напротив'],
-			['nawet', 'даже'],
-			['nie', 'нет'],
-			['nic', 'ничего'],
-			['niżej', 'ниже'],
-			['nigdy', 'никогда'],
-			['niedaleko', 'недалеко'],
-
-
-			// O
-			['o', 'о'],
-			['od', 'от'],
-			['obok', 'рядом'],
-			['około', 'около'],
-			['oprócz', 'кроме'],
-			['osoba', 'человек'],
-			['ostatni', 'последний'],
-			['odpowiedzieć', 'ответить'],
-			
-			// P
-			['po', 'после'],
-			['pod', 'под'],
-			['poza', 'вне'],
-			['podczas', 'во время'],
-			['pisać', 'писать'],
-
-		
-			['poznać', 'познать'],
-			['popularny', 'популярный'],
-			['powiedzieć', 'сказать'],
-			['potem', 'потом'],
-			
-			['przy', 'при'],
-			['przez', 'через'],
-			['przed', 'перед'],
-			['przeciw', 'против'],
-			['przyjaciel', 'друг'],
-			['pracuje', 'работает'],
-			['prezentować', 'презентовать'],
-			['pracować', 'работать'],
-			['program', 'программа'],
-			['projektować', 'проектировать'],
-			['przygotować', 'приготовить'],
-
-			['pytanie', 'вопрос'],
-			// R
-			['robić', 'делать'],
-			['restauracja', 'ресторан'],
-			['radio', 'радио'],
-			['ruszać', 'двигаться'],
-			['rysunek', 'рисунок'],
-			// S
-			['słuchając', 'слушая'],
-			['szpital', 'больница'],
-			['student', 'студент'],
-			['szkoła', 'школа'],
-			['serwuje', 'сервирует'],
-			['studio', 'студия'],
-			['sprzeciw', 'возражение'],
-			// T
-			['to', 'это'],
-			['telewizja', 'телевизор'],
-			['telefon', 'телефон'],
-			['też', 'тоже'],
-			['teraz', 'сейчас'],
-			['tutaj', 'здесь'],
-			['trzeba', 'нужно'],
-			['trochę', 'чуть-чуть'],
-			['tylko', 'только'],
-			// U
-			['u', 'у'],
-			['kochany', 'любимый'],
-			['uczy', 'учит'],
-			['uczeń', 'ученик'],
-			['urząd', 'учреждение'],
-			['uwaga', 'внимание'],
-			['uniwersytet', 'университет'],
-			// W
-			['w', 'в'],
-			['więcej', 'больше'],
-			['wiedzieć', 'знать'],
-			['wielki', 'великий'],
-			['wokół', 'вокруг'],
-			['wśród', 'среди'],
-			['wszystko', 'всё'],
-			['wyżej', 'выше'],
-			['wzdłuż', 'вдоль'],
-		
-		
-			// Z
-			['z', 'из'],
-			['za', 'за'],
-			['zamiast', 'вместо'],
-			['zaraz', 'скоро'],
-			['zawód', 'профессия'],
-			['zaczynać', 'начинать'],
-			['zawsze', 'всегда'],
-			['zęby', 'зубы'],
-			['zwierzę', 'животное']
-			
+	
 			// by, czy, ni, no, że, że
-			// W_NAME
 			// tobie, są, ja, ty, on, ona, ono, wy, oni, one, się
 			// ci, mi, go, mu, ją, je, jej, im, ich, mnie, jego, jemu, nami, wami, ich, im
 			
@@ -388,7 +66,7 @@
 		];
 	</script>
 
-	<!-- APP Words -->
+	<!-- WORDS -->
 	<script type="text/babel">
 		// Words COMPONENT
 		const Words = ({propsWords}) => {
@@ -584,15 +262,8 @@
 		}
 	</script>
 
-
-	<!-- APP GPT !!! не сделано -->
-	<script type="text/babel">
-		const GPT = () => {
-			return <iframe frameborder="0" src="https://chatgpt.com" allow="camera; clipboard-write; fullscreen; microphone; geolocation"></iframe>;
-		}
-	</script>
 	
-	<!-- APP TEXTS -->
+	<!-- TEXTS -->
 	<script type="text/babel">
 		const SELECTED_TEXT = 'SELECTED_TEXT';
 		const Texts = () => {
@@ -649,6 +320,36 @@
 					<h2 style={{textAlign: 'center'}}>Радио Онлайн</h2>
 					<div>Просто слушать два часа в день</div>
 					<audio controls src="https://27953.live.streamtheworld.com/RADIO_TOKFM.mp3"></audio>
+				</div>
+			)
+		}
+	</script>
+
+	<!-- TV -->
+	<script type="text/babel">
+		const TV = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>TV Онлайн</h2>
+					<div>Просто смотреть один часа в день</div>
+					<div>Включите суб-титры в настройках</div>
+					<div>Каналы в которых бывают суб-титры (alfa tvp / tvp abc2 / TVP wilno )</div>
+					<a href="https://vod.tvp.pl/na-zywo">Ссылка на сайт</a>
+				</div>
+			)
+		}
+	</script>
+	<!-- YouTube chanels -->
+	<script type="text/babel">
+		const YoutubeChanels = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>TV Онлайн</h2>
+					<div>Просто смотреть один ролик в день</div>
+					<div>Включите суб-титры в настройках</div>
+					<div><a href="https://www.youtube.com/@UrbexHistory">UrbexHistory</a></div>
+					<div><a href="https://www.youtube.com/@PlanetaAbstrakcja">PlanetaAbstrakcja</a></div>
+					<div><a href="https://www.youtube.com/@HistoryHiking">HistoryHiking</a></div>
 				</div>
 			)
 		}
@@ -746,13 +447,19 @@
 				}, []);
 
 			if (Route === 1) {
-				return <Words propsWords={[...WORDS, ...W_NAME, ...W_COLOR, ...W_NUMB, ...W_PROF]} />;
+				return <Words propsWords={[...WORDS1, ...WORDS2]} />;
 			}
 			if (Route === 2) {
 				return <Texts />;
 			}
 			if (Route === 3) {
 				return <Radio />;
+			}
+			if (Route === 4) {
+				return <TV />;
+			}
+			if (Route === 5) {
+				return <YoutubeChanels />;
 			}
 			return (
 				<div>
@@ -765,10 +472,12 @@
 							</select>
 
 					</div>
-					<div style={{display: 'flex', gap: '10px'}}>
-						<div onClick={() => setRoute(1)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Слова</div>
-						<div onClick={() => setRoute(2)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Текста</div>
-						<div onClick={() => setRoute(3)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '22px', height: '34px'}}>Радио</div>
+					<div style={{display: 'flex', gap: '10px', flexDirection: 'column'}}>
+						<div onClick={() => setRoute(1)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '11px 22px', height: '34px'}}>Слова</div>
+						<div onClick={() => setRoute(2)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '11px 22px', height: '34px'}}>Текста</div>
+						<div onClick={() => setRoute(3)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '11px 22px', height: '34px'}}>Радио</div>
+						<div onClick={() => setRoute(4)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '11px 22px', height: '34px'}}>ТВ + субтитры</div>
+						<div onClick={() => setRoute(5)} style={{cursor: 'pointer', fontSize: '22px', border: '1px solid black', borderRadius: '10px', padding: '11px 22px', height: '34px'}}>Youtube + субтитры</div>
 					</div>
 				</div>
 			)
