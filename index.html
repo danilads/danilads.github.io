@@ -22,8 +22,8 @@
 		background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); 
 		height: 100%;
 		display: flex; justify-content: center;}
-	#main {overflow: auto; width: 100%; margin: 0 10px; max-width: 650px; position: relative;}
-	#answerArea {width: 100%; height: 40px; font-size: 22px;}
+	.main {overflow: auto; width: 100%; margin: 0 10px; max-width: 650px; position: relative;}
+	.answerArea {width: 100%; height: 40px; font-size: 22px;}
 	.additionalText { font-size: 12px; color: #444}
 	.animOff { left: 3px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; z-index: -1; opacity: 0; }
 	.animOn { left: 3px; font-family: 'Arial'; top: 10px; font-size: 22px; position: absolute; animation: fadeOut 4s; z-index: 2; opacity: 0; }
@@ -227,7 +227,7 @@
 			}, []);
 
 			return (
-					<div id="main">
+					<React.Fragment>
 						<h2 style={{textAlign: 'center'}}>Учим Слова</h2>
 						{/* TOP SECTION */}
 						<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
@@ -268,7 +268,7 @@
 							<div style={{fontFamily: 'my'}} className={inputAnimClass}>{inputAnimContent}</div>
 							<input
 								style={{fontFamily: 'my'}}
-								id="answerArea"
+								className="answerArea"
 								ref={textareaRef}
 								rows={10}
 								value={inputContent}
@@ -300,7 +300,7 @@
 							
 							<div>{mistakesWords.map(it => <div style={{padding: '5px'}}>{it}</div>)}</div>
 						</div>
-					</div>
+					</React.Fragment>
 				);
 		}
 	</script>
@@ -401,7 +401,7 @@
 
 	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
-		const VERSION = 0.7;
+		const VERSION = 0.8;
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
 		// USE THIS OBJ to detect lang
@@ -491,23 +491,27 @@
 				}, 5000)		
 			}, []);
 
+			const mainScrollWrap = (elem) => {
+				return <div className="main">{elem}</div>
+			};
+
 			if (Route === 1) {
-				return <PreWords />;
+				return mainScrollWrap(<PreWords />);
 			}
 			if (Route === 2) {
-				return <Texts />;
+				return mainScrollWrap(<Texts />);
 			}
 			if (Route === 3) {
-				return <Radio />;
+				return mainScrollWrap(<Radio />);
 			}
 			if (Route === 4) {
-				return <TV />;
+				return mainScrollWrap(<TV />);
 			}
 			if (Route === 5) {
-				return <YoutubeChanels />;
+				return mainScrollWrap(<YoutubeChanels />);
 			}
 
-			return (
+			return mainScrollWrap(
 				<div>
 					<div className={'additionalText'} style={{textAlign: 'center', paddingBottom: '10px'}}>выберите польский язык<span style={{paddingLeft: '10px', fontSize: '10px'}}>v{VERSION}</span></div>
 					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', paddingBottom: '10px'}}>
