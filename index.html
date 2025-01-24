@@ -355,10 +355,11 @@
 								onClick={e => {
 									e.stopPropagation();
 									e.preventDefault();
+									setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
 									checkResult(e);
 						
 									// TODO return
-									setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
+									
 									// if (Array.isArray(mainQuestion[2])) {
 									// 	// TODO return
 									// 	setSentenses(mainQuestion[2].length);
@@ -488,7 +489,7 @@
 
 	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
-		const VERSION = 0.3;
+		const VERSION = 0.4;
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
 		// USE THIS OBJ to detect lang
