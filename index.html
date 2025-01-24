@@ -31,6 +31,12 @@
 		0% { opacity: 1; top: 10px}
 		100% { opacity: 0; top: -20px}
 	}
+	.help {
+		font-size: 12px;
+		color: gray;
+		text-align: center;
+		font-weight: 300;
+	}
 	.buttonWrap {
 		padding: 20px;
 		display: flex;
@@ -52,8 +58,6 @@
 
 	<!--
 
-	// TODO+ рвзделить слова на блоки
-	// паддинг справа и слева
 	// Добавить секцию Песни (учим наизусь)
 	// Секция слово  сочитания (Я работал я работаю я юуду раюотаь) он  не работал
 	// + вопросы - когда / почему (загуглить самые часты вопросы и глаголы)
@@ -85,30 +89,69 @@
 		// PRE Words COMPONENT
 		const PreWords = () => {
 			const [type, setType] = React.useState(null);
-			const TEST = [
-				['1', '1'],
-				['2', '2'],
-				['3', '3'],
-				['4', '4'],
-				['5', '5'],
-				['6', '6'],
-				['7', '7'],
-				['8', '8']
-			];
+
+			const seed = 33133;
+
+			const SHUFFLE_WORDS_BY_SEED = [...shuffleArray(WORDS1, seed), ...shuffleArray(WORDS2, seed)]
+
+			const testArray = (words, ind) => {
+				let isArrayCorrupt = false;
+				words.forEach(it => {
+					if (!Array.isArray(it)) {
+						isArrayCorrupt = true;
+					}
+				})
+				if (isArrayCorrupt) {
+					const container = document.getElementById("container");
+					container.innerHTML = `${ind} МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)`;
+				}
+			};
+
+			React.useEffect(() => {
+				testArray(WORDS1, 'WORDS1');
+				testArray(WORDS2, 'WORDS2');
+			}, []);
+			
+
 			if (type) {
-				return <Words propsWords={[...WORDS1, ...WORDS2]} />;
+				let words = [];
+				const splitWords = (arr, pt) => {
+					const partHigh  = Math.ceil(arr.length / 7);
+					const partLow  = Math.round(arr.length / 7);
+	
+					return arr.slice(partLow*(pt - 1), partLow*(pt- 1) + partHigh);
+				};
+				if (type === 1) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 1);
+				} else if (type === 2) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 2);
+				} else if (type === 3) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 3);
+				} else if (type === 4) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 4);
+				} else if (type === 5) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 5);
+				} else if (type === 6) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 6);
+				} else if (type === 7) {
+					words = splitWords(SHUFFLE_WORDS_BY_SEED, 7);
+				} else if (type === 8) {
+					words = [...WORDS1, ...WORDS2];
+				}
+				return <Words propsWords={words} />;
 			}
+
 			return <div className="buttonWrap">
+				<div className="help">{`слова разделены равными частями между днями недели т.к. всего слов - ${WORDS1.length + WORDS2.length}`}</div>
 				<div className="button" onClick={()=>setType(8)}>все слова</div>
-			</div>;
-			return <div className="buttonWrap">
-				<div className="button">понедельник</div>
-				<div className="button">вторник</div>
-				<div className="button">среда</div>
-				<div className="button">четверг</div>
-				<div className="button">пятница</div>
-				<div className="button">суббота</div>
-				<div className="button">воскресенье</div>
+				<div className="button" onClick={()=>setType(1)}>понедельник</div>
+				<div className="button" onClick={()=>setType(2)}>вторник</div>
+				<div className="button" onClick={()=>setType(3)}>среда</div>
+				<div className="button" onClick={()=>setType(4)}>четверг</div>
+				<div className="button" onClick={()=>setType(5)}>пятница</div>
+				<div className="button" onClick={()=>setType(6)}>суббота</div>
+				<div className="button" onClick={()=>setType(7)}>воскресенье</div>
+				
 			</div>;
 		};
 		// Words COMPONENT
@@ -196,19 +239,6 @@
 				
 			};
 
-			const testArray = (words) => {
-				let isArrayCorrupt = false;
-				words.forEach(it => {
-					if (!Array.isArray(it)) {
-						isArrayCorrupt = true;
-					}
-				})
-				if (isArrayCorrupt) {
-					const container = document.getElementById("container");
-					container.innerHTML = 'МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)';
-				}
-			};
-
 			React.useEffect(() => {
 				// timer
 				const start = Date.now();
@@ -220,10 +250,8 @@
 				}, 1000)
 				
 				// --- START
-				testArray(propsWords);
 				TrueUpdateState(propsWords);
 				startNextWord();
-				
 			}, []);
 
 			return (
@@ -344,7 +372,8 @@
 			return (
 				<div style={{maxWidth: '650px',overflow: 'auto'}}>
 					<h2 style={{textAlign: 'center'}}>Читаем Текст</h2>
-					<select style={{width: '150px'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
+					<div className="help">текст сгенерирова и переведен -> chatgpt</div>
+					<select style={{width: '150px', margin: '10px 0'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
 						{allTexts.map(it => {
 							return <option onSelect={console.log} value={it}>{`text - ${it}`}</option>;
 						})}
@@ -441,6 +470,29 @@
 			return [state, setCustomState];
 		}
 		
+		function shuffleArray(array, seed) {
+			// Простая функция для генерации псевдослучайных чисел на основе seed
+			const seedRandom = (seed) => {
+				const SEED_CONST = 2147483647;
+				let s = seed % SEED_CONST;
+				return function() {
+					s = (s * 16807) % SEED_CONST;
+					return (s - 1) / SEED_CONST;
+				};
+			}
+			// Инициализируем генератор с seed
+			const random = seedRandom(seed);
+			
+			const result = array.slice(); // Создаем копию массива, чтобы не менять исходный
+
+			for (let i = result.length - 1; i > 0; i--) {
+				const j = Math.floor(random() * (i + 1)); // Используем seed-based random
+				[result[i], result[j]] = [result[j], result[i]]; // Меняем местами элементы
+			}
+
+			return result;
+		}
+
 		function rand(min, max) {
 			let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
 			if(answer===0){
