@@ -90,6 +90,17 @@
 		const PreWords = () => {
 			const [type, setType] = React.useState(null);
 
+			//////////////////////TODO
+			const WORDS1 = [
+
+				['a', 'а', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
+				['b', 'b', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']]
+			];
+			const WORDS2 = [
+				['c', 'c', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
+				['d', 'd', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']]
+			];
+			////////////////////
 			const seed = 33133;
 
 			const SHUFFLE_WORDS_BY_SEED = [...shuffleArray(WORDS1, seed), ...shuffleArray(WORDS2, seed)]
@@ -106,6 +117,7 @@
 					container.innerHTML = `${ind} МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)`;
 				}
 			};
+			
 
 			React.useEffect(() => {
 				testArray(WORDS1, 'WORDS1');
@@ -157,6 +169,9 @@
 		// Words COMPONENT
 		const Words = ({propsWords}) => {
 			const textareaRef = React.useRef();
+
+			// modal
+			const [isModal, setModal] = React.useState(false);
 
 			// game mode
 			const [gameMode, setGameMode] = React.useState('uniq'); // 'repeat' 'uniq'
@@ -254,6 +269,29 @@
 				startNextWord();
 			}, []);
 
+			// TODO
+			// const renderText = (txt) => {
+			// 	if (!txt) {
+			// 		return;
+			// 	}
+			// 	const plArr = txt.slice(0, txt.length / 2);
+			// 	const ruArr = txt.slice(txt.length / 2, txt.length);
+			// 	return (
+			// 		<div>{plArr.map((it, ind) => {
+			// 			return (
+			// 				<div style={{position: 'relative'}}>
+			// 					<div>
+			// 						<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', position: 'absolute', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px', marginTop: '7px'}}>⚟</div>
+			// 						<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
+			// 					</div>
+			// 					<div style={{fontSize: '14px', color: 'brown', paddingLeft: '20px', paddingBottom: '7px'}}>{ruArr[ind]}</div>
+			// 				</div>
+			// 				)})
+			// 			}
+			// 		</div>
+			// 	);
+			// };
+
 			return (
 					<React.Fragment>
 						<h2 style={{textAlign: 'center'}}>Учим Слова</h2>
@@ -321,6 +359,19 @@
 									checkResult(e);
 								}
 							}>ОТВЕТИТЬ</button>
+							<button style={{fontFamily: 'my'}}
+								onTouchEnd={e => {
+									e.stopPropagation();
+									e.preventDefault();
+									checkResult(e);
+								}}
+								onClick={e => {
+									e.stopPropagation();
+									e.preventDefault();
+									console.log('--+ HERE');
+									checkResult(e);
+								}
+							}>ОТВЕТИТЬ + ДОП ИНФ</button>
 						</div>
 
 						<div style={{paddingTop: '30px'}} className="additionalText">эти слова нужно прописать в строчку</div>
@@ -348,12 +399,12 @@
 						setSelectedText(selText);
 					}	
 				}, []);
-			const render = () => {
-				if (!TEXTS[selectedText]) {
+			const renderText = (txt) => {
+				if (!txt) {
 					return;
 				}
-				const plArr = TEXTS[selectedText].slice(0, TEXTS[selectedText].length / 2);
-				const ruArr = TEXTS[selectedText].slice(TEXTS[selectedText].length / 2, TEXTS[selectedText].length);
+				const plArr = txt.slice(0, txt.length / 2);
+				const ruArr = txt.slice(txt.length / 2, txt.length);
 				return (
 					<div>{plArr.map((it, ind) => {
 						return (
@@ -372,13 +423,13 @@
 			return (
 				<div style={{maxWidth: '650px',overflow: 'auto'}}>
 					<h2 style={{textAlign: 'center'}}>Читаем Текст</h2>
-					<div className="help">текст сгенерирова и переведен -> chatgpt</div>
+					<div className="help">текст сгенерирова и переведен --- chatgpt</div>
 					<select style={{width: '150px', margin: '10px 0'}} value={selectedText} onChange={e => {setSelectedText(e.target.value); localStorage.setItem(SELECTED_TEXT, e.target.value);}} id={selectedText}>
 						{allTexts.map(it => {
 							return <option onSelect={console.log} value={it}>{`text - ${it}`}</option>;
 						})}
 					</select>
-					{render()}
+					{renderText(TEXTS[selectedText])}
 				</div>
 			);
 		}

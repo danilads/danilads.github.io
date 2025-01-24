@@ -1,6 +1,7 @@
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
 const WORDS2 = [
 	// A
-	['a', 'а'],
+	['a', 'а', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
 	['ale', 'но'],
 	// B
 	['bar', 'бар'],
@@ -80,10 +81,12 @@ const WORDS2 = [
 	// S
 
 	// T
+	['tam', 'tam'],
 	['to', 'это'],
 
 	['też', 'тоже'],
 	['typ', 'тип'],
+	['ty', 'ты'],
 
 	// U
 	['u', 'у'],
@@ -99,6 +102,7 @@ const WORDS2 = [
 	['zęby', 'зубы'],
 	
 ];
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
 
 /*
 

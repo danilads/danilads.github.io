@@ -1,3 +1,4 @@
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
 const WORDS1 = [
 	// A
 	['architekt', 'архитектор'],
@@ -61,6 +62,7 @@ const WORDS1 = [
 
 	['który', 'который'],
 	['kolor', 'цвет'],
+	['kolejka', 'очередь'],
 	['konkretny', 'конкретный'],
 	['komputer', 'компьютер'],
 	['kobieta', 'женщина'],
@@ -75,6 +77,7 @@ const WORDS1 = [
 	// M
 
 	['między', 'между'],
+	['myśleć', 'думать'],
 
 	['mniej', 'меньше'],
 
@@ -86,17 +89,24 @@ const WORDS1 = [
 	['naprzeciw', 'напротив'],
 	['nawet', 'даже'],
 
+	['niespodzianka', 'сюрприз'],
 	['niżej', 'ниже'],
 	['nigdy', 'никогда'],
 	['niedaleko', 'недалеко'],
 
 	['niebieski', 'синий'],
 	// O
+	['odpowiedzieć', 'ответить'],
+
 	['około', 'около'],
 	['oprócz', 'кроме'],
+
 	['osoba', 'человек'],
 	['ostatni', 'последний'],
-	['odpowiedzieć', 'ответить'],
+
+	['oznacza', 'означает'],
+
+
 
 	// P
 
@@ -150,6 +160,7 @@ const WORDS1 = [
 	['trzeba', 'нужно'],
 	['trochę', 'чуть-чуть'],
 	['tylko', 'только'],
+	['twoja', 'твоя'],
 	// U
 	['kochany', 'любимый'],
 	['uczeń', 'ученик'],
@@ -170,17 +181,23 @@ const WORDS1 = [
 	['wrócić', 'вернуться'],
 
 	// Z
-	['zwracać', 'возвращать'],
+	
 	['zamiast', 'вместо'],
 	['zaraz', 'скоро'],
 	['zawód', 'профессия'],
 	['zaczynać', 'начинать'],
 	['zawsze', 'всегда'],
-	['zwierzę', 'животное'],
-	['żółty', 'желтый'],
+	
 	['zielony', 'зеленый'],
-	['zwrócić', 'вернуть']
+	['znaczy', 'значит'],
+
+	['żółty', 'желтый'],
+	
+	['zwrócić', 'вернуть'],
+	['zwierzę', 'животное'],
+	['zwracać', 'возвращать']
 ];
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
 
 /*
 [skandal  - безобразие] ?
