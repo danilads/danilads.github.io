@@ -350,13 +350,14 @@
 								onTouchEnd={e => {
 									e.stopPropagation();
 									e.preventDefault();
-									checkResult(e);
+									checkResult();
 								}}
 								onClick={e => {
 									e.stopPropagation();
 									e.preventDefault();
-									setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
-									checkResult(e);
+									setSentenses(`WTF`);
+									// setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
+									checkResult();
 						
 									// TODO return
 									
@@ -489,7 +490,7 @@
 
 	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
-		const VERSION = 0.5;
+		const VERSION = 0.6;
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
 		// USE THIS OBJ to detect lang
