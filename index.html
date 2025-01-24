@@ -371,9 +371,9 @@
 							}>ОТВЕТИТЬ</button>
 						</div>
 						{/* TODO */}
-						{sentenses ? (
-							<div style={{paddingTop: '30px'}}>{sentenses}</div>
-						) : null}
+						<div style={{paddingTop: '30px'}}>sentenses</div>
+						<div style={{paddingTop: '30px'}}>{sentenses}</div>
+				
 						{/* Предложения */}
 						{Array.isArray(sentenses) ? (
 							<div style={{paddingTop: '30px'}}>{renderText(mainQuestion[2])}</div>
@@ -489,7 +489,7 @@
 
 	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
-		const VERSION = 0.4;
+		const VERSION = 0.5;
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
 		// USE THIS OBJ to detect lang
