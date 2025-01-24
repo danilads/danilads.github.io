@@ -183,7 +183,7 @@
 
 
 			// 
-			const [sentenses, setSentenses] = React.useState(null);
+			const [sentenses, setSentenses] = React.useState('null');
 
 
 			const [inputContent, setInputContent] = useCustomState('');
@@ -355,7 +355,7 @@
 								onClick={e => {
 									e.stopPropagation();
 									e.preventDefault();
-									setSentenses(`WTF`);
+									setSentenses('WTF');
 									// setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
 									checkResult();
 						
@@ -490,7 +490,7 @@
 
 	<!-- STATE ROUTE UTILS-->
 	<script type="text/babel">
-		const VERSION = 0.6;
+		const VERSION = 0.7;
 		const FILTER = ['pl-PL'];
 		const SELECTED_LANG = 'SELECTED_LANG';
 		// USE THIS OBJ to detect lang
