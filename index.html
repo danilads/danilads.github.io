@@ -90,17 +90,6 @@
 		const PreWords = () => {
 			const [type, setType] = React.useState(null);
 
-			//////////////////////TODO
-			const WORDS1 = [
-
-				['a', 'а', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
-				['b', 'b', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']]
-			];
-			const WORDS2 = [
-				['c', 'c', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
-				['d', 'd', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']]
-			];
-			////////////////////
 			const seed = 33133;
 
 			const SHUFFLE_WORDS_BY_SEED = [...shuffleArray(WORDS1, seed), ...shuffleArray(WORDS2, seed)]
@@ -209,7 +198,6 @@
 			const startNextWord = () => {
 				if (wordsRef.current.length && gameMode === 'repeat') {
 					const rnd = rand(0, wordsRef.current.length -1);
-
 					setMainQuestion(wordsRef.current[rnd]);
 				} else if (wordsRef.current.length && gameMode === 'uniq') {
 					const rnd = rand(0, wordsRef.current.length -1);
@@ -221,8 +209,8 @@
 
 			const checkResult = () => {
 				// Add sentense
-				if (Array.isArray(mainQuestion[2])) {
-					setSentenses(mainQuestion[2]);
+				if (Array.isArray(mainQuestion[3])) {
+					setSentenses(mainQuestion[3]);
 				} else {
 					setSentenses(null);
 				}
@@ -317,7 +305,7 @@
 						</div> : 
 						<div>
 							<div className={'additionalText'} style={{display: 'flex', justifyContent: 'space-between', height: '20px'}}><div>вопрос</div><div>подсказка</div></div>
-							<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', borderTop: '1px solid black'}}><div>{mainQuestion[1]}</div><div>{help}</div></div>
+							<div style={{display: 'flex', justifyContent: 'space-between', height: '20px', borderTop: '1px solid black'}}><div>{`${mainQuestion[1]}${mainQuestion[2] ? ` (${mainQuestion[2]})` : ''}`}</div><div>{help}</div></div>
 						</div>
 						}
 						<br />
@@ -369,7 +357,7 @@
 
 						{/* Предложения */}
 						{Array.isArray(sentenses) ? (
-							<div style={{paddingTop: '30px'}}>{renderText(mainQuestion[2])}</div>
+							<div style={{paddingTop: '30px'}}>{renderText(mainQuestion[3])}</div>
 						) : null}
 						
 						
