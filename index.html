@@ -220,6 +220,14 @@
 			};
 
 			const checkResult = () => {
+				// Add sentense
+				if (Array.isArray(mainQuestion[2])) {
+					setSentenses(mainQuestion[2]);
+				} else {
+					setSentenses(null);
+				}
+
+				// Check result
 				if (mainQuestion[0] === inputContent.toLowerCase().trim()) {
 					VOICE_THE_TEXT(inputContent);
 					setInputAnimContent(inputContent);
@@ -280,7 +288,6 @@
 					<div>{txt.map((it) => {
 						return (
 							<div style={{position: 'relative', height: '27px', display: 'flex', padding: '2px 0'}}>
-				
 									<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', fontSize: '18px', border: '1px solid black', borderRadius: '4px', padding: '0 2px'}}>⚟</div>
 									<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
 					
@@ -355,26 +362,11 @@
 								onClick={e => {
 									e.stopPropagation();
 									e.preventDefault();
-									setSentenses('WTF');
-									// setSentenses(`${mainQuestion[2].length} ${mainQuestion.length}`);
 									checkResult();
-						
-									// TODO return
-									
-									// if (Array.isArray(mainQuestion[2])) {
-									// 	// TODO return
-									// 	setSentenses(mainQuestion[2].length);
-									// } else {
-									// 	setSentenses(null);
-									// }
-					
 								}
 							}>ОТВЕТИТЬ</button>
 						</div>
-						{/* TODO */}
-						<div style={{paddingTop: '30px'}}>sentenses</div>
-						<div style={{paddingTop: '30px'}}>{sentenses}</div>
-				
+
 						{/* Предложения */}
 						{Array.isArray(sentenses) ? (
 							<div style={{paddingTop: '30px'}}>{renderText(mainQuestion[2])}</div>
