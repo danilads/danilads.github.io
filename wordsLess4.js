@@ -4,7 +4,7 @@ const WORDS2 = [
 	['a', 'а', '', ['A co u Ciebie?', 'A ty jak myślisz?', 'A teraz twoja kolej.', 'A to niespodzianka!', 'A gdzie on jest?', 'A jak to zrobić?', 'A co to znaczy?', 'A ty co robisz?']],
 	['ale', 'но', '', ['Chciałem iść, ale nie mogłem.', 'Dziękuję, ale nie trzeba', 'Zmęczony, ale szczęśliwy', 'Chciałem pomóc, ale nie wiedziałem jak.', 'Chciałem pomóc, ale nie wiedziałem jak.', 'Możemy to zrobić, ale później']],
 	// B
-	['bar', 'бар', '', ['Idziemy dziś do baru?']], 
+	['bar', 'бар', '', ['Idziemy dziś do baru?', 'To mój ulubiony bar.', 'Ten bar jest zamknięty.', 'To bar samoobsługowy.', 'Gdzie jest najbliższy bar?', 'To bar tylko dla dorosłych.', 'Bar serwuje lokalne piwo.', 'Lubisz bary tematyczne?', 'W barze grała dobra muzyka.', 'W tym barze pracuje mój znajomy.']], 
 	['bez', 'без', '', []],
 	['bo', 'потому что', '', []],
 	['było', 'было', '', []],
@@ -75,6 +75,7 @@ const WORDS2 = [
 
 
 	// P
+	['piwo', 'пиво', '', []],
 	['po', 'после', '', []],
 	['pod', 'под', '', []],
 	['poza', 'вне', '', []],
@@ -88,6 +89,7 @@ const WORDS2 = [
 	// T
 	['tam', 'tam', '', []],
 	['też', 'тоже', '', []],
+	['ten', 'этот', '', []],
 
 	['to', 'это', '', []],
 
