@@ -5,7 +5,7 @@ const WORDS1 = [
 
 	// B
 	['bardzo', 'очень', '', []],
-	['bardziej', 'более', '', []],
+	['bardziej', 'более', '(с прилагательными и наречиями)', []],
 
 	['będzie', 'будет', '', []],
 
@@ -29,6 +29,7 @@ const WORDS1 = [
 	['czekając', 'ожидая', '', []],
 	['czarny', 'черный', '', []],
 	['czerwony', 'красный', '', []],
+	['сzłowiek', 'человек', '(просто человек)', []],
 	// D
 	['daleko', 'далеко', '', []],
 	['dentysta', 'дантист', '', []],
@@ -79,7 +80,8 @@ const WORDS1 = [
 
 	['kryzys', 'кризис', '', []],
 
-	['kochany', 'любимый', '(человек)', []],
+	['kochać', 'любить', '(про глубокую любовь и сильные чувства)', []],
+	['kochany', 'любимый', '(очень любимый)', []],
 	['kolor', 'цвет', '', []],
 	['kolejka', 'очередь', '', []],
 	['konkretny', 'конкретный', '', []],
@@ -94,7 +96,7 @@ const WORDS1 = [
 	['lekarz', 'врач', '', []],
 	['lokalny', 'местный', '', []],
 	['ludzie', 'люди', '', []],
-	['lubić', 'любить', '', []],
+	['lubić', 'любить', '(про симпатию и предпочтения)', []],
 	// M
 
 	['między', 'между', '', []],
@@ -111,6 +113,7 @@ const WORDS1 = [
 
 	// N
 	['najbliższy', 'ближайший', '', []],
+	['najlepszy', 'лучший', '', []],
 	['nauczyciel', 'учитель', '', []],
 	['nagle', 'вдруг', '', []],
 	['naprzeciw', 'напротив', '', []],
@@ -128,7 +131,7 @@ const WORDS1 = [
 	['około', 'около', '', []],
 	['oprócz', 'кроме', '', []],
 
-	['osoba', 'человек', '', []],
+	['osoba', 'человек', '(персона или личность)', []],
 	['ostatni', 'последний', '', []],
 
 	['oznacza', 'означает', '', []],
@@ -150,7 +153,7 @@ const WORDS1 = [
 	['potem', 'потом', '', []],
 	['pomarańczowy', 'оранжевый', '', []],
 
-	
+	['prawo', 'право', '(как направление так и закон)', []],
 	['pracuje', 'работает', '', []],
 	['pracować', 'работать', '', []],
 	['prezentować', 'презентовать', '', []],
@@ -196,11 +199,13 @@ const WORDS1 = [
 	
 	// T
 
+	['także', 'также', '', []],
 	['telewizja', 'телевизор', '', []],
 	['telefon', 'телефон', '', []],
 	['teraz', 'сейчас', '', []],
 	['tematyczny', 'тематический', '', []],
 
+	['tobie', 'тебе', '', []],
 
 	['trzeba', 'нужно', '', []],
 	['trochę', 'чуть-чуть', '', []],
@@ -222,15 +227,15 @@ const WORDS1 = [
 	['uwaga', 'внимание', '', []],
 	// W
 	['większość', 'большинство', '', []],
-	['więcej', 'больше', '', []],
-	['wiedzieć', 'знать', '', []],
+	['więcej', 'больше', '(в количественном смысле)', []],
+	['wiedzieć', 'знать', '(быть осведомленным)', []],
 	['wielki', 'великий', '', []],
 	['wokół', 'вокруг', '', []],
+
 	['wśród', 'среди', '', []],
 	['wszystko', 'всё', '', []],
 	['wyżej', 'выше', '', []],
 	['wzdłuż', 'вдоль', '', []],
-	['wrócić', 'вернуться', '', []],
 
 	// Z
 	
@@ -248,11 +253,32 @@ const WORDS1 = [
 
 	['żółty', 'желтый', '', []],
 	
-	['zwrócić', 'вернуть', '', []],
-	['zwierzę', 'животное', '', []],
-	['zwracać', 'возвращать', '', []]
+	
+	['zwierzę', 'животное', '', []]
+
+
+	// TODO++ доделать WRACAC
+	//
+	// ['zwrócić', 'вернуть', '(завершённое действие)', []],
+	
+	//
+	// ['zwracać', 'возвращать', '(действие в процессе)', []]
+
+	// Zwracam książkę do biblioteki. - Я возвращаю книгу в библиотеку.
+	// Zwracam dług, jak obiecałem. - Я возвращаю долг, как и обещал.
+	// Zwracam towar, bo jest wadliwy. - Я возвращаю товар, потому что он неисправным.
+	// Zwracam pieniądze za zakupy. - Я возвращаю деньги за покупки.
+	// Zwracam dokumenty do biura. - Я возвращаю документы в офис.
+	// Zwracam klucze właścicielowi - Я возвращаю ключи владельцу. 
+
+	// Musisz zwrócić dług. - Вы должны вернуть долг.
+	// Proszę zwrócić towar. - Пожалуйста, верните товар.
+
+	// Zwrócił jej pierścionek. - Он вернул ей кольцо.
+	// Zwróciła dokumenty do biura. - Она вернула документы в офис.
+	// Proszę zwrócić mi resztę. - Пожалуйста, верните мне сдачу.
 ];
-// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "Zwracam"
 
 /*
 [skandal  - безобразие] ?
@@ -261,8 +287,185 @@ oddać ?
 [весьма – całkiem, dosyć] ?
 вид – widok / rodzaj ?
 вовсе – całkiem / wcale ?
-возвращаться – powracać / wracać ?
 
+
+
+zjadłby / żółw / gorąca / pchają / zając / krzyczał / Znosił / nareszcie
+
+// nasze, , tamtego, , wszyscy, żaden,  znowu, jakikolwiek, kogoś, powoli, właśnie, kochać, miłość, 
+
+//  czasami, , śmiać,  zapytać, słuchać, usłyszeć, widzieć, patrzeć, wstawać, siadać, lubić, nienawidzić, myśleć, rozumieć, pamiętać, zapomnieć, wszędzie, nigdzie, wewnątrz,
+
+// na zewnątrz, w środku, na górze, na dole, po lewej, po prawej, szybko, wolno,  lepiej, gorzej, najgorzej, najpierw, później, wcześniej, wkrótce, długo,
+
+//  krótko, często, rzadko, prawie, chyba, na pewno, prawdopodobnie, raczej, z pewnością, bez wątpienia, absolutnie, naprawdę, rzeczywiście, oczywiście, pewnie, chociaż, jednak, 
+
+// wanna, prysznic, toaleta, umywalka, szczotka, pasta, mydło, szampon, ręcznik, papier, nożyczki, widelec, łyżka, talerz, kubek, szklanka, butelka, miska, garnek, patelnia, czajnik
+
+// zarówno,  czasami, ponieważ, zatem, po prostu, jedynie, rzeczy, swoje, wszystkich, jakieś, , nasze, twoje, kilka, , tygodni, miesięcy, godzin, minut, sekund, wiesz, 
+
+//  mężczyzna, dziecko, samochód, książka, piosenka, praca, picie, chleb, masło, mleko, , herbata,  , mięso, , warzywa, owoce, zegarek, ubranie, 
+
+// spodnie, koszula, bluzka, kurtka, płaszcz, czapka, rękawiczki, okulary, światło, dźwięk, szary, różowy, fioletowy, słońce, księżyc, gwiazdy, niebo, ziemia, morze
+
+// rzeka, jezioro miasto, droga, ulica,  budynek, sklep, mieszkanie, pokój, kuchnia, łazienka, salon, sypialnia, korytarz, , drzwi, podłoga, sufit, ściana, łóżko, 
+
+// krzesło, fotel, kanapa, półka, szafa, firanka, zasłona, obraz, lustro, telewizor, pralka, lodówka, kuchenka, piekarnik, mikrofalówka, 
+
+// toster, blender, mikser, odkurzacz, żelazko, wiadro, zmiotka, szufelka, worek, lampka, świeca, zapałka, zapalniczka,
+
+// klawiatura, monitor, głośnik, słuchawki, drukarka, skaner, aparat, kamera, ładowarka, kabel, bateria, karta, pamięć, płyta, książka, zeszyt
+
+// długopis, ołówek, gumka, temperówka, linijka, ekierka, cyrkiel, taśma, nożyczki, zszywacz, dziurkacz, notes, kalendarz
+
+// bilet, gazeta, czasopismo, koperta, znaczek, paczka, pudełko, torba, plecak, walizka, parasol, klucz, portfel, pieniądze, karta, bilet, dowód, paszport, legitymacja, licencja, certyfikat, dyplom, świadectwo, 
+
+// dokument, , rachunek, faktura, umowa, formularz, , wniosek, petycja, podanie, prośba, skarga, wezwanie, ostrzeżenie, zgłoszenie, oświadczenie, deklaracja, zeznanie, raport, protokół, sprawozdanie, notatka, przypomnienie
+
+// zaproszenie, ogłoszenie, reklama, oferta, zamówienie, rezerwacja, potwierdzenie, zgoda, pozwolenie, akceptacja, odmowa, protest, wezwanie
+
+// mandat, grzywna, skarga, apelacja, pozew, wyrok, postanowienie, orzeczenie, decyzja, polecenie, nakaz, zakaz
+
+// instrukcja, regulamin, kodeks, ustawa, prawo, przepis, zasada, reguła, standard, norma, procedura, protokół, umowa, kontrakt, porozumienie, 
+
+// układ, sojusz, traktat, konwencja, deklaracja, zgoda, kompromis, współpraca, partnerstwo, sojusz, koalicja, stowarzyszenie, organizacja, fundacja, instytut, agencja, departament, ministerstwo, ambasada, konsulat
+
+// misja, komisja, komitet, zgromadzenie, parlament, senat, administracja, zarząd, dyrekcja, kierownictwo, sztab, komenda, inspektorat, nadzór, kontrola, audyt, rewizja, ocena, ekspertyza, analiza, badanie, sprawdzian, egzamin, kwalifikacja, selekcja, rekrutacja, nabor, zatrudnienie, praca
+
+// stanowisko, posada, profesja, specjalność, funkcja, zadanie, obowiązek, odpowiedzialność, kompetencja, uprawnienie, prawo, przywilej, przyjemność
+// korzyść, profit, premia, bonus, nagroda, gratyfikacja, odznaczenie, medal, order, tytuł, stopień, stanowisko, funkcja, ranga, status, prestiż, honor
+// reputacja, autorytet, sława, renoma, marka, nazwisko, pseudonim, kryptonim, przydomek, ksywa, inicjały, tytuł, nagłówek, podtytuł, rozdział, sekcja
+// paragraf, ustęp, punkt, podpunkt, akapit, zdanie, fraza, wyrażenie, zwrot, słowo, litera, symbol, ikona, piktogram, emblemat
+// godło, flaga, sztandar, chorągiew, proporzec, odznaka, plakietka, medalion, pieczęć, stempel, sygnet, tablica, tabliczka, szyld, napis, ogłoszenie
+
+// komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat
+// komedia, tragedia, farsa, burleska, skecz, , dowcip, , kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
+
+minął  „прошел‟
+ pociąg „поезд
+
+będzie „будет‟;
+łączyć „объединять
+ręcznik „полотенце
+
+gęsty густой‟
+wąski  „узкий‟
+
+nieprzyjaciel  „враг‟
+
+średni  „средний‟
+wymachiwać „размахивать‟.
+
+drogie „дорогие
+
+życie  „жизнь
+dieta „диета‟
+
+teatr  „театр
+gołąb  „голубь‟
+kontrola – контроль
+koncert – концерт
+gęsty „густой‟,
+
+ciągnąć „тянуть‟
+
+ piąty „пятый‟
+
+tragedia „трагедия
+
+generacja „поколени
+drugie „другое
+ogień „огонь
+teoria – теория
+dialog – диалог
+dieta – диета
+studiować – изучать
+kopia – копия
+odjechać „отъехать‟
+ wjazd „въезд‟
+objąć „обнять‟
+objętość „объем
+operacja „операция
+stacja „станция
+nadzieja „надежда
+
+ jezioro „озеро‟
+jesień „осень‟
+ jutro „завтра
+herbata – чай
+alkohol – алкоголь
+historia – история
+ wszędzie „везде
+pszenica „пшеница
+
+rzeka – река
+rzadko – редко 
+rzech – орех
+korzeń – корень
+porządek – порядок
+młodzież „молодежь‟,
+odzież „одежда‟,
+grabież „грабеж‟;
+sprzedaż „продажа
+żelazny „железный‟
+
+ważny „важный
+
+rumianek – ромашка
+długi – долгий
+zasuwać – засовывать
+skuwać – сковывать
+szukać – искат
+ogórek – огурец.
+
+późno – поздно
+
+równy – ровный
+różny – разный
+krótki – короткий
+
+
+lider „лидер‟
+biznes „бизнес
+
+hobby „хобби‟ 
+prosić – просить
+
+zając „заяц‟
+bielizna – белье
+lakier – лак
+mięso – мясо
+ziemia – земля
+wiosna – весна
+inżynier – инженер
+groźba – угроза
+dziecko – ребенок pięć – пять
+wiele – много
+tańczyć – танцевать
+czysty „чистый‟
+człowiek „человек‟,
+władza „власть‟
+niedźwiedź „медведь‟
+ dźwięk „звук‟,
+chodźmy „давай пойдем‟
+jeżdżę „езжу
+dżdżysty „дождливый
+
+morze „море‟
+ krzesło „стул‟,
+ drzewo „дерево‟
+szósty „шестой
+odzyskać  отыскать
+porządek „порядок
+rzadko „редко
+marzec „март
+powietrze „воздуx
+czwarty „четвертый‟.
+krzyk  „крик‟
+część – часть
+marznąć „мерзнуть‟
+twardy „твердый‟
+ zmarzły „замерзший
 
 вообще – w ogóle, wcale
 запрещать – zabraniać
