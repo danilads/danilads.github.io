@@ -1,15 +1,18 @@
-// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "a"
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "ale"
 const WORDS1 = [
 	// A
 	['architekt', 'архитектор', '', []],
 
 	// B
 	['bardzo', 'очень', '', []],
-	['bardziej', 'более', '(с прилагательными и наречиями)', []],
+	['bardziej', 'больше', '(в качественном смысле)', []],
 
 	['będzie', 'будет', '', []],
 
-	['biuro', 'бюро', '', []],
+	['biegać', 'бегать', '', []],
+	['bilet', 'билет', '', []],
+	['biblioteka', 'библиотека', '', []],
+	['biuro', 'офис', '(офис / бюро)', []],
 	['biały', 'белый', '', []],
 
 	['blisko', 'близко', '', []],
@@ -29,7 +32,7 @@ const WORDS1 = [
 	['czekając', 'ожидая', '', []],
 	['czarny', 'черный', '', []],
 	['czerwony', 'красный', '', []],
-	['сzłowiek', 'человек', '(просто человек)', []],
+	['człowiek', 'человек', '(просто человек)', []],
 	// D
 	['daleko', 'далеко', '', []],
 	['dentysta', 'дантист', '', []],
@@ -37,10 +40,12 @@ const WORDS1 = [
 	['dokumenty', 'документы', '', []],
 	['dorośli', 'взрослые', '', []],
 	['dopóki', 'пока', '', []],
-	['dobry', 'хороший', '', []],
+	['dobra', 'хорошая', '', []],
+	['dobry', 'хороший', '(добрый)', []],
 	['dobrze', 'хорошо', '', []],
 	['dojrzewać', 'cозревать', '', []],
 
+	['drogo', 'дорого', '', []],
 	['dziękuję', 'спасибо', '', []],
 	['dywan', 'ковёр', '', []],
 	['dziesięć', 'десять', '', []],
@@ -48,6 +53,7 @@ const WORDS1 = [
 	['dzisiaj', 'сегодня', '', []],
 	// E
 	// F
+	['fajnie', 'классно', '', []],
 	['firma', 'фирма', '', []],
 
 	['fotografia', 'фотография', '', []],
@@ -56,8 +62,9 @@ const WORDS1 = [
 	['gabinet', 'кабинет', '', []],
 	['gdzie', 'где', '', []],
 	
-	['gotować', 'готовить', '', []],
+	['gotować', 'готовить', '(еду)', []],
 	// H
+	['herbata', 'чай', '', []],
 	['hotel', 'отель', '', []],
 	// I
 	['impreza', 'вечеринка', '', []],
@@ -78,20 +85,26 @@ const WORDS1 = [
 
 	['kiedy', 'когда', '', []],
 
-	['kryzys', 'кризис', '', []],
+	['klient', 'клиент', '', []],
+	['klucze', 'ключи', '', []],
+
 
 	['kochać', 'любить', '(про глубокую любовь и сильные чувства)', []],
 	['kochany', 'любимый', '(очень любимый)', []],
 	['kolor', 'цвет', '', []],
 	['kolejka', 'очередь', '', []],
+	['koncert', 'концерт', '', []],
 	['konkretny', 'конкретный', '', []],
 	['komputer', 'компьютер', '', []],
 	['kobieta', 'женщина', '', []],
 
+	['kryzys', 'кризис', '', []],
 
+	['książka', 'книга', '', []],
 	['który', 'который', '', []],
 	['kucharz', 'повар', '', []],
 	// L
+	['lepszy', 'лучший', '', []],
 	['leczyć', 'лечить', '', []],
 	['lekarz', 'врач', '', []],
 	['lokalny', 'местный', '', []],
@@ -104,16 +117,20 @@ const WORDS1 = [
 	['mniej', 'меньше', '', []],
 
 	['mówić', 'говорить', '', []],
+	['możliwe', 'возможно', '', []],
+
 
 	['myśleć', 'думать', '', []],
 	['muzyka', 'музыка', '', []],
+	['muszę', 'должен', '', []],
 
 	
 
 
 	// N
-	['najbliższy', 'ближайший', '', []],
-	['najlepszy', 'лучший', '', []],
+	['nadawca', 'отправитель', '', []],
+	['najbliższy', 'наиближайший ', '', []],
+	['najlepszy', 'наилучший', '', []],
 	['nauczyciel', 'учитель', '', []],
 	['nagle', 'вдруг', '', []],
 	['naprzeciw', 'напротив', '', []],
@@ -126,6 +143,7 @@ const WORDS1 = [
 
 	['niebieski', 'синий', '', []],
 	// O
+	['obietnica ', 'обещание', '', []],
 	['odpowiedzieć', 'ответить', '', []],
 
 	['około', 'около', '', []],
@@ -140,9 +158,12 @@ const WORDS1 = [
 
 	// P
 
-	['pisać', 'писать', '', []],
+	['paczka', 'посылка', '', []],
 
+	['pisać', 'писать', '', []],
+	['pieniądze', 'деньги', '', []],
 	['pierwszy', 'первый', '', []],
+	['pierścień', 'кольцо', '', []],
 
 	['podczas', 'во время', '', []],
 	['pomoc', 'помощь', '', []],
@@ -153,13 +174,16 @@ const WORDS1 = [
 	['potem', 'потом', '', []],
 	['pomarańczowy', 'оранжевый', '', []],
 
-	['prawo', 'право', '(как направление так и закон)', []],
+	['prawo', 'право', '(направление или закон)', []],
 	['pracuje', 'работает', '', []],
 	['pracować', 'работать', '', []],
 	['prezentować', 'презентовать', '', []],
+	['problem', 'проблема', '', []],
+	['produkt', 'продукт', '(еда или товар или изделие)', []],
 	['program', 'программа', '', []],
+	['proszę', 'пожалуйста', '', []],
 	['projektować', 'проектировать', '', []],
-	['przygotować', 'приготовить', '', []],
+	['przygotować', 'подготовить', '', []],
 	['przez', 'через', '', []],
 	['przed', 'перед', '', []],
 	['przeciw', 'против', '', []],
@@ -169,6 +193,7 @@ const WORDS1 = [
 	// R
 	['radio', 'радио', '', []],
 	['restauracja', 'ресторан', '', []],
+	['reszta', 'остальное', '(остаток, сдача)', []],
 	['robić', 'делать', '', []],
 
 
@@ -182,9 +207,11 @@ const WORDS1 = [
 	
 	['siebie', 'себя', '', []],
 	['sierota', 'сирота', '', []],
+	['słowo', 'слово', '', []],
 	['słuchając', 'слушая', '', []],
 	
 	['sobie', 'себе', '', []],
+	['sprawdzić', 'проверять', '', []],
 	['sprzeciw', 'возражение', '', []],
 
 	['student', 'студент', '', []],
@@ -205,8 +232,10 @@ const WORDS1 = [
 	['teraz', 'сейчас', '', []],
 	['tematyczny', 'тематический', '', []],
 
+	['towar', 'товар', '', []],
 	['tobie', 'тебе', '', []],
 
+	['trudno', 'трудно', '', []],
 	['trzeba', 'нужно', '', []],
 	['trochę', 'чуть-чуть', '', []],
 
@@ -224,12 +253,19 @@ const WORDS1 = [
 	['urząd', 'учреждение', '', []],
 	['urzędnik', 'чиновник', '', []],
 
+	['uszkodzony', 'поврежденный', '', []],
+
 	['uwaga', 'внимание', '', []],
 	// W
+	['wadliwy', 'бракованный', '', []],
+
 	['większość', 'большинство', '', []],
 	['więcej', 'больше', '(в количественном смысле)', []],
-	['wiedzieć', 'знать', '(быть осведомленным)', []],
+	['wiedzieć', 'знать', '(о ком-то или чем-то)', []],
 	['wielki', 'великий', '', []],
+
+	['właściciel', 'владелец', '', []],
+
 	['wokół', 'вокруг', '', []],
 
 	['wśród', 'среди', '', []],
@@ -239,46 +275,36 @@ const WORDS1 = [
 
 	// Z
 	
+	['zakupy', 'покупки', '', []],
 	['zamknięte', 'закрыто', '', []],
 	['zamiast', 'вместо', '', []],
+	['zapomnieć', 'забудь', '', []],
+	['zapamiętać', 'запомнить', '', []],
 	['zaraz', 'скоро', '', []],
 	['zawód', 'профессия', '', []],
 	['zaczynać', 'начинать', '', []],
 	['zawsze', 'всегда', '', []],
 	
 	['zielony', 'зеленый', '', []],
+
+	['znać', 'знать', '(кого-то или что-то лично)', []],
 	['znaczy', 'значит', '', []],
 	['znajomy', 'знакомый', '', []],
+
 	['zmęczony', 'усталый', '', []],
 
 	['żółty', 'желтый', '', []],
+	['zrobić', 'сделать', '', []],
 	
 	
-	['zwierzę', 'животное', '', []]
+	['zwierzę', 'животное', '', []],
 
 
-	// TODO++ доделать WRACAC
-	//
-	// ['zwrócić', 'вернуть', '(завершённое действие)', []],
-	
-	//
-	// ['zwracać', 'возвращать', '(действие в процессе)', []]
-
-	// Zwracam książkę do biblioteki. - Я возвращаю книгу в библиотеку.
-	// Zwracam dług, jak obiecałem. - Я возвращаю долг, как и обещал.
-	// Zwracam towar, bo jest wadliwy. - Я возвращаю товар, потому что он неисправным.
-	// Zwracam pieniądze za zakupy. - Я возвращаю деньги за покупки.
-	// Zwracam dokumenty do biura. - Я возвращаю документы в офис.
-	// Zwracam klucze właścicielowi - Я возвращаю ключи владельцу. 
-
-	// Musisz zwrócić dług. - Вы должны вернуть долг.
-	// Proszę zwrócić towar. - Пожалуйста, верните товар.
-
-	// Zwrócił jej pierścionek. - Он вернул ей кольцо.
-	// Zwróciła dokumenty do biura. - Она вернула документы в офис.
-	// Proszę zwrócić mi resztę. - Пожалуйста, верните мне сдачу.
+	['zwrócił', 'вернул', '', [['Zwrócił książkę do biblioteki', 'Вернул книгу в библиотеку'],['Zwrócił się do mnie o pomoc', 'Обратился ко мне за помощью'],['Zwrócił jej list', 'Вернул ей письмо'],['Zwróciła mu pierścionek', 'Вернула ему кольцо'],['Klient zwrócił wadliwy produkt', 'Клинет вернул бракованный продукт'],['Zwrócił uwagę na problem', 'Обратил внимание на проблему'],['Zwróciła dokumenty do biura', 'Вернула документы в офис'],['Zwrócił mi pieniądze', 'Вернул мне деньги'],['Zwrócił uwagę na jej słowa', 'Обратил внимание на ее слова'],['Zwrócił się do mnie po pomoc', 'Обратился ко мне за помощью']]],
+	['zwrócić', 'вернуть', '', [['Muszę zwrócić tę książkę', 'Должен вернуть эту книгу'],['Muszę zwrócić ten telefon', 'Должен вернуть этот телефон'],['Czy mogę zwrócić ten bilet?', 'Могу ли я вернуть этот билет?'],['Musisz zwrócić dług', 'Вы должны вернуть долг'],['Musisz zwrócić na to uwagę', 'Вам нужно обратить на это внимание'],['Proszę zwrócić mi resztę', 'Пожалуйста, верните мне сдачу'],['Muszę zwrócić książkę do biblioteki', 'Нужно вернуть книгу в библиотеку'],['Chcę zwrócić ten towar', 'Хочу вернуть этот товар'],['Nie zapomnij zwrócić kluczy', 'Не забудьте вернуть ключи'],['Chciałbym zwrócić bilet', 'Хотел бы вернуть билет']]],
+	['zwracam', 'возвращать', '(я возвращаю)', [['Zwracam książkę do biblioteki', 'Возвращаю книгу в библиотеку'],['Zwracam dług, jak obiecałem', 'Возвращаю долг, как и обещал'],['Zwracam towar, bo jest wadliwy', 'Возвращаю товар, потому что он бракованный'],['Zwracam pieniądze za zakupy', 'Возвращаю деньги за покупки'],['Zwracam dokumenty do biura', 'Возвращаю документы в офис'],['Zwracam klucze właścicielowi', 'Возвращаю ключи владельцу'],['Zwracam to, bo jest uszkodzone', 'Возвращаю его, потому что он поврежден'],['Zwracam dług przyjacielowi', 'Отдаю долг другу'],['Zwracam paczkę do nadawcy', 'Возвращаю посылку отправителю'],['Zwracam bilet na koncert', 'Возвращаю билет на концерт']]]
 ];
-// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "Zwracam"
+// Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "ale"
 
 /*
 [skandal  - безобразие] ?
@@ -287,7 +313,6 @@ oddać ?
 [весьма – całkiem, dosyć] ?
 вид – widok / rodzaj ?
 вовсе – całkiem / wcale ?
-
 
 
 zjadłby / żółw / gorąca / pchają / zając / krzyczał / Znosił / nareszcie
@@ -341,75 +366,74 @@ zjadłby / żółw / gorąca / pchają / zając / krzyczał / Znosił / nareszci
 // komunikat, wiadomość, nowina, plotka, ploteczka, wieść, pogłoska, słuch, słuchy, opowieść, historia, narracja, fabuła, scenariusz, dramat
 // komedia, tragedia, farsa, burleska, skecz, , dowcip, , kawał, anegdota, przysłowie, porzekadło, powiedzenie, maksymum, motto, hasło, slogan, dewiza, aforyzm, cytat, sentencja, fraza, frazes,
 
-minął  „прошел‟
- pociąg „поезд
+minął - прошел
+pociąg - поезд
 
-będzie „будет‟;
-łączyć „объединять
-ręcznik „полотенце
+łączyć - объединят
+ręcznik полотенце
 
-gęsty густой‟
-wąski  „узкий‟
+gęsty - густой
+wąski - узкий
 
-nieprzyjaciel  „враг‟
+nieprzyjaciel - враг / неприятель
 
-średni  „средний‟
-wymachiwać „размахивать‟.
+średni - средний
+wymachiwać - размахивать
 
-drogie „дорогие
+drogie - дорогие
 
-życie  „жизнь
-dieta „диета‟
+życie  - жизнь
+dieta - диета
 
-teatr  „театр
-gołąb  „голубь‟
+teatr - театр
+gołąb - голубь
 kontrola – контроль
 koncert – концерт
-gęsty „густой‟,
+gęsty - густой
 
-ciągnąć „тянуть‟
+ciągnąć - тянуть
 
- piąty „пятый‟
+piąty - пятый
 
-tragedia „трагедия
+tragedia - трагедия
 
-generacja „поколени
-drugie „другое
-ogień „огонь
+generacja - поколени
+drugie - другое
+ogień - огонь
 teoria – теория
 dialog – диалог
 dieta – диета
 studiować – изучать
 kopia – копия
-odjechać „отъехать‟
- wjazd „въезд‟
-objąć „обнять‟
-objętość „объем
-operacja „операция
-stacja „станция
-nadzieja „надежда
+odjechać - отъехать
+wjazd - въезд
+objąć - обнять
+objętość - объем
+operacja - операция
+stacja - станция
+nadzieja - надежда
 
- jezioro „озеро‟
-jesień „осень‟
- jutro „завтра
+jezioro - озеро
+jesień - осень
+jutro - завтра
 herbata – чай
 alkohol – алкоголь
 historia – история
- wszędzie „везде
-pszenica „пшеница
+wszędzie - везде
+pszenica - пшеница
 
 rzeka – река
 rzadko – редко 
 rzech – орех
 korzeń – корень
 porządek – порядок
-młodzież „молодежь‟,
-odzież „одежда‟,
-grabież „грабеж‟;
-sprzedaż „продажа
-żelazny „железный‟
+młodzież - молодежь
+odzież - одежда
+grabież - грабеж
+sprzedaż - продажа
+żelazny - железный
 
-ważny „важный
+ważny - важный
 
 rumianek – ромашка
 długi – долгий
@@ -425,13 +449,13 @@ różny – разный
 krótki – короткий
 
 
-lider „лидер‟
-biznes „бизнес
+lider - лидер
+biznes - бизнес
 
-hobby „хобби‟ 
+hobby - хобби
 prosić – просить
 
-zając „заяц‟
+zając - заяц
 bielizna – белье
 lakier – лак
 mięso – мясо
@@ -439,181 +463,183 @@ ziemia – земля
 wiosna – весна
 inżynier – инженер
 groźba – угроза
-dziecko – ребенок pięć – пять
+dziecko – ребенок 
 wiele – много
 tańczyć – танцевать
-czysty „чистый‟
-człowiek „человек‟,
-władza „власть‟
-niedźwiedź „медведь‟
- dźwięk „звук‟,
-chodźmy „давай пойдем‟
-jeżdżę „езжу
-dżdżysty „дождливый
+czysty - чистый
 
-morze „море‟
- krzesło „стул‟,
- drzewo „дерево‟
-szósty „шестой
-odzyskać  отыскать
-porządek „порядок
-rzadko „редко
-marzec „март
-powietrze „воздуx
-czwarty „четвертый‟.
-krzyk  „крик‟
+władza - власть
+niedźwiedź - медведь
+dźwięk - звук
+chodźmy - давай пойдем
+jeżdżę - езжу
+dżdżysty - дождливый
+
+morze - море
+krzesło - стул
+drzewo - дерево
+szósty - шестой
+odzyskać - отыскать
+porządek - порядок
+rzadko - редко
+marzec - март
+powietrze - воздуx
+czwarty - четвертый
+krzyk  - крик
 część – часть
-marznąć „мерзнуть‟
-twardy „твердый‟
- zmarzły „замерзший
+marznąć - мерзнуть
+twardy - твердый
+zmarzły - замерзший
+polecenia - поручения
+propozycje - предложения
 
-вообще – w ogóle, wcale
-запрещать – zabraniać
-всё-таки – jednak
-втягивать – wciągać
-выезжать – wyjeżdżać
-выжить – wytrzymać,
-высокоточный – precyzyjny
-выставка – wystawa
-гадить – brudzić, paskudzić
-газон – trawnik
-горничная – pokojówka
-действительно – naprawdę
-джинсы – jeansy
-диапазон – zakres
-диплом (разг.) –  magisterka
-доблестный – bohaterski, odważny, waleczny
-доблесть – bohaterstwo, odwaga, waleczność
-доброволец – ochotnik
-дожить – dożyć
-достопримечательность –osobliwość
-дырка – dziura
-желать – życzyć
-желая – chcąc
-житель – mieszkaniec
-заканчивать – kończyć
-замечайтельный – znakomity, wspaniały
-заполучить – dostać, zdobyć
-заседание – posiedzenie
-значение – wartość
-издательство – wydawnictwo
-изделие – wyrób, produkt
-издержки – koszty
-изменить – zmienić
-изучать – studiować
-именинник – solenizant, jubilat
-инсценировка – mistyfikacja
-карманник – kieszonkowiec
-качели – huśtawka
-квартал – dzielnica
-кондитерская – cukiernia
-конкретно – konkretnie
-костёл – kościół
-кукла – kukła
-кулёк – siatka, reklamówka
-культура – uprawa
-кустарник – krzew
-ледник – lodowiec
-лектор – lektor
-лекция – wykład
-любезный – uprzejmy
-мелочь – drobnostka, drobne
-меньшинство – mniejszość
-мостовая – jezdnia
-мотороллер – skuter
-мошенник – oszust
-мчаться – mknąć, pędzić
-начало – początek
-начинающий – początkujący
-недействительный – nieważny
-неоновый – neonowy
-объяснить – wyjaśnić
-обычно – na ogół, zazwyczaj
-обязательно – koniecznie
-овощи – warzywa
-огни – światła
-олень – jeleń, renifer
-опять – znowu
-особенно – szczególnie
-ответ – odpowiedź
-ответить – odpisać
-отделение – oddział
-отменить – odwołać
-отпуск – urlop
-отметить – zaznaczyć
-охотник – myśliwy
-памятник – pomnik
-передать – przekazać
-пережить – przeżyć, przetrwać
-перекрёсток – skrzyżowanie
-периметр – obwód
-поганый – parszywy
-подальше – dalej 
-подойти – podejść, nadejść,
-подробно – szczegółowo
-подходить – odpowiadać, pasować
-подъезжать – podjeżdżać
-подъезд – podjazd, klatka 
-позволить – pozwolić
-попытка – próba
-постоянно – ciągle
-посчитать – policzyć
-потерять – zgubić, stracić
-правда – rzeczywiście
-предупредить – uprzedzić
-преподаватель – wykładowca
-преподавать – wykładać
-пригород – przedmieście
-придумать – wymyślić
-пробник – próbka
-проводить – spędzać (czas), odprowadzić
-производство – wykonanie
-промышленный – przemysłowy
-прорыв – przełom
-проснуться – obudzić 
-прочный – trwały, masywny, mocny, wytrzymały
-размышлять – rozmyślać
-разноцветный – różnokolorowy
-разрешить – pozwolić
-решить – zdecydować, postanowić, rozwiązać (zadanie)
-свернуть – zwinąć, skręcić
-сдaча – reszta
-сесть – usiąść
-сидеть – siedzieć
-скамейка – ławka
-слать – słać, wysyłać
-слитно – łącznie
-смета – kosztorys
-снова – znowu
-совсем – całkiem
-спасать – ratować
-спешить – spieszyć, 
-спичка – zapałka
-стая – ławica
-столовка – stołówka
-строго – surowo, ściśle
-сумерки – zmrok
-счёт – rachunek
-считать – liczyć
-туалет – toaleta
-увлекать – wciągać
-уезжать – odjeżdżać, wyjeżdżać
-узнать – dowiedzieć
-уснуть – usnąć, zasnąć
-успеть – zdążyć
-устарелый – nieaktualny
-фрукты – owoce
-хотя – chociaż
-часто – często
-Поезд - pociąg
-ярко – jasno, jaskrawo
+wcale - вообще
+zabraniać - запрещать
+jednak - всё-таки
+wciągać - втягивать
+wyjeżdżać - выезжать
+
+
+wystawa - выставка
+
+trawnik - газон
+pokojówka - горничная
+naprawdę - действительно
+jeansy - джинсы
+zakres - диапазон
+magisterka - диплом
+bohaterski, odważny, waleczny - доблестный
+bohaterstwo, odwaga, waleczność - доблесть
+ochotnik - доброволец
+dożyć - дожить
+osobliwość - достопримечательность
+dziura - дырка
+życzyć - желать
+chcąc - желая
+mieszkaniec - житель
+kończyć - заканчивать
+znakomity, wspaniały - замечайтельный
+dostać, zdobyć - заполучить
+posiedzenie - заседание
+wartość - значение
+wydawnictwo - издательство
+wyrób
+koszty - издержки
+zmienić - изменить
+studiować - изучать
+
+mistyfikacja - инсценировка 
+
+
+dzielnica - квартал
+cukiernia - кондитерская
+konkretnie - конкретно
+kościół - костёл
+kukła - кукла 
+siatka, reklamówka - кулёк
+uprawa - культура
+krzew - кустарник
+lodowiec - ледник
+lektor - лектор
+wykład - лекция
+uprzejmy - любезный
+drobnostka, drobne - мелочь
+mniejszość - меньшинство
+jezdnia - мостовая
+skuter - мотороллер
+oszust - мошенник
+mknąć, pędzić - мчаться 
+początek - начало
+początkujący - начинающий
+nieważny - недействительный
+neonowy - неоновый
+wyjaśnić - объяснить
+na ogół, zazwyczaj - обычно
+koniecznie - обязательно
+warzywa - овощи
+światła - огни
+jeleń, renifer - олень
+znowu - опять
+szczególnie - особенно
+odpowiedź - ответ
+odpisać - ответить
+oddział - отделение
+odwołać - отменить
+urlop - отпуск
+zaznaczyć - отметить
+myśliwy - охотник
+pomnik - памятник
+przekazać - передать
+przeżyć, przetrwać - пережить
+skrzyżowanie - перекрёсток
+obwód - периметр
+parszywy - поганый
+dalej - подальше
+podejść, nadejść, - подойти 
+szczegółowo - подробно 
+odpowiadać, pasować - подходить 
+podjeżdżać - подъезжать
+podjazd, klatka  - подъезд 
+pozwolić - позволить 
+próba - попытка 
+ciągle - постоянно 
+policzyć - посчитать 
+zgubić, stracić - потерять 
+rzeczywiście - правда 
+uprzedzić - предупредить 
+wykładowca - преподаватель 
+wykładać - преподавать 
+przedmieści - пригород 
+wymyślić - придумать 
+próbka - пробник 
+spędzać (czas), odprowadzić - проводить 
+wykonanie - производство 
+przemysłowy - промышленный 
+przełom - прорыв 
+obudzić  - проснуться 
+trwały, masywny, mocny, wytrzymały - прочный 
+rozmyślać - размышлять 
+różnokolorowy - разноцветный
+pozwolić - разрешить
+zdecydować, postanowić, rozwiązać (zadanie) - решить 
+zwinąć, skręcić - свернуть 
+reszta - сдaча 
+usiąść - сесть 
+siedzieć - сидеть 
+ławka - лавка скамейка 
+słać, wysyłać - слать 
+łącznie - слитно 
+kosztorys - смета 
+znowu - снова 
+całkiem - совсем 
+ratować - спасать 
+spieszyć - спешить
+zapałka - спичка 
+ławica - стая 
+stołówka - столовка 
+surowo, ściśle - строго 
+zmrok - сумерки 
+rachunek - счёт 
+liczyć - считать 
+toaleta - туалет 
+wciągać - увлекать 
+odjeżdżać, wyjeżdżać - уезжать 
+dowiedzieć - узнать 
+usnąć, zasnąć - уснуть 
+zdążyć - успеть 
+nieaktualny - устарелый 
+owoce - фрукты 
+chociaż - хотя 
+często - часто 
+pociąg - Поезд 
+jasno, jaskrawo - ярко 
 Proszę - Пожалуйста
 Żegnaj - прощай
 Przepraszam- извнините
 wybaczać - извинять
-извиняться - przepraszać
-Конечно - Oczywiście
-Согласен - Zgoda
+przepraszać - извиняться 
+Oczywiście - Конечно
+Zgoda - Согласен
 Dosyć - Хватит
 Chłopczyku - мальчик
 Dziewczynko - девочка

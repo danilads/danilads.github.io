@@ -49,7 +49,6 @@
 		border: 1px solid black;
 		border-radius: 10px;
 		padding: 11px 22px;
-		height: 34px
 	}
 
 </style>
@@ -58,19 +57,23 @@
 
 	<!--
 
-	Польский - 4 секции по 400 слов
+	Польский
 	- гол первый научится читать без озвучки
 	- записать 400 x 7 слов (для каждого дня)
 	- учим стандартные обороты (вопросы / Я люблю)
 
+	-------------------------------
 	// аудио в котором мы все понимаем повырезать
+	// канал с цветам и zAWODAMI  
 
-	// текста песен
 
+	-------------------------------
 	// Добавить секцию Песни (учим наизусь)
-	// Секция слово  сочитания (Я работал я работаю я юуду раюотаь) он  не работал
-	// + вопросы - когда / почему (загуглить самые часты вопросы и глаголы)
 
+	-------------------------------
+	// Секция слово  сочитания (Я работал я работаю я юуду раюотаь) он  не работал
+
+	-------------------------------
 	// создать СТРАНИЦУ для тем истории 
 	[История Польши]
 	Bitwa pod Grunwaldem.
@@ -114,7 +117,7 @@
 
 
 
-	
+	-------------------------------
 	PL - польский в слух
 
 		1) PAWEL I GAWEL - w
@@ -130,10 +133,6 @@
 
 	-------------------------------
 
-
-
-	Pl - typ - тип разновидность - погуглить
-	PL  zdjęcie - чекнуть, также фекнуть ыотографа
 
 
 	Pl lecz это?
@@ -345,8 +344,8 @@
 					<div>{txt.map((it) => {
 						return (
 							<div style={{position: 'relative', display: 'flex', padding: '4px 0'}}>
-									<div onClick={() => VOICE_THE_TEXT(it)} style={{cursor: 'pointer', height: '27px', fontSize: '20px', border: '1px solid black', borderRadius: '4px', padding: '0 2px'}}>⚟</div>
-									<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it}</div>
+									<div onClick={() => VOICE_THE_TEXT(it[0])} style={{cursor: 'pointer', height: '27px', fontSize: '20px', border: '1px solid black', borderRadius: '4px', padding: '0 2px'}}>⚟</div>
+									<div style={{fontSize: '16px', paddingLeft: '20px', color: 'black'}}>{it[0]}</div>
 					
 							</div>
 							)})
@@ -493,6 +492,28 @@
 		}
 	</script>
 
+	<!-- Cases -->
+	<script type="text/babel">
+		const Cases = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>Падежи - В РАЗРАБОТКЕ</h2>
+				</div>
+			)
+		}
+	</script>
+	
+	<!-- Dictation -->
+	<script type="text/babel">
+		const Dictation = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>Диктант - В РАЗРАБОТКЕ - ( берем слова из предложений - показываем рус версию)</h2>
+				</div>
+			)
+		}
+	</script>
+
 	<!-- RADIO -->
 	<script type="text/babel">
 		const Radio = () => {
@@ -526,7 +547,9 @@
 		const YoutubeChanels = () => {
 			return (
 				<div>
-					<h2 style={{textAlign: 'center'}}>TV Онлайн</h2>
+					<h2 style={{textAlign: 'center'}}>каналы с переводом на рус</h2>
+					<div><a href="https://www.youtube.com/watch?v=uiOvLx-S6Tk">Польский язык c переводом</a></div>
+					<h2 style={{textAlign: 'center'}}>Каналы с субтитрам</h2>
 					<div>Просто смотреть один ролик в день</div>
 					<div>Включите суб-титры в настройках</div>
 					<div><a href="https://www.youtube.com/@UrbexHistory">UrbexHistory</a></div>
@@ -534,6 +557,31 @@
 					<div><a href="https://www.youtube.com/@HistoryHiking">HistoryHiking</a></div>
 					<div><a href="https://www.youtube.com/@WielkaHistoria">WielkaHistoriag</a></div>
 					<div><a href="https://www.youtube.com/@strefa40">strefa40</a></div>
+					<div><a href="https://www.youtube.com/@BEczKA1">BEczKA</a></div>
+				</div>
+			)
+		}
+	</script>
+
+	<!-- SoundText -->
+	<script type="text/babel">
+		const SoundText = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>Озвучка текста по предложениям - В РАЗРАБОТКЕ - просто инпут для озвучик</h2>
+			
+				</div>
+			)
+		}
+	</script>
+	
+	<!-- TextsSongs -->
+	<script type="text/babel">
+		const TextsSongs = () => {
+			return (
+				<div>
+					<h2 style={{textAlign: 'center'}}>Текста песен - В РАЗРАБОТКЕ</h2>
+			
 				</div>
 			)
 		}
@@ -662,16 +710,28 @@
 				return mainScrollWrap(<PreWords />);
 			}
 			if (Route === 2) {
-				return mainScrollWrap(<Texts />);
+				return mainScrollWrap(<SoundText />);
 			}
 			if (Route === 3) {
-				return mainScrollWrap(<Radio />);
+				return mainScrollWrap(<Cases />);
 			}
 			if (Route === 4) {
-				return mainScrollWrap(<TV />);
+				return mainScrollWrap(<Dictation />);
 			}
 			if (Route === 5) {
+				return mainScrollWrap(<Texts />);
+			}
+			if (Route === 6) {
+				return mainScrollWrap(<Radio />);
+			}
+			if (Route === 7) {
+				return mainScrollWrap(<TV />);
+			}
+			if (Route === 8) {
 				return mainScrollWrap(<YoutubeChanels />);
+			}
+			if (Route === 9) {
+				return mainScrollWrap(<TextsSongs />);
 			}
 
 			return mainScrollWrap(
@@ -687,10 +747,14 @@
 					</div>
 					<div className="buttonWrap">
 						<div onClick={() => setRoute(1)} className="button">Слова</div>
-						<div onClick={() => setRoute(2)} className="button">Текста</div>
-						<div onClick={() => setRoute(3)} className="button">Радио</div>
-						<div onClick={() => setRoute(4)} className="button">ТВ + субтитры</div>
-						<div onClick={() => setRoute(5)} className="button">Youtube + субтитры</div>
+						<div onClick={() => setRoute(2)} className="button">Озвучка вашего текста</div>
+						<div onClick={() => setRoute(3)} className="button">Падежи</div>
+						<div onClick={() => setRoute(4)} className="button">Диктант</div>
+						<div onClick={() => setRoute(5)} className="button">Сгенерированные текста</div>
+						<div onClick={() => setRoute(6)} className="button">Радио</div>
+						<div onClick={() => setRoute(7)} className="button">ТВ + субтитры</div>
+						<div onClick={() => setRoute(8)} className="button">Youtube + субтитры</div>
+						<div onClick={() => setRoute(9)} className="button">Тесты песен</div>
 					</div>
 				</div>
 			)
