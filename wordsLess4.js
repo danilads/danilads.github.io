@@ -1,7 +1,7 @@
 // Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "ale"
 const WORDS2 = [
 	// A
-	['a', 'а', '', [['A co u сiebie?','А что у тебя?'],['A ty jak myślisz?','А ты как думаешь?'],['A teraz twoja kolej','А теперь твоя очередь'],['A to niespodzianka','А это сюрприз!'],['A gdzie on jest?','А где он?'],['Byłem tam, a ty gdzie? ','Был там, а ты где?'],['A jak to zrobić?','А как это сделать?'],['A co to znaczy?','А что это значит?'],['A ty co robisz?','А ты что делаешь?'],['Masz czas, a ja nie','Есть время, а у меня нет']]],
+	['a', 'а', '', [['A co u ciebie?','А что у тебя?'],['A ty jak myślisz?','А ты как думаешь?'],['A teraz twoja kolej','А теперь твоя очередь'],['A to niespodzianka','А это сюрприз!'],['A gdzie on jest?','А где он?'],['Byłem tam, a ty gdzie? ','Был там, а ты где?'],['A jak to zrobić?','А как это сделать?'],['A co to znaczy?','А что это значит?'],['A ty co robisz?','А ты что делаешь?'],['Masz czas, a ja nie','Есть время, а у меня нет']]],
 	['ale', 'но', '', [['Chciałem iść, ale nie mogłem', 'Хотел пойти, но не смог'], ['Dziękuję, ale nie trzeba', 'Спасибо, но не нужно'],['Zmęczony, ale szczęśliwy', 'Уставший, но счастливый'],['Chciałem pomóc, ale nie wiedziałem jak', 'Я хотел помочь, но не знал как'],['Możemy to zrobić, ale później', 'Можем это сделать, но позже'],['Lubię kawę, ale wolę herbatę', 'Люблю кофе, но предпочитаю чай'],['Nie lubię biegać, ale muszę', 'Не люблю бегать, но должен'],['To trudne, ale możliwe', 'Это трудно, но возможно'],['Nie wiem, ale sprawdzę', 'Я не знаю, но проверю'],['Fajnie, ale drogo', 'Классно, но дорого']
 	]],
 	// B
