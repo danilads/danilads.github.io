@@ -306,7 +306,7 @@ const WORDS1 = [
 	
 	['zielony', 'зеленый', '', []],
 
-	['znać', 'знать', '(кого-то или что-то лично)', []],
+	
 	['znaczy', 'значит', '', []],
 	['znajomy', 'знакомый', '', []],
 
@@ -321,8 +321,6 @@ const WORDS1 = [
 	
 	
 	['zwierzę', 'животное', '', []],
-
-
 	['zwrócił', 'вернул', '(он вернул)', [['Zwrócił książkę do biblioteki', 'Вернул книгу в библиотеку'],['Zwrócił się do mnie o pomoc', 'Обратился ко мне за помощью'],['Zwrócił jej list', 'Вернул ей письмо'],['Zwróciła mu pierścionek', 'Вернула ему кольцо'],['Klient zwrócił wadliwy produkt', 'Клинет вернул бракованный продукт'],['Zwrócił uwagę na problem', 'Обратил внимание на проблему'],['Zwróciła dokumenty do biura', 'Вернула документы в офис'],['Zwrócił mi pieniądze', 'Вернул мне деньги'],['Zwrócił uwagę na jej słowa', 'Обратил внимание на ее слова'],['Zwrócił się do mnie po pomoc', 'Обратился ко мне за помощью']]],
 	['zwrócić', 'вернуть', '(вернуть / обратить)', [['Muszę zwrócić tę książkę', 'Должен вернуть эту книгу'],['Muszę zwrócić ten telefon', 'Должен вернуть этот телефон'],['Czy mogę zwrócić ten bilet?', 'Могу ли я вернуть этот билет?'],['Musisz zwrócić dług', 'Вы должны вернуть долг'],['Musisz zwrócić na to uwagę', 'Вам нужно обратить на это внимание'],['Proszę zwrócić mi resztę', 'Пожалуйста, верните мне сдачу'],['Muszę zwrócić książkę do biblioteki', 'Нужно вернуть книгу в библиотеку'],['Chcę zwrócić ten towar', 'Хочу вернуть этот товар'],['Nie zapomnij zwrócić kluczy', 'Не забудьте вернуть ключи'],['Chciałbym zwrócić bilet', 'Хотел бы вернуть билет']]],
 	['zwracam', 'возвращать', '(я возвращаю)', [['Zwracam książkę do biblioteki', 'Возвращаю книгу в библиотеку'],['Zwracam dług, jak obiecałem', 'Возвращаю долг, как и обещал'],['Zwracam towar, bo jest wadliwy', 'Возвращаю товар, потому что он бракованный'],['Zwracam pieniądze za zakupy', 'Возвращаю деньги за покупки'],['Zwracam dokumenty do biura', 'Возвращаю документы в офис'],['Zwracam klucze właścicielowi', 'Возвращаю ключи владельцу'],['Zwracam to, bo jest uszkodzone', 'Возвращаю его, потому что он поврежден'],['Zwracam dług przyjacielowi', 'Отдаю долг другу'],['Zwracam paczkę do nadawcy', 'Возвращаю посылку отправителю'],['Zwracam bilet na koncert', 'Возвращаю билет на концерт']]]
