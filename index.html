@@ -326,6 +326,7 @@
         const [sentenses, setSentenses] = useState("null");
 
         const [inputContent, setInputContent] = useCustomState("");
+
         const [inputAnimContent, setInputAnimContent] = useCustomState("");
         const [inputAnimClass, setInputAnimClass] = useCustomState("animOff");
 
@@ -334,7 +335,6 @@
         const [help, setHelp] = useState("");
 
         // right block
-        const [timer, setTimer] = useState("0: 00");
         const [itemsLeft, setItemsLeft] = useState(null);
 
         // mistakes
@@ -399,19 +399,6 @@
         };
 
         useEffect(() => {
-          // timer
-          const start = Date.now();
-          setInterval(() => {
-            const delta = Math.round((Date.now() - start) / 1000);
-            const minutes = Math.floor(delta / 60);
-            const seconds = delta - minutes * 60;
-            setTimer(
-              `${minutes}: ${
-                seconds.toString().length === 1 ? "0" + seconds : seconds
-              }`
-            );
-          }, 1000);
-
           // --- START
           TrueUpdateState(propsWords);
           startNextWord();
@@ -475,7 +462,6 @@
                 gap: "10px",
               }}
             >
-              <span style={{ minWidth: "50px" }}>{timer}</span>
               <span style={{ fontSize: "10px" }}> осталось слов:</span>
               <span style={{ minWidth: "40px" }}>{`${itemsLeft}`}</span>
             </div>
@@ -571,8 +557,9 @@
                   if (e.key === "Enter") {
                     checkResult();
                   }
+                  return e;
                 }}
-                onChange={(e) => {
+                onInput={(e) => {
                   setInputContent(e.target.value);
                 }}
               />
@@ -1108,9 +1095,7 @@
         if (Route === 10) {
           return mainScrollWrap(<SaveText />);
         }
-		 if (Route === 11) {
-          return mainScrollWrap(<Peer2Peer />);
-        }
+	
 
         return mainScrollWrap(
           <div>
@@ -1183,9 +1168,7 @@
               <div onClick={() => setRoute(10)} className="button">
                 Сохранить текст
               </div>
-			  <div onClick={() => setRoute(11)} className="button">
-				peer2peer
-              </div>
+			 
             </div>
           </div>
         );
