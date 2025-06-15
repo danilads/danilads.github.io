@@ -940,7 +940,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.72;
+      const VERSION = 0.73;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1028,9 +1028,9 @@
           // --- VOICE
           const setVoices = (voicesArr) => {
             // TODO++ RETURN IT
-            console.log('--+ ALL voicesArr', voicesArr);
-            document.getElementById('root').innerHTML = voicesArr.map(it => {
-              console.log('--+ HERE it', it.lang);
+            console.log("--+ ALL voicesArr", voicesArr);
+            document.getElementById("root").innerHTML = voicesArr.map((it) => {
+              console.log("--+ HERE it", it.lang);
               return `${it.lang}`;
             });
             const filteredVoices = voicesArr.filter((it) =>
@@ -1050,7 +1050,7 @@
           // firefox
           if (speechSynthesis.getVoices().length) {
             try {
-              setVoices(AspeechSynthesis.getVoices());
+              setVoices(speechSynthesis.getVoices());
             } catch (error) {
               console.error(error);
             }
@@ -1059,7 +1059,7 @@
           speechSynthesis.addEventListener("voiceschanged", () => {
             if (speechSynthesis.getVoices().length) {
               try {
-                setVoices(AspeechSynthesis.getVoices());
+                setVoices(speechSynthesis.getVoices());
               } catch (error) {
                 console.error(error);
               }
@@ -1068,7 +1068,11 @@
 
           // for mobile chrome
           setTimeout(() => {
-            setVoices(speechSynthesis.getVoices());
+            try {
+              setVoices(speechSynthesis.getVoices());
+            } catch (error) {
+              console.error(error);
+            }
           }, 5000);
         }, []);
 
