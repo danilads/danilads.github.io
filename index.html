@@ -942,7 +942,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.76;
+      const VERSION = 0.77;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1043,6 +1043,7 @@
             const filteredVoices = voicesArr.filter((it) =>
               FILTER.includes(it.lang)
             );
+
             if (Array.isArray(filteredVoices) && filteredVoices.length) {
               setAllLang(filteredVoices);
             } else {
@@ -1055,33 +1056,33 @@
           };
           const loadVoices = () => {
             const voices = speechSynthesis.getVoices();
-            if (voices.length > 0) {
-              setVoices(voices);
-            }
+            setVoices(voices);
           };
 
-          // Попытка загрузки сразу (Firefox или быстрые браузеры)
+          // 1. Попытка сразу
           loadVoices();
 
-          // Chrome: слушаем событие изменения голосов
-          speechSynthesis.addEventListener("voiceschanged", loadVoices);
+          // 2. Обработчик через свойство
+          speechSynthesis.onvoiceschanged = loadVoices;
 
-          // Mobile: иногда требуется ожидание
-          const timeoutId = setTimeout(loadVoices, 3000);
+          // 3. Подстраховка с таймером
+          const timer = setTimeout(loadVoices, 3000);
 
-          // Альтернативно: подгружаем голоса после первого пользовательского действия
-          const onUserGesture = () => {
+          // 4. После взаимодействия: speak + загрузка
+          const onTap = () => {
             speechSynthesis.speak(new SpeechSynthesisUtterance(""));
             loadVoices();
-            window.removeEventListener("click", onUserGesture);
+            window.removeEventListener("touchend", onTap);
+            window.removeEventListener("click", onTap);
           };
-          window.addEventListener("click", onUserGesture);
+          window.addEventListener("touchend", onTap, { once: true });
+          window.addEventListener("click", onTap, { once: true });
 
-          // Очистка
           return () => {
-            speechSynthesis.removeEventListener("voiceschanged", loadVoices);
-            clearTimeout(timeoutId);
-            window.removeEventListener("click", onUserGesture);
+            clearTimeout(timer);
+            window.removeEventListener("touchend", onTap);
+            window.removeEventListener("click", onTap);
+            speechSynthesis.onvoiceschanged = null;
           };
         }, []);
 
