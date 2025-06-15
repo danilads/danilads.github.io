@@ -942,7 +942,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.77;
+      const VERSION = 0.78;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1056,27 +1056,42 @@
           };
           const loadVoices = () => {
             const voices = speechSynthesis.getVoices();
-            setVoices(voices);
+            if (voices.length > 0) {
+              setVoices(voices);
+            } else {
+              console.warn("No voices yet...");
+            }
           };
 
-          // 1. Попытка сразу
-          loadVoices();
-
-          // 2. Обработчик через свойство
-          speechSynthesis.onvoiceschanged = loadVoices;
-
-          // 3. Подстраховка с таймером
-          const timer = setTimeout(loadVoices, 3000);
-
-          // 4. После взаимодействия: speak + загрузка
-          const onTap = () => {
-            speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+          const onVoicesChanged = () => {
+            console.log("voiceschanged fired");
             loadVoices();
+          };
+
+          const onTap = () => {
+            // Force initialization with a dummy utterance
+            const dummy = new SpeechSynthesisUtterance("");
+            speechSynthesis.speak(dummy);
+
+            // Attach voiceschanged event after user gesture
+            speechSynthesis.onvoiceschanged = onVoicesChanged;
+
+            // Trigger voice loading again
+            loadVoices();
+
+            // Clean up listeners
             window.removeEventListener("touchend", onTap);
             window.removeEventListener("click", onTap);
           };
+
+          // Add touch/click listeners once
           window.addEventListener("touchend", onTap, { once: true });
           window.addEventListener("click", onTap, { once: true });
+
+          // Optional: fallback attempt after delay (still needs user gesture!)
+          const timer = setTimeout(() => {
+            loadVoices();
+          }, 3000);
 
           return () => {
             clearTimeout(timer);
