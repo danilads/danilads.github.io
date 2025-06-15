@@ -940,7 +940,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.73;
+      const VERSION = 0.74;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1029,10 +1029,15 @@
           const setVoices = (voicesArr) => {
             // TODO++ RETURN IT
             console.log("--+ ALL voicesArr", voicesArr);
-            document.getElementById("root").innerHTML = voicesArr.map((it) => {
-              console.log("--+ HERE it", it.lang);
-              return `${it.lang}`;
-            });
+            if (voicesArr.length) {
+              document.getElementById("root").innerHTML = voicesArr.map(
+                (it) => {
+                  console.log("--+ HERE it", it.lang);
+                  return `${it.lang}`;
+                }
+              );
+            }
+
             const filteredVoices = voicesArr.filter((it) =>
               FILTER.includes(it.lang)
             );
@@ -1046,34 +1051,25 @@
               lang = filteredVoices[0].voiceURI;
             }
           };
+          const tryLoadVoices = () => {
+            const voices = speechSynthesis.getVoices();
+            if (voices.length > 0) {
+              setVoices(voices);
+            }
+          };
 
-          // firefox
-          if (speechSynthesis.getVoices().length) {
-            try {
-              setVoices(speechSynthesis.getVoices());
-            } catch (error) {
-              console.error(error);
-            }
-          }
-          // chrome
-          speechSynthesis.addEventListener("voiceschanged", () => {
-            if (speechSynthesis.getVoices().length) {
-              try {
-                setVoices(speechSynthesis.getVoices());
-              } catch (error) {
-                console.error(error);
-              }
-            }
-          });
+          // Попытка загрузить сразу
+          tryLoadVoices();
+          // Событие на случай, если голоса загрузятся позже
+          speechSynthesis.addEventListener("voiceschanged", tryLoadVoices);
 
-          // for mobile chrome
-          setTimeout(() => {
-            try {
-              setVoices(speechSynthesis.getVoices());
-            } catch (error) {
-              console.error(error);
-            }
-          }, 5000);
+          // Дополнительная попытка загрузки через таймер
+          const timeoutId = setTimeout(tryLoadVoices, 2000);
+
+          return () => {
+            speechSynthesis.removeEventListener("voiceschanged", tryLoadVoices);
+            clearTimeout(timeoutId);
+          };
         }, []);
 
         const mainScrollWrap = (elem) => {
