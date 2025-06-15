@@ -1027,6 +1027,12 @@
 
           // --- VOICE
           const setVoices = (voicesArr) => {
+            // TODO++ RETURN IT
+            console.log('--+ ALL voicesArr', voicesArr);
+            document.getElementById('root').innerHTML = voicesArr.map(it => {
+              console.log('--+ HERE it', it.lang);
+              return `${it.lang}`;
+            });
             const filteredVoices = voicesArr.filter((it) =>
               FILTER.includes(it.lang)
             );
@@ -1035,7 +1041,7 @@
             } else {
               setAllLang(voicesArr);
             }
-            if (!selLang) {
+            if (!selLang && filteredVoices.length) {
               setSelectedLang(filteredVoices[0].voiceURI);
               lang = filteredVoices[0].voiceURI;
             }
