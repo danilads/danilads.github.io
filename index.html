@@ -99,6 +99,8 @@
   </style>
   <body>
     <div id="root"></div>
+    <!-- // TODO++ RETURN IT -->
+    <div id="root1"></div>
     <!--
 
 	Польский
@@ -940,7 +942,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.74;
+      const VERSION = 0.75;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1030,7 +1032,7 @@
             // TODO++ RETURN IT
             console.log("--+ ALL voicesArr", voicesArr);
             if (voicesArr.length) {
-              document.getElementById("root").innerHTML = voicesArr.map(
+              document.getElementById("root1").innerHTML = voicesArr.map(
                 (it) => {
                   console.log("--+ HERE it", it.lang);
                   return `${it.lang}`;
