@@ -855,7 +855,7 @@
       };
     </script>
 
-	 <!-- 10 SaveText -->
+    <!-- 10 SaveText -->
     <script type="text/babel">
       /** @jsx preact.h */
       const { h, render, Fragment } = preact;
@@ -923,19 +923,14 @@
       };
     </script>
 
-	<!-- 10 SaveText -->
+    <!-- 10 SaveText -->
     <script type="text/babel">
       /** @jsx preact.h */
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
       const Peer2Peer = () => {
-        
-        return (
-          <div style={{ height: "100%" }}>
-           123
-          </div>
-        );
+        return <div style={{ height: "100%" }}>123</div>;
       };
     </script>
 
@@ -945,7 +940,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.7;
+      const VERSION = 0.71;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1048,11 +1043,21 @@
 
           // firefox
           if (speechSynthesis.getVoices().length) {
-            setVoices(speechSynthesis.getVoices());
+            try {
+              setVoices(AspeechSynthesis.getVoices());
+            } catch (error) {
+              console.error(error);
+            }
           }
           // chrome
           speechSynthesis.addEventListener("voiceschanged", () => {
-            setVoices(speechSynthesis.getVoices());
+            if (speechSynthesis.getVoices().length) {
+              try {
+                setVoices(AspeechSynthesis.getVoices());
+              } catch (error) {
+                console.error(error);
+              }
+            }
           });
 
           // for mobile chrome
@@ -1095,7 +1100,6 @@
         if (Route === 10) {
           return mainScrollWrap(<SaveText />);
         }
-	
 
         return mainScrollWrap(
           <div>
@@ -1168,7 +1172,6 @@
               <div onClick={() => setRoute(10)} className="button">
                 Сохранить текст
               </div>
-			 
             </div>
           </div>
         );
