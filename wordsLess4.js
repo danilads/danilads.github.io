@@ -6,7 +6,7 @@ const WORDS2 = [
 	// B
 	['bar', 'бар', '', [['Idziemy dziś do baru?', 'Идём сегодня в бар?'],['To mój ulubiony bar', 'Это мой любимый бар'],['Ten bar jest zamknięty', 'Этот бар закрыт'],['To bar samoobsługowy', 'Это бар самообслуживания'],['Gdzie jest najbliższy bar?', 'Где ближайший бар?'],['To bar tylko dla dorosłych', 'Это бар только для взрослых'],['Bar serwuje lokalne piwo', 'Бар подает местное пиво'],['Lubisz bary tematyczne?', 'Любишь бары тематические?'],['W barze grała dobra muzyka', 'В баре играла хорошая музыка'],['W tym barze pracuje mój znajomy', 'В этом баре работает мой знакомый']]], 
 	['bal', 'бал', '(танцевального мероприятия) ', [['Idę dziś na bal', 'Я сегодня иду на бал'],['Bal zaczyna się o ósmej', 'Бал начинается в восемь'],['Kupiłam sukienkę na bal', 'Я купила платье на бал'],['On zaprosił mnie na bal', 'Он пригласил меня на бал'],['Bal odbędzie się w sobotę', 'Бал состоится в субботу'],['Spotkaliśmy się na balu', 'Мы встретились на балу'],['Bal odbył się w pałacu', 'Бал состоялся во дворце'],['Na balu było dużo ludzi', 'На балу было много людей'],['Bal zakończył się o północy', 'Бал закончился в полночь'],['Pamiętasz nasz pierwszy bal?', 'Ты помнишь наш первый бал?']]],
-	['bez', 'без', '', []],
+	['bez', 'без', '', [['Nie mogę żyć bez ciebie', 'Я не могу жить без тебя'],['Zrobiłem to bez problemu', 'Я сделал это без проблем'],['Bez kawy nie funkcjonuję', 'Без кофе я не функционирую'],['Pracuję bez przerwy', 'Я работаю без перерыва'],['Bez niego to niemożliwe', 'Без него это невозможно'],['Nie ruszam się bez telefonu', 'Я не двигаюсь без телефона'],['To było bez znaczenia', 'Это не имело значения'],['Nie mogę żyć bez muzyki', 'Я не могу жить без музыки'],['Zrobił to bez pytania', 'Он сделал это без вопросов'],['Nie wychodź bez kurtki', '']]],
 	['bo', 'потому что', '', []],
 	['było', 'было', '', []],
 	['być', 'быть', '', []],
@@ -143,6 +143,7 @@ const WORDS2 = [
 	['zdać', 'сдать', '', []],
 	['zęby', 'зубы', '', []],
 	['znać', 'знать', '(просто знать)', []]
+	['żyć ', 'жить', '', []]
 	
 ];
 // Przyprowadź mi 20 najczęściej używanych krótkich zdań ze słowem "ale"
