@@ -443,9 +443,8 @@
             VOICE_THE_TEXT(mainQuestion[0]);
             setHelp(mainQuestion[0]);
             if (!mistakesWords.includes(mainQuestion[0])) {
-              setMistakesWords([...mistakesWords, mainQuestion[0]]);
+              setMistakesWords([...mistakesWords, `${mainQuestion[0]} - ${mainQuestion[1]}`]);
             }
-            console.log("--+ INCORRECT --", mainQuestion[0]);
           }
         };
 
@@ -991,7 +990,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.80;
+      const VERSION = 0.81;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
