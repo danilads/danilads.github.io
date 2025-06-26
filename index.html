@@ -99,8 +99,6 @@
   </style>
   <body>
     <div id="root"></div>
-    <!-- // TODO++ RETURN IT -->
-    <div id="root1"></div>
     <!--
 
 	Польский
@@ -216,31 +214,82 @@
         ];
 
         const testArray = (words, ind, isMoreThan4Letters) => {
-          let isArrayCorrupt = false;
+          let wrd = "";
+
+          let isWORDS1ArrayCorrupt = false;
+          let isWORDS2ArrayCorrupt = false;
+
           let isWORDS1hasLess4LetterWord = false;
-          let isWORDS2haMore4LetterWord = false;
+          let isWORDS2hasMore4LetterWord = false;
+
+          let isWORDS1strucktureCorupt = false;
+          let isWORDS2strucktureCorupt = false;
+
           words.forEach((it) => {
             if (isMoreThan4Letters && it[0].length <= 4) {
+              wrd = it[0];
               isWORDS1hasLess4LetterWord = true;
             }
-            if (!isMoreThan4Letters && it[0].length > 4) {
-              isWORDS2haMore4LetterWord = true;
+
+            if (
+              isMoreThan4Letters &&
+              (it.length !== 4 ||
+                typeof it[0] !== "string" ||
+                typeof it[1] !== "string" ||
+                typeof it[2] !== "string" ||
+                !Array.isArray(it[3]))
+            ) {
+              wrd = it[0];
+              isWORDS1strucktureCorupt = true;
             }
-            if (!Array.isArray(it)) {
-              isArrayCorrupt = true;
+
+            if (!isMoreThan4Letters && it[0].length > 4) {
+              wrd = it[0];
+              isWORDS2hasMore4LetterWord = true;
+            }
+            if (
+              !isMoreThan4Letters &&
+              (it.length !== 4 ||
+                typeof it[0] !== "string" ||
+                typeof it[1] !== "string" ||
+                typeof it[2] !== "string" ||
+                !Array.isArray(it[3]))
+            ) {
+              wrd = it[0];
+              isWORDS2strucktureCorupt = true;
+            }
+            if (!isMoreThan4Letters && !Array.isArray(it)) {
+              wrd = it[0];
+              isWORDS2ArrayCorrupt = true;
+            }
+            if (isMoreThan4Letters && !Array.isArray(it)) {
+              wrd = it[0];
+              isWORDS1ArrayCorrupt = true;
             }
           });
-          if (isArrayCorrupt) {
-            const container = document.getElementById("container");
-            container.innerHTML = `${ind} МАССИВ СЛОВ ПОВРЕЖДЕН (где-то пропущенна запятая)`;
+          if (isWORDS1strucktureCorupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
+          }
+          if (isWORDS2strucktureCorupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
+          }
+          if (isWORDS1ArrayCorrupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> общий массив поврежден`;
+          }
+          if (isWORDS2ArrayCorrupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> общий массив поврежден`;
           }
           if (isWORDS1hasLess4LetterWord) {
-            const container = document.getElementById("container");
-            container.innerHTML = `${ind} МАССИВ СЛОВ имеет слово меньше или равно 4 буквам`;
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js ->  имеет слово меньше или равно 4 буквам`;
           }
-          if (isWORDS2haMore4LetterWord) {
-            const container = document.getElementById("container");
-            container.innerHTML = `${ind} МАССИВ СЛОВ имеет слово больше 4 букв`;
+          if (isWORDS2hasMore4LetterWord) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> имеет слово больше 4 букв`;
           }
         };
 
@@ -942,7 +991,7 @@
       const { h, render, Fragment } = preact;
       const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
 
-      const VERSION = 0.78;
+      const VERSION = 0.79;
       const FILTER = ["pl-PL"];
       const SELECTED_LANG = "SELECTED_LANG";
       // USE THIS OBJ to detect lang
@@ -1029,76 +1078,33 @@
 
           // --- VOICE
           const setVoices = (voicesArr) => {
-            // TODO++ RETURN IT
-            console.log("--+ ALL voicesArr", voicesArr);
-            if (voicesArr.length) {
-              document.getElementById("root1").innerHTML = voicesArr.map(
-                (it) => {
-                  console.log("--+ HERE it", it.lang);
-                  return `${it.lang}`;
-                }
-              );
-            }
-
             const filteredVoices = voicesArr.filter((it) =>
               FILTER.includes(it.lang)
             );
-
             if (Array.isArray(filteredVoices) && filteredVoices.length) {
               setAllLang(filteredVoices);
             } else {
               setAllLang(voicesArr);
             }
-            if (!selLang && filteredVoices.length) {
+            if (!selLang) {
               setSelectedLang(filteredVoices[0].voiceURI);
               lang = filteredVoices[0].voiceURI;
             }
           };
-          const loadVoices = () => {
-            const voices = speechSynthesis.getVoices();
-            if (voices.length > 0) {
-              setVoices(voices);
-            } else {
-              console.warn("No voices yet...");
-            }
-          };
 
-          const onVoicesChanged = () => {
-            console.log("voiceschanged fired");
-            loadVoices();
-          };
+          // firefox
+          if (speechSynthesis.getVoices().length) {
+            setVoices(speechSynthesis.getVoices());
+          }
+          // chrome
+          speechSynthesis.addEventListener("voiceschanged", () => {
+            setVoices(speechSynthesis.getVoices());
+          });
 
-          const onTap = () => {
-            // Force initialization with a dummy utterance
-            const dummy = new SpeechSynthesisUtterance("");
-            speechSynthesis.speak(dummy);
-
-            // Attach voiceschanged event after user gesture
-            speechSynthesis.onvoiceschanged = onVoicesChanged;
-
-            // Trigger voice loading again
-            loadVoices();
-
-            // Clean up listeners
-            window.removeEventListener("touchend", onTap);
-            window.removeEventListener("click", onTap);
-          };
-
-          // Add touch/click listeners once
-          window.addEventListener("touchend", onTap, { once: true });
-          window.addEventListener("click", onTap, { once: true });
-
-          // Optional: fallback attempt after delay (still needs user gesture!)
-          const timer = setTimeout(() => {
-            loadVoices();
-          }, 3000);
-
-          return () => {
-            clearTimeout(timer);
-            window.removeEventListener("touchend", onTap);
-            window.removeEventListener("click", onTap);
-            speechSynthesis.onvoiceschanged = null;
-          };
+          // for mobile chrome
+          setTimeout(() => {
+            setVoices(speechSynthesis.getVoices());
+          }, 5000);
         }, []);
 
         const mainScrollWrap = (elem) => {
