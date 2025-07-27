@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <script src="000-babel.min.js"></script>
+    <script src="000-preact.umd.js"></script>
+    <script src="000-hooks.umd.js"></script>
+  </head>
+  <style>
+    html {
+      font-family: my;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+    @font-face {
+      font-family: my;
+      src: url(RobotoSlab-VariableFont_wght.ttf);
+    }
+
+    #root {
+      background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .main {
+      overflow: auto;
+      width: 100%;
+      margin: 0 10px;
+      max-width: 650px;
+      position: relative;
+    }
+    .answerArea {
+      width: 100%;
+      height: 40px;
+      font-size: 22px;
+    }
+    .additionalText {
+      font-size: 12px;
+      color: #444;
+    }
+    .animOff {
+      left: 3px;
+      font-family: "Arial";
+      top: 10px;
+      font-size: 22px;
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+    }
+    .animOn {
+      left: 3px;
+      font-family: "Arial";
+      top: 10px;
+      font-size: 22px;
+      position: absolute;
+      animation: fadeOut 4s;
+      z-index: 2;
+      opacity: 0;
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        top: 10px;
+      }
+      100% {
+        opacity: 0;
+        top: -20px;
+      }
+    }
+    .help {
+      font-size: 12px;
+      color: gray;
+      text-align: center;
+      font-weight: 300;
+    }
+    .buttonWrap {
+      padding: 20px;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
+    .button {
+      cursor: pointer;
+      font-size: 22px;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 11px 22px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <!--
+
+	Польский
+	- гол первый научится читать без озвучки
+	- записать 400 x 7 слов (для каждого дня)
+	- учим стандартные обороты (вопросы / Я люблю)
+
+	-------------------------------
+	// аудио в котором мы все понимаем повырезать
+	// канал с цветам и zAWODAMI  
+
+
+	-------------------------------
+	// Добавить секцию Песни (учим наизусь)
+
+	-------------------------------
+	// Секция слово  сочитания (Я работал я работаю я юуду раюотаь) он  не работал
+
+	-------------------------------
+	// создать СТРАНИЦУ для тем истории 
+	[История Польши]
+	Bitwa pod Grunwaldem.
+	Bitwa pod Płowcami.
+	Data chrztu Polski. 
+	I, II, III rozbiór Polski.
+	Pierwszy/ostatni król Polski.
+	Powstanie listopadowe.
+
+	[Польские традиции]
+	Potrawy / desery tradycyjne.
+	Tłusty czwartek.
+	Wigilia Bożego Narodzenia.
+
+	[Известные личности]
+	Dynastia Jagiellonów.
+	Jan III Sobieski.
+	Jan Paweł ІІ.
+	Mikołaj Kopernik.
+	Nazwiska prezydentów RP po 1989 roku.
+	Polacy którzy otrzymali Nagrodę Nobla.
+	Święta Jadwiga.
+	Tadeusz Kościuszko.
+	Znane pisarzy, malarzy, kompozytorzy, artysci, reżyserzy filmowe i teatralne.
+
+
+	[Символика РП]
+	Flaga Polski.
+	Godło.
+	Hymn.
+	Święta narodowe.
+
+	[География]
+	Lista województw w Polsce.
+	Najdłuższe rzeki w Polsce.
+	Największe miasta Polski.
+	Państwa z którymi graniczy Polska.
+	Parki narodowe.
+	Stolicy Polski.
+
+
+
+
+	-------------------------------
+	PL - польский в слух
+
+		1) PAWEL I GAWEL - w
+			www.propolski.com/2018/05/10/aleksandr-fredro-pawel-i-gawel/ 
+		2) PL Lolomotywa -  
+			www.propolski.com/2019/05/24/lokomotywa-tuwima/ 
+			www.youtube.com/watch?v=sp-hXpPD4BU
+		3) https://propolski.com/2019/06/16/krol-maciusz-pierwszy/
+		4) PL - https://www.youtube.com/@polskij-wsluh/videos
+
+		5)  www.propolski.com/2018/01/19/dziewczynka-z-zapalkami/
+
+
+	-------------------------------
+
+
+
+	Pl lecz это?
+
+	Pl - хороший - добрый / А добрый?
+
+
+	PL - slaskie (шленск и ещё пару слов с таким звуком)
+	PL - zjadłby / żółw / gorąca / pchają / zając / krzyczał / Znosił / nareszcie
+
+	-->
+
+    <!-- ТЕКСТА -->
+    <script src="texts.js"></script>
+
+    <!-- СЛОВА -->
+    <script src="wordsLess4.js"></script>
+    <script src="wordsMore4.js"></script>
+
+    <!-- WORDS -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      // PRE Words COMPONENT
+      const PreWords = () => {
+        const [type, setType] = useState(null);
+
+        const seed = 33133;
+
+        const SHUFFLE_WORDS_BY_SEED = [
+          ...shuffleArray(WORDS1, seed),
+          ...shuffleArray(WORDS2, seed),
+        ];
+
+        const testArray = (words, ind, isMoreThan4Letters) => {
+          let wrd = "";
+
+          let isWORDS1ArrayCorrupt = false;
+          let isWORDS2ArrayCorrupt = false;
+
+          let isWORDS1hasLess4LetterWord = false;
+          let isWORDS2hasMore4LetterWord = false;
+
+          let isWORDS1strucktureCorupt = false;
+          let isWORDS2strucktureCorupt = false;
+
+          words.forEach((it) => {
+            if (isMoreThan4Letters && it[0].length <= 4) {
+              wrd = it[0];
+              isWORDS1hasLess4LetterWord = true;
+            }
+
+            if (
+              isMoreThan4Letters &&
+              (it.length !== 4 ||
+                typeof it[0] !== "string" ||
+                typeof it[1] !== "string" ||
+                typeof it[2] !== "string" ||
+                !Array.isArray(it[3]))
+            ) {
+              wrd = it[0];
+              isWORDS1strucktureCorupt = true;
+            }
+
+            if (!isMoreThan4Letters && it[0].length > 4) {
+              wrd = it[0];
+              isWORDS2hasMore4LetterWord = true;
+            }
+            if (
+              !isMoreThan4Letters &&
+              (it.length !== 4 ||
+                typeof it[0] !== "string" ||
+                typeof it[1] !== "string" ||
+                typeof it[2] !== "string" ||
+                !Array.isArray(it[3]))
+            ) {
+              wrd = it[0];
+              isWORDS2strucktureCorupt = true;
+            }
+            if (!isMoreThan4Letters && !Array.isArray(it)) {
+              wrd = it[0];
+              isWORDS2ArrayCorrupt = true;
+            }
+            if (isMoreThan4Letters && !Array.isArray(it)) {
+              wrd = it[0];
+              isWORDS1ArrayCorrupt = true;
+            }
+          });
+          if (isWORDS1strucktureCorupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
+          }
+          if (isWORDS2strucktureCorupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
+          }
+          if (isWORDS1ArrayCorrupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> общий массив поврежден`;
+          }
+          if (isWORDS2ArrayCorrupt) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> общий массив поврежден`;
+          }
+          if (isWORDS1hasLess4LetterWord) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js ->  имеет слово меньше или равно 4 буквам`;
+          }
+          if (isWORDS2hasMore4LetterWord) {
+            const container = document.getElementById("root");
+            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> имеет слово больше 4 букв`;
+          }
+        };
+
+        useEffect(() => {
+          testArray(WORDS1, "WORDS1", true);
+          testArray(WORDS2, "WORDS2");
+        }, []);
+
+        if (type) {
+          let words = [];
+          const splitWords = (arr, pt) => {
+            const partHigh = Math.ceil(arr.length / 7);
+            const partLow = Math.round(arr.length / 7);
+
+            return arr.slice(partLow * (pt - 1), partLow * (pt - 1) + partHigh);
+          };
+          if (type === 1) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 1);
+          } else if (type === 2) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 2);
+          } else if (type === 3) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 3);
+          } else if (type === 4) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 4);
+          } else if (type === 5) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 5);
+          } else if (type === 6) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 6);
+          } else if (type === 7) {
+            words = splitWords(SHUFFLE_WORDS_BY_SEED, 7);
+          } else if (type === 8) {
+            words = [...WORDS1, ...WORDS2];
+          }
+          return <Words propsWords={words} />;
+        }
+
+        return (
+          <div className="buttonWrap">
+            <div className="help">{`слова разделены равными частями между днями недели т.к. всего слов - ${
+              WORDS1.length + WORDS2.length
+            }`}</div>
+            <div className="button" onClick={() => setType(8)}>
+              все слова
+            </div>
+            <div className="button" onClick={() => setType(1)}>
+              понедельник
+            </div>
+            <div className="button" onClick={() => setType(2)}>
+              вторник
+            </div>
+            <div className="button" onClick={() => setType(3)}>
+              среда
+            </div>
+            <div className="button" onClick={() => setType(4)}>
+              четверг
+            </div>
+            <div className="button" onClick={() => setType(5)}>
+              пятница
+            </div>
+            <div className="button" onClick={() => setType(6)}>
+              суббота
+            </div>
+            <div className="button" onClick={() => setType(7)}>
+              воскресенье
+            </div>
+          </div>
+        );
+      };
+      // Words COMPONENT
+      const Words = ({ propsWords }) => {
+        const textareaRef = useRef();
+        // game mode
+        const [gameMode, setGameMode] = useState("uniq"); // 'repeat' 'uniq'
+
+        // words
+        const [words, setWords] = useState([]);
+        const wordsRef = useRef(words); // HERE will be imidiate state
+
+        const TrueUpdateState = (newState) => {
+          setWords(newState);
+          wordsRef.current = newState;
+        };
+
+        //
+        const [sentenses, setSentenses] = useState("null");
+
+        const [inputContent, setInputContent] = useCustomState("");
+
+        const [inputAnimContent, setInputAnimContent] = useCustomState("");
+        const [inputAnimClass, setInputAnimClass] = useCustomState("animOff");
+
+        const [mainQuestion, setMainQuestion] = useState([]);
+
+        const [help, setHelp] = useState("");
+
+        // right block
+        const [itemsLeft, setItemsLeft] = useState(null);
+
+        // mistakes
+        const [mistakesWords, setMistakesWords] = useState([]);
+
+        // END
+        const [isEnd, setEnd] = useState(false);
+
+        const POLISH_LETTERS = ["ą", "ć", "ę", "ł", "ń", "ó", "ś", "ź", "ż"];
+
+        const startNextWord = () => {
+          if (wordsRef.current.length && gameMode === "repeat") {
+            const rnd = rand(0, wordsRef.current.length - 1);
+            setMainQuestion(wordsRef.current[rnd]);
+          } else if (wordsRef.current.length && gameMode === "uniq") {
+            const rnd = rand(0, wordsRef.current.length - 1);
+            setMainQuestion([...wordsRef.current[rnd]]);
+            TrueUpdateState(wordsRef.current.filter((_, i) => i !== rnd));
+            setItemsLeft(wordsRef.current.length);
+          }
+        };
+
+        const checkResult = () => {
+          // Add sentense
+          if (Array.isArray(mainQuestion[3])) {
+            setSentenses(mainQuestion[3]);
+          } else {
+            setSentenses(null);
+          }
+
+          // Check result
+          if (mainQuestion[0] === inputContent.toLowerCase().trim()) {
+            VOICE_THE_TEXT(inputContent);
+            setInputAnimContent(inputContent);
+            setInputContent("");
+            setInputAnimContent(inputContent);
+            setInputAnimClass("animOn");
+            setTimeout(() => {
+              setInputAnimClass("animOff");
+            }, 3000);
+            console.log("--+ CORRECT --", mainQuestion[0]);
+            setHelp("");
+
+            // END
+            if (words.length === 0) {
+              setItemsLeft(0);
+              setEnd(true);
+              setMainQuestion("");
+            }
+            // NEXT WORD
+            else {
+              startNextWord();
+            }
+          } else {
+            VOICE_THE_TEXT(mainQuestion[0]);
+            setHelp(mainQuestion[0]);
+            if (!mistakesWords.includes(mainQuestion[0])) {
+              setMistakesWords([...mistakesWords, `${mainQuestion[0]} - ${mainQuestion[1]}`]);
+            }
+          }
+        };
+
+        useEffect(() => {
+          // --- START
+          TrueUpdateState(propsWords);
+          startNextWord();
+        }, []);
+
+        // render polish sentenses
+        const renderText = (txt) => {
+          if (!txt) {
+            return;
+          }
+
+          return (
+            <div>
+              {txt.map((it) => {
+                return (
+                  <div
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      padding: "4px 0",
+                    }}
+                  >
+                    <div
+                      onClick={() => VOICE_THE_TEXT(it[0])}
+                      style={{
+                        cursor: "pointer",
+                        height: "27px",
+                        fontSize: "20px",
+                        border: "1px solid black",
+                        borderRadius: "4px",
+                        padding: "0 2px",
+                      }}
+                    >
+                      ⚟
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        paddingLeft: "20px",
+                        color: "black",
+                      }}
+                    >
+                      {it[0]}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        };
+
+        return (
+          <Fragment>
+            <h2 style={{ textAlign: "center" }}>Учим Слова</h2>
+            {/* TOP SECTION */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+              }}
+            >
+              <span style={{ fontSize: "10px" }}> осталось слов:</span>
+              <span style={{ minWidth: "40px" }}>{`${itemsLeft}`}</span>
+            </div>
+            <br />
+            <br />
+            {/* CONTROL */} {/* QUESTION */} {/* END SCREEN */}
+            {isEnd ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignContent: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <span style={{ textAlign: "center" }}>СЛОВА ЗАКОНЧИЛИСЬ!</span>
+                <span style={{ textAlign: "center" }}>
+                  НЕ ЗАБУДЬТЕ ПРОПИСАТЬ СЛОВА В КОТОРЫХ СДЕЛАЛИ ОШИБКИ
+                </span>
+              </div>
+            ) : (
+              <div>
+                <div
+                  className={"additionalText"}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    height: "20px",
+                  }}
+                >
+                  <div>вопрос</div>
+                  <div>подсказка</div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    height: "20px",
+                    borderTop: "1px solid black",
+                  }}
+                >
+                  <div>{`${mainQuestion[1]}${
+                    mainQuestion[2] ? ` ${mainQuestion[2]}` : ""
+                  }`}</div>
+                  <div>{help}</div>
+                </div>
+              </div>
+            )}
+            <br />
+            {/* POLISH LETTERS */}
+            <div style={{ margin: "5px" }}>
+              {POLISH_LETTERS.map((it) => {
+                return (
+                  <span
+                    style={{
+                      fontSize: "20px",
+                      margin: "5px",
+                      padding: "0 5px",
+                      border: "1px solid black",
+                    }}
+                    onClick={() => {
+                      let caret = textareaRef.current.selectionStart;
+
+                      setInputContent(
+                        inputContent.slice(0, caret) +
+                          it +
+                          inputContent.slice(caret),
+                        () => {
+                          textareaRef.current.focus();
+                          textareaRef.current.selectionStart = caret + 1;
+                          textareaRef.current.selectionEnd = caret + 1;
+                        }
+                      );
+                    }}
+                  >
+                    {it}
+                  </span>
+                );
+              })}
+            </div>
+            {/* INPUT */}
+            <div style={{ display: "flex", position: "relative" }}>
+              <div style={{ fontFamily: "my" }} className={inputAnimClass}>
+                {inputAnimContent}
+              </div>
+              <input
+                style={{ fontFamily: "my" }}
+                className="answerArea"
+                ref={textareaRef}
+                rows={10}
+                value={inputContent}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    checkResult();
+                  }
+                  return e;
+                }}
+                onInput={(e) => {
+                  setInputContent(e.target.value);
+                }}
+              />
+              <button
+                style={{ fontFamily: "my" }}
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  checkResult();
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  checkResult();
+                }}
+              >
+                ОТВЕТИТЬ
+              </button>
+            </div>
+            {/* Предложения */}
+            {Array.isArray(sentenses) ? (
+              <div style={{ paddingTop: "30px" }}>{renderText(sentenses)}</div>
+            ) : null}
+            {/* Прописать в строчку */}
+            <div style={{ paddingTop: "30px" }} className="additionalText">
+              эти слова нужно прописать в строчку
+            </div>
+            <div
+              style={{ maxWidth: "650px", display: "flex", flexWrap: "wrap" }}
+            >
+              <div>
+                {mistakesWords.map((it) => (
+                  <div style={{ padding: "5px" }}>{it}</div>
+                ))}
+              </div>
+            </div>
+          </Fragment>
+        );
+      };
+    </script>
+
+    <!-- TEXTS -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const SELECTED_TEXT = "SELECTED_TEXT";
+      const Texts = () => {
+        // text0 ['pol', 'рус']
+        const [selectedText, setSelectedText] = useState("t00");
+        const allTexts = Object.keys(TEXTS);
+        useEffect(() => {
+          // --- LOCAL STORAGE
+          const selText = localStorage.getItem(SELECTED_TEXT);
+          if (selText) {
+            setSelectedText(selText);
+          }
+        }, []);
+        const renderText = (txt) => {
+          if (!txt) {
+            return;
+          }
+          const plArr = txt.slice(0, txt.length / 2);
+          const ruArr = txt.slice(txt.length / 2, txt.length);
+          return (
+            <div>
+              {plArr.map((it, ind) => {
+                return (
+                  <div style={{ position: "relative" }}>
+                    <div>
+                      <div
+                        onClick={() => VOICE_THE_TEXT(it)}
+                        style={{
+                          cursor: "pointer",
+                          position: "absolute",
+                          fontSize: "18px",
+                          border: "1px solid black",
+                          borderRadius: "4px",
+                          padding: "0 2px",
+                          marginTop: "7px",
+                        }}
+                      >
+                        ⚟
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          paddingLeft: "20px",
+                          color: "black",
+                        }}
+                      >
+                        {it}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        color: "brown",
+                        paddingLeft: "20px",
+                        paddingBottom: "7px",
+                      }}
+                    >
+                      {ruArr[ind]}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        };
+        return (
+          <div style={{ maxWidth: "650px", overflow: "auto" }}>
+            <h2 style={{ textAlign: "center" }}>Читаем Текст</h2>
+            <div className="help">
+              текст сгенерирова и переведен --- chatgpt
+            </div>
+            <select
+              style={{ width: "150px", margin: "10px 0" }}
+              value={selectedText}
+              onChange={(e) => {
+                setSelectedText(e.target.value);
+                localStorage.setItem(SELECTED_TEXT, e.target.value);
+              }}
+              id={selectedText}
+            >
+              {allTexts.map((it) => {
+                return (
+                  <option
+                    onSelect={console.log}
+                    value={it}
+                  >{`text - ${it}`}</option>
+                );
+              })}
+            </select>
+            {renderText(TEXTS[selectedText])}
+          </div>
+        );
+      };
+    </script>
+
+    <!-- Cases -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const Cases = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>Падежи - В РАЗРАБОТКЕ</h2>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- Dictation -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const Dictation = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>
+              Диктант - В РАЗРАБОТКЕ - ( берем слова из предложений - показываем
+              рус версию)
+            </h2>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- RADIO -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const Radio = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>Радио Онлайн</h2>
+            <div>Просто слушать два часа в день</div>
+            <audio
+              controls
+              src="https://27953.live.streamtheworld.com/RADIO_TOKFM.mp3"
+            ></audio>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- TV -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const TV = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>TV Онлайн</h2>
+            <div>Просто смотреть один часа в день</div>
+            <div>Включите суб-титры в настройках</div>
+            <div>
+              Каналы в которых бывают суб-титры (alfa tvp / tvp abc2 / TVP wilno
+              )
+            </div>
+            <a href="https://vod.tvp.pl/na-zywo">Ссылка на сайт</a>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- YouTube chanels -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const YoutubeChanels = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>каналы с переводом на рус</h2>
+            <div>
+              <a href="https://www.youtube.com/watch?v=uiOvLx-S6Tk">
+                Польский язык c переводом
+              </a>
+            </div>
+            <h2 style={{ textAlign: "center" }}>Каналы с субтитрам</h2>
+            <div>Просто смотреть один ролик в день</div>
+            <div>Включите суб-титры в настройках</div>
+            <div>
+              <a href="https://www.youtube.com/@UrbexHistory">UrbexHistory</a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@PlanetaAbstrakcja">
+                PlanetaAbstrakcja
+              </a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@HistoryHiking">HistoryHiking</a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@WielkaHistoria">
+                WielkaHistoriag
+              </a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@strefa40">strefa40</a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@BEczKA1">BEczKA</a>
+            </div>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- SoundText -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const SoundText = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>
+              Озвучка текста по предложениям - В РАЗРАБОТКЕ - просто инпут для
+              озвучик
+            </h2>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- TextsSongs -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const TextsSongs = () => {
+        return (
+          <div>
+            <h2 style={{ textAlign: "center" }}>Текста песен - В РАЗРАБОТКЕ</h2>
+            g <div>по 15 песен на каждый день недели + рандом</div>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- 10 SaveText -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const SaveText = () => {
+        const [value, setValue] = useState("");
+        const download = (filename, text) => {
+          const element = document.createElement("a");
+          element.setAttribute(
+            "href",
+            "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+          );
+          element.setAttribute("download", filename);
+
+          element.style.display = "none";
+          document.body.appendChild(element);
+
+          element.click();
+
+          document.body.removeChild(element);
+        };
+        return (
+          <div style={{ height: "100%" }}>
+            <div
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                width: "100%",
+                height: "30%",
+                resize: "none",
+              }}
+            >
+              <button onClick={() => download("file.txt", value)}>
+                download
+              </button>
+            </div>
+            <div
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                width: "100%",
+                height: "70%",
+                resize: "none",
+              }}
+            >
+              <textarea
+                style={{
+                  outline: "1px solid black",
+                  border: "none",
+                  padding: 0,
+                  margin: "10px",
+                  width: "calc(100% - 20px)",
+                  height: "calc(100% - 20px)",
+                  resize: "none",
+                }}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+        );
+      };
+    </script>
+
+    <!-- 10 SaveText -->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const Peer2Peer = () => {
+        return <div style={{ height: "100%" }}>123</div>;
+      };
+    </script>
+
+    <!-- STATE ROUTE UTILS-->
+    <script type="text/babel">
+      /** @jsx preact.h */
+      const { h, render, Fragment } = preact;
+      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+
+      const VERSION = 0.81;
+      const FILTER = ["pl-PL"];
+      const SELECTED_LANG = "SELECTED_LANG";
+      // USE THIS OBJ to detect lang
+      let lang = {};
+
+      const VOICE_THE_TEXT = (txt) => {
+        const selected = speechSynthesis
+          .getVoices()
+          .find((it) => it.voiceURI === lang);
+        const msg = new SpeechSynthesisUtterance();
+        msg.volume = 1;
+        msg.rate = 0.8;
+        msg.pitch = 1;
+        msg.text = txt;
+        msg.voice = selected;
+        msg.voiceURI = selected.voiceURI;
+        msg.lang = selected.lang;
+        speechSynthesis.speak(msg);
+      };
+
+      // UTILS
+      function useCustomState(init) {
+        const [state, setState] = useState(init);
+        const cbRef = useRef();
+
+        const setCustomState = (newState, callback) => {
+          cbRef.current = callback;
+          setState(newState);
+        };
+
+        useEffect(() => {
+          if (cbRef.current) {
+            cbRef.current(state);
+          }
+          cbRef.current = undefined;
+        }, [state]);
+
+        return [state, setCustomState];
+      }
+
+      function shuffleArray(array, seed) {
+        // Простая функция для генерации псевдослучайных чисел на основе seed
+        const seedRandom = (seed) => {
+          const SEED_CONST = 2147483647;
+          let s = seed % SEED_CONST;
+          return function () {
+            s = (s * 16807) % SEED_CONST;
+            return (s - 1) / SEED_CONST;
+          };
+        };
+        // Инициализируем генератор с seed
+        const random = seedRandom(seed);
+
+        const result = array.slice(); // Создаем копию массива, чтобы не менять исходный
+
+        for (let i = result.length - 1; i > 0; i--) {
+          const j = Math.floor(random() * (i + 1)); // Используем seed-based random
+          [result[i], result[j]] = [result[j], result[i]]; // Меняем местами элементы
+        }
+
+        return result;
+      }
+
+      function rand(min, max) {
+        let answer = Math.round(min - 0.5 + Math.random() * (max - min + 1));
+        if (answer === 0) {
+          answer = 0;
+        }
+        return answer;
+      }
+
+      const Router = () => {
+        const [Route, setRoute] = useState(null);
+        const [allLang, setAllLang] = useState([]);
+        const [selectedLang, setSelectedLang] = useState(null);
+
+        useEffect(() => {
+          // --- LOCAL STORAGE
+          const selLang = localStorage.getItem(SELECTED_LANG);
+          if (selLang) {
+            setSelectedLang(selLang);
+            lang = selLang;
+          }
+
+          // --- VOICE
+          const setVoices = (voicesArr) => {
+            const filteredVoices = voicesArr.filter((it) =>
+              FILTER.includes(it.lang)
+            );
+            if (Array.isArray(filteredVoices) && filteredVoices.length) {
+              setAllLang(filteredVoices);
+            } else {
+              setAllLang(voicesArr);
+            }
+            if (!selLang) {
+              setSelectedLang(filteredVoices[0].voiceURI);
+              lang = filteredVoices[0].voiceURI;
+            }
+          };
+
+          // firefox
+          if (speechSynthesis.getVoices().length) {
+            setVoices(speechSynthesis.getVoices());
+          }
+          // chrome
+          speechSynthesis.addEventListener("voiceschanged", () => {
+            setVoices(speechSynthesis.getVoices());
+          });
+
+          // for mobile chrome
+          setTimeout(() => {
+            setVoices(speechSynthesis.getVoices());
+          }, 5000);
+        }, []);
+
+        const mainScrollWrap = (elem) => {
+          return <div className="main">{elem}</div>;
+        };
+
+        if (Route === 1) {
+          return mainScrollWrap(<PreWords />);
+        }
+        if (Route === 2) {
+          return mainScrollWrap(<SoundText />);
+        }
+        if (Route === 3) {
+          return mainScrollWrap(<Cases />);
+        }
+        if (Route === 4) {
+          return mainScrollWrap(<Dictation />);
+        }
+        if (Route === 5) {
+          return mainScrollWrap(<Texts />);
+        }
+        if (Route === 6) {
+          return mainScrollWrap(<Radio />);
+        }
+        if (Route === 7) {
+          return mainScrollWrap(<TV />);
+        }
+        if (Route === 8) {
+          return mainScrollWrap(<YoutubeChanels />);
+        }
+        if (Route === 9) {
+          return mainScrollWrap(<TextsSongs />);
+        }
+        if (Route === 10) {
+          return mainScrollWrap(<SaveText />);
+        }
+
+        return mainScrollWrap(
+          <div>
+            <div
+              className={"additionalText"}
+              style={{ textAlign: "center", paddingBottom: "10px" }}
+            >
+              выберите польский язык
+              <span style={{ paddingLeft: "10px", fontSize: "10px" }}>
+                v{VERSION}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+                paddingBottom: "10px",
+              }}
+            >
+              <select
+                style={{ width: "150px" }}
+                value={selectedLang}
+                onChange={(e) => {
+                  lang = e.target.value;
+                  setSelectedLang(e.target.value);
+                  localStorage.setItem(SELECTED_LANG, e.target.value);
+                }}
+                id={selectedLang}
+              >
+                {allLang.map((it) => {
+                  return (
+                    <option
+                      onSelect={console.log}
+                      value={it.voiceURI}
+                    >{`${it.lang} ${it.name}`}</option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="buttonWrap">
+              <div onClick={() => setRoute(1)} className="button">
+                Слова
+              </div>
+              <div onClick={() => setRoute(2)} className="button">
+                Озвучка вашего текста
+              </div>
+              <div onClick={() => setRoute(3)} className="button">
+                Падежи
+              </div>
+              <div onClick={() => setRoute(4)} className="button">
+                Диктант
+              </div>
+              <div onClick={() => setRoute(5)} className="button">
+                Сгенерированные текста
+              </div>
+              <div onClick={() => setRoute(6)} className="button">
+                Радио
+              </div>
+              <div onClick={() => setRoute(7)} className="button">
+                ТВ + субтитры
+              </div>
+              <div onClick={() => setRoute(8)} className="button">
+                Youtube + субтитры
+              </div>
+              <div onClick={() => setRoute(9)} className="button">
+                Тесты песен
+              </div>
+              <div onClick={() => setRoute(10)} className="button">
+                Сохранить текст
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      preact.render(<Router />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
