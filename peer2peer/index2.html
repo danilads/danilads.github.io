@@ -1,272 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>WebRTC LAN Chat</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: auto; }
+    textarea, input { width: 100%; margin: 5px 0; }
+    textarea { height: 80px; }
+    #chat { height: 200px; overflow-y: auto; background: #f0f0f0; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Пример без библиотек</h2>
+  <h2>WebRTC LAN Чат (без серверов)</h2>
+  <div>УСТРОЙСТВО 1 Создать соединение (Offer) + Скопировать текст из поля Offer (поле 1)  </div>
+  <div>УСТРОЙСТВО 2 Вставить скопированный Offer от Устройства 1 в поле Offer 1!!!</div>
+  <div>УСТРОЙСТВО 2 нажать кнопку 2 Вставить Offer + Скопировать текст из поля Offer (поле 2) </div>
+  <div>УСТРОЙСТВО 1 Вставить скопированный Offer от Устройства 2 нажать Завершить</div>
 
-    <script src="babel.min.js"></script>
-    <script src="preact.umd.js"></script>
-    <script src="hooks.umd.js"></script>
-    <script src="simplepeer.min.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
+  <button onclick="createOffer()">1. Создать соединение (Offer)</button>
+  <textarea id="offer" placeholder="Offer будет здесь"></textarea>
 
-    <script>
-      window.React = { createElement: preact.h };
-    </script>
-    <!--  или написать это в скрипте - /** @jsx preact.h */ -->
+  <button onclick="receiveOffer()">2. Вставить Offer и ответить (Answer)</button>
+  <textarea id="answer" placeholder="Answer будет здесь"></textarea>
 
-    <script type="text/babel">
-      /** @jsx preact.h */
-      const { h, render, Fragment } = preact;
-      const { useState, useRef, useEffect, useCallback, useMemo } = preactHooks;
+  <button onclick="receiveAnswer()">3. Завершить соединение</button>
 
-      ////////////////////
-      // JoinDialog
-      ////////////////////
-      const JoinDialog = ({ onConnect }) => {
-        const [open, setOpen] = useState(false);
-        const [peer, setPeer] = useState(null);
-        const [offer, setOffer] = useState("");
-        const [answer, setAnswer] = useState(null);
+  <hr>
+  <div id="chat"></div>
+  <input id="message" placeholder="Введите сообщение">
+  <button onclick="send()">Отправить</button>
 
-        useEffect(() => {
-          const p = new SimplePeer({
-            initiator: false,
-            trickle: false,
-            objectMode: true,
-          });
-          p.on("signal", (data) => {
-            setAnswer(data);
-          });
-          p.on("connect", () => {
-            onConnect(p);
-          });
+  <script>
+    let localConnection;
+    let remoteConnection;
+    let dataChannel;
 
-          setPeer(p);
-        }, [onConnect]);
+    async function createOffer() {
+      localConnection = new RTCPeerConnection();
 
-        useEffect(() => {
-          if (peer && offer) {
-            let offerObject;
-            try {
-              offerObject = JSON.parse(offer);
-              peer.signal(offerObject);
-            } catch (err) {
-              console.warn("invalid offer");
-            }
-          }
-        }, [offer, peer]);
+      dataChannel = localConnection.createDataChannel("chat");
+      setupDataChannel(dataChannel);
 
-        return (
-          <div>
-            {open && (
-              <div>
-                <h2>Join Room</h2>
-                <p>
-                  Paste an offer from a peer below, send them your answer, then
-                  wait for them to connect.
-                </p>
-                <form method="dialog">
-                  <label>
-                    <b>Offer</b>
-                    <textarea
-                      style={{ width: "100%" }}
-                      rows="6"
-                      value={offer}
-                      onChange={(evt) => {
-                        setOffer(evt.target.value);
-                      }}
-                    />
-                  </label>
+      const offer = await localConnection.createOffer();
+      await localConnection.setLocalDescription(offer);
 
-                  <label>
-                    <b>Answer</b>
-                    <textarea
-                      style={{ width: "100%" }}
-                      readOnly
-                      rows="6"
-                      value={JSON.stringify(answer)}
-                    />
-                  </label>
+      localConnection.onicecandidate = e => {
+        if (e.candidate === null) {
+          document.getElementById("offer").value = JSON.stringify(localConnection.localDescription);
+        }
+      };
+    }
 
-                  <button>Cancel</button>
-                </form>
-              </div>
-            )}
-            <button onClick={() => setOpen(true)}>Join Room</button>
-          </div>
-        );
+    async function receiveOffer() {
+      const offer = JSON.parse(document.getElementById("offer").value);
+
+      remoteConnection = new RTCPeerConnection();
+
+      remoteConnection.ondatachannel = event => {
+        dataChannel = event.channel;
+        setupDataChannel(dataChannel);
       };
 
-      ////////////////////
-      // CreateDialog
-      ////////////////////
-      const CreateDialog = ({ onConnect }) => {
-        const [open, setOpen] = useState(false);
-        const [peer, setPeer] = useState(null);
-        const [offer, setOffer] = useState(null);
-        const [answer, setAnswer] = useState("");
+      await remoteConnection.setRemoteDescription(offer);
+      const answer = await remoteConnection.createAnswer();
+      await remoteConnection.setLocalDescription(answer);
 
-        useEffect(() => {
-          const p = new SimplePeer({
-            initiator: true,
-            trickle: false,
-            objectMode: true,
-          });
-          p.on("signal", (data) => {
-            setOffer(data);
-          });
-          p.on("connect", () => {
-            onConnect(p);
-          });
-          setPeer(p);
-        }, [onConnect]);
-
-        return (
-          <div>
-            {open && (
-              <div>
-                <h2>Create Room</h2>
-                <p>
-                  Send your offer to a peer, then paste their answer below to
-                  connect.
-                </p>
-                <form method="dialog">
-                  <label>
-                    <b>Offer</b>
-                    <textarea
-                      style={{ width: "100%" }}
-                      readOnly
-                      rows="6"
-                      value={JSON.stringify(offer)}
-                    />
-                  </label>
-
-                  <label>
-                    <b>Answer</b>
-                    <textarea
-                      style={{ width: "100%" }}
-                      rows="6"
-                      value={answer}
-                      onChange={(evt) => setAnswer(evt.target.value)}
-                    />
-                  </label>
-
-                  <button>Cancel</button>
-                  <button
-                    onClick={() => {
-                      if (peer && answer) {
-                        let answerObject;
-                        try {
-                          answerObject = JSON.parse(answer);
-                          peer.signal(answerObject);
-                        } catch (err) {
-                          console.warn("invalid answer");
-                        }
-                      }
-                    }}
-                  >
-                    Connect
-                  </button>
-                </form>
-              </div>
-            )}
-            <button onClick={() => setOpen(true)}>Create Room</button>
-          </div>
-        );
+      remoteConnection.onicecandidate = e => {
+        if (e.candidate === null) {
+          document.getElementById("answer").value = JSON.stringify(remoteConnection.localDescription);
+        }
       };
-      ////////////////////
-      // App
-      ////////////////////
-      const App = () => {
-        const [peer, setPeer] = useState(null);
-        const [log, setLog] = useState([]);
-        const [message, setMessage] = useState("");
+    }
 
-        const onConnect = useCallback((p) => {
-          setPeer(p);
-          p.on("data", (data) => {
-            setLog((log) => [
-              { local: false, action: "message", value: data },
-              ...log,
-            ]);
-          });
-          p.on("close", (data) => {
-            setLog((log) => [{ local: false, action: "disconnect" }, ...log]);
-          });
-          p.on("error", (data) => {
-            setLog((log) => [
-              { local: false, action: "error", value: data },
-              ...log,
-            ]);
-          });
-        }, []);
+    async function receiveAnswer() {
+      const answer = JSON.parse(document.getElementById("answer").value);
+      await localConnection.setRemoteDescription(answer);
+    }
 
-        return (
-          <div className="App">
-            <h1>Serverless P2P Chat</h1>
-            {peer ? (
-              <div>
-                <div>
-                  {log.map(({ local, action, value }, idx) => (
-                    <div key={idx}>
-                      {action === "message" && (
-                        <div>
-                          <span>{local ? "You" : "Stranger"}: </span>
-                          {value}
-                        </div>
-                      )}
-                      {action === "disconnect" && (
-                        <span>Stranger has disconnected.</span>
-                      )}
-                      {action === "error" && <span>{value.toString()}</span>}
-                    </div>
-                  ))}
-                </div>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    try {
-                      peer.send(message);
-                      setLog([
-                        { local: true, action: "message", value: message },
-                        ...log,
-                      ]);
-                      setMessage("");
-                    } catch (err) {
-                      setLog((log) => [
-                        {
-                          local: false,
-                          action: "error",
-                          value: "Error: cannot send message",
-                        },
-                        ...log,
-                      ]);
-                    }
-                  }}
-                >
-                  <input
-                    autoFocus
-                    type="text"
-                    value={message}
-                    onChange={(evt) => setMessage(evt.target.value)}
-                  />
-                  <button>Send</button>
-                </form>
-              </div>
-            ) : (
-              <div>
-                <CreateDialog onConnect={onConnect} />
-                <JoinDialog onConnect={onConnect} />
-              </div>
-            )}
-          </div>
-        );
-      };
-      preact.render(<App title="Welcome" />, document.getElementById("root"));
-    </script>
-  </body>
+    function setupDataChannel(channel) {
+      channel.onopen = () => log("✅ Соединение установлено");
+      channel.onmessage = e => log("👤 Друг: " + e.data);
+      channel.onerror = e => log("❌ Ошибка: " + e);
+    }
+
+    function send() {
+      const msg = document.getElementById("message").value;
+      if (dataChannel && dataChannel.readyState === "open") {
+        dataChannel.send(msg);
+        log("🧑‍💻 Вы: " + msg);
+        document.getElementById("message").value = "";
+      } else {
+        log("❗ Канал не готов");
+      }
+    }
+
+    function log(text) {
+      const chat = document.getElementById("chat");
+      chat.innerHTML += text + "<br>";
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
 </html>
