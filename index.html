@@ -216,46 +216,66 @@
         const testArray = (words, arrayName) => {
           for (let i = 0; i < words.length; i++) {
             let item = words[i]; // ['pol', 'рус', 'help', []]
-            let fileName = arrayName === 'WORDS1' ? 'wordsMore4.js' : 'wordsLess4.js';
+            let fileName =
+              arrayName === "WORDS1" ? "wordsMore4.js" : "wordsLess4.js";
 
             // в какой-то item нету зяпятой
             if (item === undefined) {
-               document.getElementById("root").innerHTML = `в файле ${arrayName === 'WORDS1' ? 'wordsMore4.js' : 'wordsLess4.js'} / в след слове где-то нет запятой - "${i ===0 ? 'первом слове' : words[i - 1][0]}"`;
+              document.getElementById("root").innerHTML = `в файле ${
+                arrayName === "WORDS1" ? "wordsMore4.js" : "wordsLess4.js"
+              } / в след слове где-то нет запятой - "${
+                i === 0 ? "первом слове" : words[i - 1][0]
+              }"`;
             }
 
             // пробел в слове
-            if ((item[0][0] === ' ' || item[0][item[0].length -1] === ' ') || (item[0][0] === ' ' || item[0][item[0].length -1] === ' ')) {
-              document.getElementById("root").innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> есть пробел`;
+            if (
+              item[0][0] === " " ||
+              item[0][item[0].length - 1] === " " ||
+              item[0][0] === " " ||
+              item[0][item[0].length - 1] === " "
+            ) {
+              document.getElementById(
+                "root"
+              ).innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> есть пробел`;
             }
-          
+
             // пробел в слове
-            if ((item[1][0] === ' ' || item[1][item[1].length -1] === ' ') || (item[1][0] === ' ' || item[1][item[1].length -1] === ' ' )) {
-              document.getElementById("root").innerHTML = `в слове "${item[1]}" / в файле ${fileName} -> есть пробел`;
+            if (
+              item[1][0] === " " ||
+              item[1][item[1].length - 1] === " " ||
+              item[1][0] === " " ||
+              item[1][item[1].length - 1] === " "
+            ) {
+              document.getElementById(
+                "root"
+              ).innerHTML = `в слове "${item[1]}" / в файле ${fileName} -> есть пробел`;
             }
-        
 
             // в одном из масиивов присутсвует слово другого размера
-            if ((arrayName === 'WORDS1' && item[0].length <= 4) || (arrayName === 'WORDS2' && item[0].length > 4)) {
-              document.getElementById("root").innerHTML = arrayName === 'WORDS1' ?
-              `в слове "${item[0]}" / в файле ${fileName} ->  имеет слово меньше или равно 4 буквам`
-              : 
-              `в слове "${item[0]}" / в файле ${fileName} -> имеет слово больше 4 букв`;
-            }
-    
-            // нарушен порядок ['', '', '', []])
             if (
-              (item.length !== 4 ||
-                typeof item[0] !== "string" ||
-                typeof item[1] !== "string" ||
-                typeof item[2] !== "string" ||
-                !Array.isArray(item[3]))
+              (arrayName === "WORDS1" && item[0].length <= 4) ||
+              (arrayName === "WORDS2" && item[0].length > 4)
             ) {
-              document.getElementById("root").innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> нарушен порядок ['', '', '', []]`;
+              document.getElementById("root").innerHTML =
+                arrayName === "WORDS1"
+                  ? `в слове "${item[0]}" / в файле ${fileName} ->  имеет слово меньше или равно 4 буквам`
+                  : `в слове "${item[0]}" / в файле ${fileName} -> имеет слово больше 4 букв`;
             }
 
-          
-          };
-      
+            // нарушен порядок ['', '', '', []])
+            if (
+              item.length !== 4 ||
+              typeof item[0] !== "string" ||
+              typeof item[1] !== "string" ||
+              typeof item[2] !== "string" ||
+              !Array.isArray(item[3])
+            ) {
+              document.getElementById(
+                "root"
+              ).innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> нарушен порядок ['', '', '', []]`;
+            }
+          }
         };
 
         useEffect(() => {
@@ -407,11 +427,9 @@
           } else {
             VOICE_THE_TEXT(mainQuestion[0]);
             setHelp(mainQuestion[0]);
-            if (!mistakesWords.includes(mainQuestion[0])) {
-              setMistakesWords([
-                ...mistakesWords,
-                `${mainQuestion[0]} - ${mainQuestion[1]}`,
-              ]);
+            const wordSlice = `${mainQuestion[0]} - ${mainQuestion[1]}`;
+            if (!mistakesWords.includes(wordSlice)) {
+              setMistakesWords([...mistakesWords, wordSlice]);
             }
           }
         };
@@ -666,7 +684,7 @@
                       <div
                         style={{
                           fontSize: "16px",
-                          paddingLeft: "20px",
+                          paddingLeft: "25px",
                           color: "black",
                         }}
                       >
@@ -677,7 +695,7 @@
                       style={{
                         fontSize: "14px",
                         color: "brown",
-                        paddingLeft: "20px",
+                        paddingLeft: "25px",
                         paddingBottom: "7px",
                       }}
                     >
@@ -713,6 +731,18 @@
                 );
               })}
             </select>
+            <button
+              onClick={() => {
+                const indexItem = allTexts.indexOf(selectedText);
+  
+                const next = indexItem === allTexts.length - 1 ? allTexts[0] : allTexts[indexItem + 1];
+
+                setSelectedText(next);
+                localStorage.setItem(next);
+              }}
+            >
+              след текст
+            </button>
             {renderText(TEXTS[selectedText])}
           </div>
         );
@@ -1153,18 +1183,6 @@
               <div onClick={() => setRoute(1)} className="button">
                 Слова
               </div>
-              <div onClick={() => setRoute(2)} className="button">
-                Озвучка вашего текста
-              </div>
-              <div onClick={() => setRoute(3)} className="button">
-                Падежи
-              </div>
-              <div onClick={() => setRoute(4)} className="button">
-                Диктант
-              </div>
-              <div onClick={() => setRoute(5)} className="button">
-                Сгенерированные текста
-              </div>
               <div onClick={() => setRoute(6)} className="button">
                 Радио
               </div>
@@ -1174,9 +1192,24 @@
               <div onClick={() => setRoute(8)} className="button">
                 Youtube + субтитры
               </div>
-              <div onClick={() => setRoute(9)} className="button">
-                Тесты песен
+              <div onClick={() => setRoute(5)} className="button">
+                Текста Истории на польском (сгенерированные chatgpt)
               </div>
+
+              <div onClick={() => setRoute(2)} className="button">
+                (в разработке) Озвучка вашего текста
+              </div>
+              <div onClick={() => setRoute(3)} className="button">
+                (в разработке) Падежи
+              </div>
+              <div onClick={() => setRoute(4)} className="button">
+                (в разработке) Диктант
+              </div>
+
+              <div onClick={() => setRoute(9)} className="button">
+                (в разработке) Тесты песен
+              </div>
+
               <div onClick={() => setRoute(10)} className="button">
                 Сохранить текст
               </div>

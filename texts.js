@@ -8,7 +8,7 @@
 // t01 - tale
 // с01 - рожд
 const TEXTS = {
-	c01: [
+	christmas01: [
 "Bałwanek i Śnieżny Aniołek",
 "Pewnego dnia mały bałwanek stał zupełnie sam.",
 "Popatrzył w niebo i pomyślał życzenie.",
@@ -36,7 +36,7 @@ const TEXTS = {
 "Теперь маленький снеговик больше никогда не был один.",
 "У него был друг, с которым он делил радостные зимние дни."
 	],
-	c02: [
+	christmas02: [
 'Życzenie Małego Bałwanka',
 'Mały bałwanek stał sam na śnieżnym podwórku.',
 'Chciał mieć przyjaciela do wspólnej zabawy.',
@@ -60,7 +60,7 @@ const TEXTS = {
 'Вместе они делали зимние дни тёплыми и радостными.',
 'Снеговик и ангел улыбались под мерцающими звёздами.'
 	],
-	c03: [
+	christmas03: [
 'Zagubiony Miś',
 'W wigilijną noc miś był całkiem sam.',
 'Zgubił się i tęsknił za swoim najlepszym przyjacielem.',
@@ -84,7 +84,7 @@ const TEXTS = {
 'Снова вместе, они улыбались и играли под ёлкой.',
 'Ребёнок и мишка были счастливы в рождественскую ночь.'
 	],
-	c04: [
+	christmas04: [
 "Magiczna Ozdoba",
 "W małym miasteczku była magiczna ozdoba.",
 "Spełniała jedno życzenie każdej rodziny w okolicy.",
@@ -110,7 +110,7 @@ const TEXTS = {
 "Все улыбались, смеялись и делились радостью с соседями.",
 "Городок наполнился любовью благодаря этой магии."
 	],
-	c05: [
+	christmas05: [
 'Niewidzialne Prezenty',
 'Na Biegunie Północnym elfy były zajęte pakowaniem prezentów.',
 'Ale jeden elf znalazł rolkę dziwnego, błyszczącego papieru.',
@@ -134,7 +134,7 @@ const TEXTS = {
 'Все смеялись, когда поняли, что подарки не исчезли.',
 'Это были веселые и незабываемые праздники для всех детей!'
 	],
-	c06: [
+	christmas06: [
 'Samotna Choinka',
 'W cichym lesie stała mała, samotna choinka.',
 'Nikt jej nie ozdobił, i było jej bardzo smutno.',
@@ -160,7 +160,7 @@ const TEXTS = {
 'Одинокая ёлочка стала сердцем лесного праздника.',
 'Каждая ёлочка заслуживает любви, и эта её почувствовала!'
 	],
-	c07: [
+	christmas07: [
 'Magiczny List na Święta',
 'Pewnego dnia Mia napisała list do Świętego Mikołaja.',
 'Poprosiła Mikołaja, by pomógł smutnej rodzinie.',
@@ -184,7 +184,7 @@ const TEXTS = {
 'Мия никогда не узнала, что её письмо сделало Рождество таким особенным.',
 'Добро разошлось, и все почувствовали магию любви.'
 	],
-	c08: [
+	christmas08: [
 'Magiczna Kula Śnieżna',
 'Pewnego dnia Max znalazł kulę śnieżną na biurku.',
 'Kula śnieżna powiedziała: "Mam historię do opowiedzenia."',
@@ -208,7 +208,7 @@ const TEXTS = {
 'Макс улыбнулся и подарил подарки детям и соседям.',
 'Теперь Макс любил праздники, а дарение делало его счастливым.'
 	],
-	c09: [
+	christmas09: [
 'Śmiejący się Renifer',
 'Mikołaj miał nowego renifera o imieniu Chichotek.',
 'Chichotek miał wyjątkowy dar: rozśmieszał wszystkich.',
@@ -232,7 +232,7 @@ const TEXTS = {
 '«Хихотек, ты делаешь праздник ещё веселее!» – сказал Миколай счастливо.',
 'Теперь каждое Рождество Хихотек разносит смех по небу.'
 	],
-	c10: [
+	christmas10: [
 'Magiczny Śnieg',
 'Pewnej nocy na Święta z nieba padał śnieg.',
 'Plac zabaw był pusty, cichy i bardzo spokojny.',
@@ -254,7 +254,7 @@ const TEXTS = {
 'Снежная площадка принесла всем радость в эту ночь.',
 'Под мерцающими звёздами рождественская магия наполнила их сердца.'
 	],
-	c11: [
+	christmas11: [
 'Magiczne Kule Śnieżnego Bałwanka',
 'Pewnego razu mały bałwanek kochał kule śnieżne.',
 '„Chcę zebrać je wszystkie!” powiedział.',
@@ -284,7 +284,7 @@ const TEXTS = {
 'Мечта снеговика сбылась.',
 'Конец.'
 	],
-	c12: [
+	christmas12: [
 'Magiczna Laska Cukrowa',
 'Pewnego dnia była magiczna laska cukrowa.',
 'Mogła spełniać życzenia, słodkie i prawdziwe.',
@@ -312,7 +312,7 @@ const TEXTS = {
 'Семья улыбнулась и поблагодарила карамельную трость.',
 'Она принесла им любовь и волшебство в дом.'
 	],
-	c13: [
+	christmas13: [
 'Mówiący Dziadek do Orzechów',
 'W małej wiosce była nieśmiała dziewczynka.',
 'Pewnego dnia znalazła mówiącego dziadka do orzechów.',
@@ -336,7 +336,7 @@ const TEXTS = {
 'На представлении она встала прямо и пела громко.',
 'Все аплодировали! Застенчивая девочка наконец нашла свой голос.'
 	],
-	с14: [
+	christmas14: [
 'Wielka Noc Światełek',
 'Świąteczne światełka były smutne.',
 '„Nikt nas nie widzi” – mówiły.',
@@ -360,7 +360,7 @@ const TEXTS = {
 'Теперь все любили их весёлый свет.',
 'Вся окрестность была полна радости!'
 	],
-	c15: [
+	christmas15: [
 'Był świąteczny poranek.',
 'Kotek był zagubiony i zmarznięty.',
 'Kotek zobaczył czerwony skarpetkę.',
@@ -380,7 +380,7 @@ const TEXTS = {
 'Ребёнок и котёнок стали лучшими друзьями.',
 'Рождество было полным радости и любви!',
 	],
-	c16: [
+	christmas16: [
 'Psotne Pierniczki',
 'Pewnej nocy pierniczki się obudziły.',
 '"Chcemy zwiedzać kuchnię!" szepnęły.',
@@ -412,7 +412,7 @@ const TEXTS = {
 'Когда настало утро, прянички вернулись.',
 '"Мы снова всё исследуем завтра!" – радостно прошептали они.'
 	],
-	c17: [
+	christmas17: [
 'Pomocnikiem był elf.',
 'Ten elf lubił używać gadżetów.',
 '„Zróbmy prezenty szybciej!” powiedział elf.',
@@ -432,7 +432,7 @@ const TEXTS = {
 'Северный полюс снова был веселым.',
 'Праздники были радостными для всех!'
 	],
-	c18: [
+	christmas18: [
 'Dziecko zrobiło aniołka na śniegu.',
 'Śnieżny aniołek ożył!',
 'Uśmiechnął się i rozsypał magiczne płatki śniegu.',
@@ -454,7 +454,7 @@ const TEXTS = {
 '«Спасибо, снежный ангел!» — сказал ребёнок.',
 'Мир был полон покоя и улыбок.'
 	],
-	c19: [
+	christmas19: [
 'Parada Małego Bębniarza',
 'Mały bębniarz bardzo lubił grać na swoim bębnie.',
 'Chciał dać radość wszystkim, których znał.',
@@ -478,7 +478,7 @@ const TEXTS = {
 'Барабан мальчика объединил всех в тот день.',
 '«Праздничная радость лучше, когда мы ею делимся!» – сказал он.'
 	],
-	c20: [
+	christmas20: [
 'Samotna Choinka',
 'W kącie stała samotna choinka.',
 'Choinka była smutna i bardzo samotna.',
@@ -496,10 +496,7 @@ const TEXTS = {
 'Комната стала яркой, весёлой и полной радости.',
 'Теперь ёлочка больше не была одинокой, а очень любимой.'
 	],
-	с21: [
-
-	],
-	c29: [
+	christmas21: [
 'Richard i Świąteczne Skarpetki',
 'Richard miał małe, czerwone skarpetki.',
 '"To są moje świąteczne skarpetki!" powiedział radośnie.',
@@ -531,7 +528,7 @@ const TEXTS = {
 'Ричард надел оба носочка и обнял собаку.',
 '"Теперь это настоящая рождественская радость!" – счастливо сказал он.'
 	],
-	c30: [
+	christmas22: [
 "Nowy Przyjaciel Bałwanka",
 "Pewnego zimowego dnia mały bałwanek stał całkiem sam.",
 "Spojrzał w niebo i pomyślał życzenie.",
@@ -559,7 +556,7 @@ const TEXTS = {
 "Снеговик больше не был один.",
 "Его желание сбылось — друг на зимние дни!"
 	],
-	c42: [
+	christmas23: [
 'Dobry Piekarz i Wielka Niespodzianka Świętego Mikołaja',
 'W małym miasteczku mieszkał dobry piekarz.',
 'Pewnej zimnej nocy usłyszał hałas na dachu.',
@@ -595,7 +592,7 @@ const TEXTS = {
 'Город спал, но пекарня светилась.',
 'И так добрый пекарь спас рождественскую ночь!'
 	],
-	c43: [
+	christmas24: [
 'Zagubiony Miś Wraca do Domu',
 'Była Wigilia, a dziecko było smutne.',
 'Ich miś zaginął i nigdzie go nie było.',
@@ -621,7 +618,7 @@ const TEXTS = {
 'Ребёнок крепко обнял мишку со слезами радости.',
 'Теперь праздник был идеальным, потому что мишка вернулся домой.'
 	],
-	c50: [
+	christmas25: [
 'Loli, Wróżka Śnieżynka',
 'Loli była malutką wróżką śnieżynką z błyszczącymi skrzydłami.',
 'Mieszkała w chmurach wysoko nad śnieżną ziemią.',
@@ -645,7 +642,7 @@ const TEXTS = {
 '"Спасибо, Лоли! Ты сделала ночь тёплой и светлой!"',
 'Лоли улыбнулась и полетела дальше, принося радость повсюду.'
 	],
-	c51: [
+	christmas26: [
 'Gwiaździsta Podróż Mikołaja',
 'Mikołaj leciał wysoko z reniferami po niebie.',
 'Gwiazdy świeciły jasno, rozświetlając ciemną noc.',
