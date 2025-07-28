@@ -213,88 +213,53 @@
           ...shuffleArray(WORDS2, seed),
         ];
 
-        const testArray = (words, ind, isMoreThan4Letters) => {
-          let wrd = "";
+        const testArray = (words, arrayName) => {
+          for (let i = 0; i < words.length; i++) {
+            let item = words[i]; // ['pol', 'рус', 'help', []]
+            let fileName = arrayName === 'WORDS1' ? 'wordsMore4.js' : 'wordsLess4.js';
 
-          let isWORDS1ArrayCorrupt = false;
-          let isWORDS2ArrayCorrupt = false;
-
-          let isWORDS1hasLess4LetterWord = false;
-          let isWORDS2hasMore4LetterWord = false;
-
-          let isWORDS1strucktureCorupt = false;
-          let isWORDS2strucktureCorupt = false;
-
-          words.forEach((it) => {
-            if (isMoreThan4Letters && it[0].length <= 4) {
-              wrd = it[0];
-              isWORDS1hasLess4LetterWord = true;
+            // в какой-то item нету зяпятой
+            if (item === undefined) {
+               document.getElementById("root").innerHTML = `в файле ${arrayName === 'WORDS1' ? 'wordsMore4.js' : 'wordsLess4.js'} / в след слове где-то нет запятой - "${i ===0 ? 'первом слове' : words[i - 1][0]}"`;
             }
 
+            // пробел в слове
+            if ((item[0][0] === ' ' || item[0][item[0].length -1] === ' ') || (item[0][0] === ' ' || item[0][item[0].length -1] === ' ')) {
+              document.getElementById("root").innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> есть пробел`;
+            }
+          
+            // пробел в слове
+            if ((item[1][0] === ' ' || item[1][item[1].length -1] === ' ') || (item[1][0] === ' ' || item[1][item[1].length -1] === ' ' )) {
+              document.getElementById("root").innerHTML = `в слове "${item[1]}" / в файле ${fileName} -> есть пробел`;
+            }
+        
+
+            // в одном из масиивов присутсвует слово другого размера
+            if ((arrayName === 'WORDS1' && item[0].length <= 4) || (arrayName === 'WORDS2' && item[0].length > 4)) {
+              document.getElementById("root").innerHTML = arrayName === 'WORDS1' ?
+              `в слове "${item[0]}" / в файле ${fileName} ->  имеет слово меньше или равно 4 буквам`
+              : 
+              `в слове "${item[0]}" / в файле ${fileName} -> имеет слово больше 4 букв`;
+            }
+    
+            // нарушен порядок ['', '', '', []])
             if (
-              isMoreThan4Letters &&
-              (it.length !== 4 ||
-                typeof it[0] !== "string" ||
-                typeof it[1] !== "string" ||
-                typeof it[2] !== "string" ||
-                !Array.isArray(it[3]))
+              (item.length !== 4 ||
+                typeof item[0] !== "string" ||
+                typeof item[1] !== "string" ||
+                typeof item[2] !== "string" ||
+                !Array.isArray(item[3]))
             ) {
-              wrd = it[0];
-              isWORDS1strucktureCorupt = true;
+              document.getElementById("root").innerHTML = `в слове "${item[0]}" / в файле ${fileName} -> нарушен порядок ['', '', '', []]`;
             }
 
-            if (!isMoreThan4Letters && it[0].length > 4) {
-              wrd = it[0];
-              isWORDS2hasMore4LetterWord = true;
-            }
-            if (
-              !isMoreThan4Letters &&
-              (it.length !== 4 ||
-                typeof it[0] !== "string" ||
-                typeof it[1] !== "string" ||
-                typeof it[2] !== "string" ||
-                !Array.isArray(it[3]))
-            ) {
-              wrd = it[0];
-              isWORDS2strucktureCorupt = true;
-            }
-            if (!isMoreThan4Letters && !Array.isArray(it)) {
-              wrd = it[0];
-              isWORDS2ArrayCorrupt = true;
-            }
-            if (isMoreThan4Letters && !Array.isArray(it)) {
-              wrd = it[0];
-              isWORDS1ArrayCorrupt = true;
-            }
-          });
-          if (isWORDS1strucktureCorupt) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
-          }
-          if (isWORDS2strucktureCorupt) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> ПОВРЕЖДЕН (в каком то слове нарушен порядок ['', '', '', []])`;
-          }
-          if (isWORDS1ArrayCorrupt) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js -> общий массив поврежден`;
-          }
-          if (isWORDS2ArrayCorrupt) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> общий массив поврежден`;
-          }
-          if (isWORDS1hasLess4LetterWord) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsMore4.js ->  имеет слово меньше или равно 4 буквам`;
-          }
-          if (isWORDS2hasMore4LetterWord) {
-            const container = document.getElementById("root");
-            container.innerHTML = `в слове ${wrd} / в файле wordsLess4.js -> имеет слово больше 4 букв`;
-          }
+          
+          };
+      
         };
 
         useEffect(() => {
-          testArray(WORDS1, "WORDS1", true);
+          testArray(WORDS1, "WORDS1");
           testArray(WORDS2, "WORDS2");
         }, []);
 
@@ -443,7 +408,10 @@
             VOICE_THE_TEXT(mainQuestion[0]);
             setHelp(mainQuestion[0]);
             if (!mistakesWords.includes(mainQuestion[0])) {
-              setMistakesWords([...mistakesWords, `${mainQuestion[0]} - ${mainQuestion[1]}`]);
+              setMistakesWords([
+                ...mistakesWords,
+                `${mainQuestion[0]} - ${mainQuestion[1]}`,
+              ]);
             }
           }
         };
